@@ -1,0 +1,67 @@
+ion-content {
+    position: relative;
+  }
+  
+  ion-content ion-header ion-toolbar{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: calc(100% - 16px);
+    height: 88px;
+    margin: 8px;
+    background: rgba(250, 250, 255, 0.64);
+    border-radius: 32px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    // opacity: 0.5;
+  }
+  
+  
+  ion-content ion-header ion-toolbar img {
+    height: 72px;
+    width: 72px;
+  }
+  
+  ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    top: -96px;
+    height: 520px;
+    width: calc(100% - 16px);
+    background: linear-gradient(180deg, rgba(84, 111, 250, 0.46) 0%, #091267 100%);
+    border-radius: 32px;
+    margin: 0 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 400px;
+    opacity: 0.3;
+  }
+  
+  ion-content .banner ion-card-title {
+    text-align: center;
+  }
+  
+  ion-content .banner .row-btn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 64px;
+    width: 100%;
+    height: fit-content;
+    align-items: end;
+    padding: 0 8px;
+  }
+  
+  ion-content .banner .row-btn ion-button {
+    width: 100%;
+    margin: 16px ;
+  }
+  
+  ion-content .banner h1 {
+    font-weight: 800;
+    height: fit-content;
+  }
