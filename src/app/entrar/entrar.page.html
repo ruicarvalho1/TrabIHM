@@ -1,13 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Entrar</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Entrar</ion-title>
+      <img src="/assets/logo.png" alt="">
     </ion-toolbar>
   </ion-header>
+
+  <ion-card class="banner">
+    <img src="/assets/image 47.png" alt="">
+    <ion-card-header>
+      <ion-card-title>
+        <h1 style="margin: 0">Entrar</h1>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <div class="formulario">
+    <div class="campo">
+      <label for="email">Email institucional:</label>
+      <ion-input class="imputBoxes" id="email" label-placement="floating" fill="outline" placeholder="Email institucional..." type="email"></ion-input>
+    </div>
+    <div class="campo">
+      <label for="senha">Palavra-passe:</label>
+      <ion-input class="imputBoxes" id="senha" label-placement="floating" fill="outline" placeholder="Palavra-passe..." type="password"></ion-input>
+    </div>
+  </div>
+
+
 </ion-content>
