@@ -7,6 +7,10 @@
 
 /** Ionic CSS Variables **/
 :root {
+
+  //Global Font
+  --ion-font-family: ‘Montserrat’;
+
     /** primary **/
     --ion-color-primary: #3880ff;
     --ion-color-primary-rgb: 56, 128, 255;
@@ -195,6 +199,12 @@
     --ion-background-color-rgb: 255,244,185;
 
     --ion-button:#ffffff ;
+
+
+
+    --ion-button:#ffffff;
+
+
 
     --ion-text-color: #000000;
     --ion-text-color-rgb: 0,0,0;
