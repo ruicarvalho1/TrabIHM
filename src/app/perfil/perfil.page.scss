@@ -61,25 +61,25 @@
 
   ion-content .banner .imgAvatar {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
-    float: right;
-
+    padding-top: 32px;
   }
   
   ion-content .banner .imgAvatar ion-avatar {
     width: 150px;
     height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    float: right;
   }
   
   ion-content .banner .imgAvatar ion-avatar img {
     width: 100%;
     height: auto;
     border-radius: 50%;
+  }
+
+  ion-content .banner .imgAvatar ion-button {
+    margin-top: 48px;
   }
 
