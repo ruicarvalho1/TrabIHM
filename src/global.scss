@@ -48,3 +48,56 @@ html, * {
 body {
   ion-background-color: #FAFAFF;
 }
+
+h1 {
+  font-family: 'Montserrat';
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 800;
+}
+
+h2 {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 800;
+}
+
+h3 {
+  font-family: 'Montserrat';
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+h4 {
+  font-family: 'Montserrat';
+  font-size: 12px;
+  line-height: 20px;
+  font-weight: 800;
+}
+
+::placeholder {
+  font-family: 'Montserrat';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+}
+
+p {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+}
+
+ion-button{
+
+  font-size: 20px;
+  line-height: 32px;
+  font-weight: 800;
+  color: #131D73;
+
+}
+
+
