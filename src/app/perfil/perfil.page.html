@@ -12,7 +12,7 @@
       </ion-avatar>
       <h2 style="margin: 8px 0 0 0;">Candido Faisca</h2>
       <h3 style="margin: 8px;">Nº27629</h3>
-      <ion-button color="bgwhite">Editar</ion-button>
+      <ion-button color="bgwhite" translate>site.perfil-editar</ion-button>
     </div>
   </ion-card>
   <div class="div-content">
@@ -32,10 +32,20 @@
       <img src="/assets/SVG/Bell.svg" alt="">
       <p>faisca.candido2ipvc.pt</p>
     </ion-card>
-    <ion-card class="info-card" >
+    <ion-card class="Idioma-card">
       <img src="/assets/SVG/chat.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
+      <div class="idioma-info">
+          <h3>Idioma</h3> 
+      </div>
+      <div class="Checkbox">
+        <ion-radio-group (ionChange)="onchangeLanguage($event)">
+          <ion-item *ngFor="let lang of appLanguageList, let i = index">
+            <ion-label>{{ lang.title }}</ion-label>
+            <ion-radio value="{{lang.code}}"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+    </div>
+  </ion-card>
     <ion-card class="info-card" >
       <img src="/assets/SVG/megaphone.svg" alt="">
       <p>faisca.candido2ipvc.pt</p>

@@ -117,3 +117,62 @@
     margin: 0 0 0 8px;
   }
 
+
+  .Idioma-card {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    background: #07AAC5;
+    width: calc(100% - 16px);
+    padding: 8px 16px;
+    margin: 16px 0 0 0;
+    border-radius: 32px;
+}
+
+.Idioma-card img {
+    width: 33px; /* ajuste conforme necessário */
+    margin-right: 10px; /* espaço entre o ícone e o texto */
+}
+
+.idioma-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    flex-grow: 1; /* para estender os títulos ao longo de todo o espaço disponível */
+}
+
+.idioma-info h3 {
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.Checkbox h3{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 56px;
+  justify-content: space-between;
+  color: #FFFFFF;
+  margin-top: 20px; 
+}
+ion-checkbox {
+  --size: 32px;
+  --checkbox-background-checked: #6815ec;
+}
+
+ion-checkbox::part(container) {
+  border-radius: 6px;
+  border: 2px solid #6815ec;
+}
+
+.idioma-info {
+  margin-bottom: 10px; 
+}
+
+.checkbox ion-item {
+  --inner-padding-end: 0; 
+}
+
+.checkbox ion-label {
+  margin-left: 10px; 
+}

@@ -5,15 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PerfilPageRoutingModule } from './perfil-routing.module';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { PerfilPage } from './perfil.page';
+
+//Por em todas as paginas o TranslateModule
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilPageRoutingModule
+    PerfilPageRoutingModule,
+    TranslateModule
   ],
   declarations: [PerfilPage]
 })

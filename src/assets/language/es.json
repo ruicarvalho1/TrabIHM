@@ -1,0 +1,12 @@
+{
+"site":
+    {
+        "titulo-inicial": "Bienvenido",
+        "botao-criar": "Crear tarea",
+        "disciplinas": "Cursos",
+        "titulo-tarefaspro": "Próximas tareas",
+        "perfil-editar": "Para editar"
+
+    }
+
+}
