@@ -13,6 +13,7 @@ export class AppComponent {
     this.translate.setDefaultLang("pt");
     this.translate.addLangs(['pt','en','es'])
   }
+  
   //end
 }
 
