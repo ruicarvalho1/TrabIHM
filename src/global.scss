@@ -37,84 +37,85 @@
 @import "@ionic/angular/css/palettes/dark.system.css";
 
 @font-face {
-  font-family: 'Montserrat';
-  src:url('/assets/Fonts/Montserrat/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-family: "Montserrat";
+  src: url("/assets/Fonts/Montserrat/Montserrat-VariableFont_wght.ttf")
+    format("truetype");
 }
 
-html, * {
-  font-family: 'Montserrat' !important;
+html,
+* {
+  font-family: "Montserrat" !important;
 }
 
 body {
-  ion-background-color: #FAFAFF;
+  ion-background-color: #fafaff !important;
 }
 
 h1 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 40px;
   line-height: 48px;
   font-weight: 800;
 }
 
 h2 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 20px;
   line-height: 32px;
   font-weight: 800;
 }
 
 h3 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
 }
 
 h4 {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 12px;
   line-height: 20px;
   font-weight: 800;
 }
 
 ::placeholder {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 14px;
   line-height: 22px;
   font-weight: 600;
 }
 
 p {
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
-  
 }
 
-ion-button{
+ion-button {
   font-size: 20px;
   line-height: 32px;
   font-weight: 800;
-  color: #131D73;
+  color: #131d73;
 }
 
 ion-radio {
   --border-radius: 8px;
   --inner-border-radius: 8px;
-  --color: #FFFFFF;
-  --color-checked: #07AAC5;
+  --color: #ffffff;
+  --color-checked: #07aac5;
 }
 
 ion-radio.ios::part(container) {
   width: 32px;
   height: 32px;
-  border: 2px solid #FFFFFF;
+  border: 2px solid #ffffff;
   border-radius: 8px;
-  background: #C1BAF5;
+  background: #c1baf5;
 }
 
 .radio-checked.ios::part(container) {
-  border-color: #FFFFFF;
-  background: #FFFFFF;
+  border-color: #ffffff;
+  background: #ffffff;
 }
