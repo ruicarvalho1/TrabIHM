@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
       },
       {
+        path: 'grupos/:gruposid',
+        loadChildren: () => import('../conversas-grupo/conversas-grupo.module').then( m => m.ConversasGrupoPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/home',
         pathMatch: 'full'
