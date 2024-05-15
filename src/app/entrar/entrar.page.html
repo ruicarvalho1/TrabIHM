@@ -6,23 +6,24 @@
   </ion-header>
 
   <ion-card class="banner">
-    <img src="/assets/image 47.png" alt="">
+    <img src="../../assets/sign_in.png" alt="">
     <ion-card-header>
       <ion-card-title>
-        <h1 style="margin: 0">Entrar</h1>
+        <h1>Entrar</h1>
       </ion-card-title>
     </ion-card-header>
   </ion-card>
-  <div class="formulario">
-    <div class="campo">
-      <label for="email">Email institucional:</label>
-      <ion-input class="imputBoxes" id="email" label-placement="floating" fill="outline" placeholder="Email institucional..." type="email"></ion-input>
+  <div class="sign-in-form">
+    <div class="user-input">
+      <h4 for="email">Email institucional:</h4>
+      <ion-input id="email" placeholder="Email institucional..." type="email"></ion-input>
     </div>
-    <div class="campo">
-      <label for="senha">Palavra-passe:</label>
-      <ion-input class="imputBoxes" id="senha" label-placement="floating" fill="outline" placeholder="Palavra-passe..." type="password"></ion-input>
+    <div class="pass-input">
+      <h4 for="password">Palavra-passe:</h4>
+      <ion-input id="senha" placeholder="Palavra-passe..." type="password" value="password"></ion-input>
+    </div>
+    <div class="submit-button">
+      <ion-button color="primary" translate>site.entrar</ion-button>
     </div>
   </div>
-
-
 </ion-content>
