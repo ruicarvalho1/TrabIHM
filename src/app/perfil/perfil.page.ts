@@ -1,6 +1,6 @@
 import { TranslateService } from '@ngx-translate/core';
-import { Component, OnInit } from '@angular/core';
-
+import { Component, ViewChildren, QueryList } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -9,21 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilPage {
 
-
   appLanguageList= [
-    {code: "en", title: "Inglês", text:"english"},
-    {code: "es", title: "Espanhol", text:"Spanish"},
-    {code: "pt", title: "Português", text:"Portuguese"},
-    
-  ]
+    {code: "en", title: "Inglês", text: "Changed to English"},
+    {code: "es", title: "Espanhol", text: "Cambiado a Español"},
+    {code: "pt", title: "Português", text: "Alterado para Português"},
+  ];
 
-  constructor(private translateService: TranslateService) { }
+  @ViewChildren('toast') toastComponents!: QueryList<any>; // Inicialização da propriedade
 
-  onchangeLanguage( e: any) {
-    this.translateService.use(e.target.value ? e.target.value: "en")
+  constructor(
+    private translateService: TranslateService,
+    private toastController: ToastController
+  ) { }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000
+    });
+    toast.present();
   }
 
-  
-
- 
+  onchangeLanguage(e: any) {
+    const selectedLanguage = e.detail.value ? e.detail.value : 'en';
+    const selectedLanguageData = this.appLanguageList.find(lang => lang.code === selectedLanguage);
+    if (selectedLanguageData) {
+      this.translateService.use(selectedLanguage).subscribe(() => {
+        this.presentToast(selectedLanguageData.text);
+      });
+    }
+  }
 }

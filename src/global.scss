@@ -99,4 +99,23 @@ ion-button{
   color: #131D73;
 }
 
+ion-radio {
+  --border-radius: 8px;
+  --inner-border-radius: 8px;
+  --color: #FFFFFF;
+  --color-checked: #07AAC5;
+  margin-top: 8px;
+}
 
+ion-radio.ios::part(container) {
+  width: 32px;
+  height: 32px;
+  border: 2px solid #FFFFFF;
+  border-radius: 8px;
+  background: #C1BAF5;
+}
+
+.radio-checked.ios::part(container) {
+  border-color: #FFFFFF;
+  background: #FFFFFF;
+}

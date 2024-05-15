@@ -22,65 +22,46 @@
     </ion-card>
     <ion-card class="info-card" >
       <img src="/assets/SVG/Book_open.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
+      <p>Engenharia de relvados</p>
     </ion-card>
     <ion-card class="info-card" >
       <img src="/assets/SVG/Pin.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
+      <p>ESTG</p>
     </ion-card>
     <ion-card class="info-card" >
       <img src="/assets/SVG/Bell.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
+      <p>Notificações</p>
     </ion-card>
-    <ion-card class="Idioma-card">
-      <img src="/assets/SVG/chat.svg" alt="">
-      <div class="idioma-info">
-          <h3>Idioma</h3> 
+    <ion-card class="info-card">
+      <div class="div-icon">
+        <img src="/assets/SVG/chat.svg" alt="">
       </div>
-      <div class="Checkbox">
-        <ion-radio-group (ionChange)="onchangeLanguage($event)">
-          <ion-item *ngFor="let lang of appLanguageList, let i = index">
-            <ion-label>{{ lang.title }}</ion-label>
-            <ion-radio value="{{lang.code}}"></ion-radio>
-          </ion-item>
-        </ion-radio-group>
-    </div>
+      <div class="idioma-info">
+          <p translate>site.perfil-idioma</p> 
+          <div class="idiomas">
+            <div class="column-idiomas">
+              <div>
+                <p>Inglês</p> 
+              </div>
+              <div>
+                <p>Espanhol</p> 
+              </div>
+              <div>
+                <p>Português</p> 
+              </div>
+            </div>
+            <div class="column-radios" id= "open-toast">
+              <ion-radio-group value="language" (ionChange)="onchangeLanguage($event)" >  
+                     <ion-radio  *ngFor="let lang of appLanguageList, let i = index" value="{{lang.code}}" ></ion-radio>
+                     <ion-toast *ngFor="let lang of appLanguageList; let i = index" [duration]="3000" translate></ion-toast>
+              </ion-radio-group>
+            </div>
+          </div>
+      </div>
   </ion-card>
     <ion-card class="info-card" >
       <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
-    </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
-      <p>faisca.candido2ipvc.pt</p>
+      <p>Ajuda</p>
     </ion-card>
   </div>
 
