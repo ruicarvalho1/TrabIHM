@@ -9,41 +9,52 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
+        loadChildren: () =>
+          import('../home/home.module').then((m) => m.HomePageModule),
       },
       {
         path: 'disciplinas',
-        loadChildren: () => import('../disciplinas/disciplinas.module').then( m => m.DisciplinasPageModule)
+        loadChildren: () =>
+          import('../disciplinas/disciplinas.module').then(
+            (m) => m.DisciplinasPageModule
+          ),
       },
       {
         path: 'nova-tarefa',
-        loadChildren: () => import('../nova-tarefa/nova-tarefa.module').then( m => m.NovaTarefaPageModule)
+        loadChildren: () =>
+          import('../nova-tarefa/nova-tarefa.module').then(
+            (m) => m.NovaTarefaPageModule
+          ),
       },
       {
-
         path: 'chat',
-        loadChildren: () => import('../chat/chat.module').then( m => m.ChatPageModule)
+        loadChildren: () =>
+          import('../chat/chat.module').then((m) => m.ChatPageModule),
       },
       {
         path: 'perfil',
-        loadChildren: () => import('../perfil/perfil.module').then( m => m.PerfilPageModule)
+        loadChildren: () =>
+          import('../perfil/perfil.module').then((m) => m.PerfilPageModule),
       },
       {
         path: 'grupos/:gruposid',
-        loadChildren: () => import('../conversas-grupo/conversas-grupo.module').then( m => m.ConversasGrupoPageModule)
+        loadChildren: () =>
+          import('../conversas-grupo/conversas-grupo.module').then(
+            (m) => m.ConversasGrupoPageModule
+          ),
       },
       {
         path: '',
-        redirectTo: '/tabs/home',
-        pathMatch: 'full'
-      }
-    ]
+        redirectTo: '/entrar',
+        pathMatch: 'full',
+      },
+    ],
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
-    pathMatch: 'full'
-  }
+    redirectTo: '/entrar',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({

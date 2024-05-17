@@ -1,42 +1,65 @@
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <img src="/assets/logo.png" alt="" />
-    </ion-toolbar>
-  </ion-header>
+<ion-content scrollY="false">
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="login()" [formGroup]="credentials">
+        <ion-item>
+          <ion-label position="stacked">Your Email</ion-label>
+          <ion-input
+            type="email"
+            inputmode="email"
+            placeholder="Email"
+            formControlName="email"
+          ></ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(email.dirty || email.touched) && email.errors"
+            >Please insert your email</ion-note
+          >
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          ></ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(password.dirty || password.touched) && password.errors"
+            >Please insert your password</ion-note
+          >
+        </ion-item>
+        <ion-button
+          type="submit"
+          expand="block"
+          strong="true"
+          [disabled]="!credentials.valid"
+          >Sign in</ion-button
+        >
 
-  <ion-card class="banner">
-    <img src="../../assets/sign_in.png" alt="" />
-    <ion-card-header>
-      <ion-card-title>
-        <h1>Entrar</h1>
-      </ion-card-title>
-    </ion-card-header>
+        <div class="ion-margin-top">
+          <ion-button
+            type="button"
+            expand="block"
+            color="primary"
+            fill="outline"
+            routerLink="register"
+          >
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            Create Account
+          </ion-button>
+
+          <ion-button
+            type="button"
+            expand="block"
+            color="secondary"
+            (click)="forgotPw()"
+          >
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            Forgot password?
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
   </ion-card>
-  <div class="sign-in-form">
-    <div class="user-input" (ngSubmit)="login()" [formGroup]="credentials">
-      <h4 for="email">Email institucional:</h4>
-      <ion-input
-        id="email"
-        placeholder="Email institucional..."
-        type="email"
-        formControlName="email"
-        inputmode="email"
-      ></ion-input>
-      <ion-note slot="error">TEXT</ion-note>
-    </div>
-    <div class="pass-input">
-      <h4 for="password">Palavra-passe:</h4>
-      <ion-input
-        id="senha"
-        placeholder="Palavra-passe..."
-        type="password"
-        value="password"
-        formControlName="email"
-      ></ion-input>
-    </div>
-    <div class="submit-button">
-      <ion-button color="primary" translate>site.entrar</ion-button>
-    </div>
-  </div>
 </ion-content>

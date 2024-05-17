@@ -1,73 +1,90 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img  src="/assets/logo.png" alt="">
+      <img src="/assets/logo.png" alt="" />
     </ion-toolbar>
   </ion-header>
 
-  <ion-card class="banner" >
+  <ion-card class="banner">
     <div class="imgAvatar">
-      <ion-avatar >
-        <img class="img1"  alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      <ion-avatar>
+        <img
+          class="img1"
+          alt="Silhouette of a person's head"
+          src="https://ionicframework.com/docs/img/demos/avatar.svg"
+        />
       </ion-avatar>
-      <h2 style="margin: 8px 0 0 0;">Candido Faisca</h2>
-      <h3 style="margin: 8px;">Nº27629</h3>
+      <h2 style="margin: 8px 0 0 0">Candido Faisca</h2>
+      <h3 style="margin: 8px">Nº27629</h3>
       <ion-button color="bgwhite" translate>site.perfil-editar</ion-button>
     </div>
   </ion-card>
   <div class="div-content">
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/Message.svg" alt="">
+    <ion-card class="info-card">
+      <img src="/assets/SVG/Message.svg" alt="" />
       <p>faisca.candido2ipvc.pt</p>
     </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/Book_open.svg" alt="">
+    <ion-card class="info-card">
+      <img src="/assets/SVG/Book_open.svg" alt="" />
       <p>Engenharia de relvados</p>
     </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/Pin.svg" alt="">
+    <ion-card class="info-card">
+      <img src="/assets/SVG/Pin.svg" alt="" />
       <p>ESTG</p>
     </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/Bell.svg" alt="">
+    <ion-card class="info-card">
+      <img src="/assets/SVG/Bell.svg" alt="" />
       <p translate>site.perfil-notif</p>
       <div class="notif-status">
-        <ion-radio-group  [allowEmptySelection]="true" value="language">
+        <ion-radio-group [allowEmptySelection]="true" value="language">
           <ion-radio value="notifications "></ion-radio>
         </ion-radio-group>
-      </div> 
+      </div>
     </ion-card>
     <ion-card class="info-card">
       <div class="div-icon">
-        <img src="/assets/SVG/chat.svg" alt="">
+        <img src="/assets/SVG/chat.svg" alt="" />
       </div>
       <div class="idioma-info">
-          <p translate>site.perfil-idioma</p> 
-          <div class="idiomas">
-            <div class="column-idiomas">
-              <div>
-                <p>Inglês</p> 
-              </div>
-              <div>
-                <p>Espanhol</p> 
-              </div>
-              <div>
-                <p>Português</p> 
-              </div>
+        <p translate>site.perfil-idioma</p>
+        <div class="idiomas">
+          <div class="column-idiomas">
+            <div>
+              <p>Inglês</p>
             </div>
-            <div class="column-radios" id= "open-toast">
-              <ion-radio-group value="language" (ionChange)="onchangeLanguage($event)" >  
-                     <ion-radio  *ngFor="let lang of appLanguageList, let i = index" value="{{lang.code}}" ></ion-radio>
-                     <ion-toast *ngFor="let lang of appLanguageList; let i = index" [duration]="3000" translate></ion-toast>
-              </ion-radio-group>
+            <div>
+              <p>Espanhol</p>
+            </div>
+            <div>
+              <p>Português</p>
             </div>
           </div>
+          <div class="column-radios" id="open-toast">
+            <ion-radio-group
+              value="language"
+              (ionChange)="onchangeLanguage($event)"
+            >
+              <ion-radio
+                *ngFor="let lang of appLanguageList, let i = index"
+                value="{{lang.code}}"
+              ></ion-radio>
+              <ion-toast
+                *ngFor="let lang of appLanguageList; let i = index"
+                [duration]="3000"
+                translate
+              ></ion-toast>
+            </ion-radio-group>
+          </div>
+        </div>
       </div>
-  </ion-card>
-    <ion-card class="info-card" >
-      <img src="/assets/SVG/megaphone.svg" alt="">
+    </ion-card>
+    <ion-card class="info-card">
+      <img src="/assets/SVG/megaphone.svg" alt="" />
       <p translate>site.perfil-ajuda</p>
     </ion-card>
-  </div>
 
+    <ion-card class="info-card logout" (click)="signOut()" *ngIf="user | async">
+      <p translate>Logout</p>
+    </ion-card>
+  </div>
 </ion-content>

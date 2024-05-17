@@ -82,7 +82,8 @@ ion-content .div-content .info-card {
   border-radius: 32px;
 }
 
-ion-content .div-content .info-card:last-child {
+ion-content .div-content .info-card:last-child,
+ion-content .div-content .info-card.logout:last-child {
   margin-bottom: 32px;
 }
 
@@ -137,4 +138,15 @@ ion-radio-group {
 
 ion-content .div-content .info-card .idioma-info ion-radio {
   margin-top: 8px;
+}
+
+ion-content .div-content .info-card.logout {
+  display: flex;
+  text-align: center;
+  background: red;
+  width: 164px;
+  height: 48px;
+  padding: 8px 0px;
+  margin: 16px 0 0 0;
+  border-radius: 32px;
 }

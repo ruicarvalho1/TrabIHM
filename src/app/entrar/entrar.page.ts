@@ -10,11 +10,25 @@ import { Router } from '@angular/router';
   templateUrl: './entrar.page.html',
   styleUrls: ['./entrar.page.scss'],
 })
-export class EntrarPage implements OnInit {
+export class EntrarPage {
   credentials = this.fb.nonNullable.group({
-    email: ['rui.carvalho@ipvc.pt', Validators.required],
-    password: ['123456', Validators.required],
+    email: ['', Validators.required],
+    password: ['', Validators.required],
   });
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private loadingController: LoadingController,
+    private alertController: AlertController,
+    private router: Router
+  ) {
+    this.authService.getCurrentUser().subscribe((user) => {
+      if (user) {
+        this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
+      }
+    });
+  }
 
   get email() {
     return this.credentials.controls.email;
@@ -24,15 +38,64 @@ export class EntrarPage implements OnInit {
     return this.credentials.controls.password;
   }
 
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-    private loadingController: LoadingController,
-    private alertController: AlertController,
-    private router: Router
-  ) {}
+  async login() {
+    const loading = await this.loadingController.create();
+    await loading.present();
 
-  ngOnInit() {}
+    this.authService
+      .signIn(this.credentials.getRawValue())
+      .then(async (data) => {
+        await loading.dismiss();
 
-  async login() {}
+        if (data.error) {
+          this.showAlert('O Login falhou', data.error.message);
+        }
+      });
+  }
+
+  async showAlert(title: string, msg: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: msg,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
+  async forgotPw() {
+    const alert = await this.alertController.create({
+      header: 'Receber nova palavra-passe',
+      message: 'Por favor insira o seu email',
+      inputs: [
+        {
+          type: 'email',
+          name: 'email',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancelar',
+        },
+        {
+          text: 'Resetar a palavra-passe',
+          handler: async (result) => {
+            const loading = await this.loadingController.create();
+            await loading.present();
+            const { data, error } = await this.authService.sendPwReset(
+              result.email
+            );
+            await loading.dismiss();
+
+            if (error) {
+              this.showAlert('Falhou', error.message);
+            } else {
+              this.showAlert('Sucesso', 'Por favor aceda ao seu email');
+            }
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 }

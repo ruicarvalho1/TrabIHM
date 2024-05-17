@@ -14,8 +14,8 @@ import { EntrarPage } from './entrar.page';
     FormsModule,
     IonicModule,
     EntrarPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [EntrarPage]
+  declarations: [EntrarPage],
 })
 export class EntrarPageModule {}
