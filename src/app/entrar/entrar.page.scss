@@ -21,56 +21,58 @@ ion-content .banner ion-card-title {
   text-align: center;
 }
 
-ion-content .banner .row-btn {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  bottom: 64px;
-  width: 100%;
-  height: fit-content;
-  align-items: end;
-  padding: 0 8px;
-}
-
-ion-content .banner .row-btn ion-button {
-  width: 100%;
-  margin: 16px ;
-}
-
 ion-content .banner h1 {
   font-weight: 800;
+  color: #FFFFFF;
   height: fit-content;
 }
 
-.sign-in-form {
+ion-content ion-card.credentials-card {
+  margin: 32px 8px;
+  padding: 0;
+  background: transparent;
+}
+
+ion-content ion-card.credentials-card ion-card-content {
   width: 100%;
-  margin-top: 32px;
-  padding: 0 8px;
+  padding: 0;
 }
 
-.sign-in-form h4 {
-  color: #131D73;
-  padding-left: 16px;
+ion-content ion-card.credentials-card ion-card-content form{
+  background: transparent;
 }
 
-.sign-in-form ion-input {
-  --border-width: 1px;
-  --border-color: #131D73;
-  --background: #FFFFFF;
-  --color: #131D73;
+ion-content ion-card.credentials-card ion-card-content ion-item {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0px 0px 8px rgba(236, 235, 245, 0.5);
 }
 
-.sign-in-form ion-input label .native-input {
-  padding: 0 16px !important;
+ion-content ion-card.credentials-card ion-card-content ion-item ion-label {
+  margin: 8px 0 0 0;
+  font-weight: 800;
 }
 
-.sign-in-form .submit-button {
+ion-content ion-card.credentials-card ion-card-content ion-item ion-input {
+  --placeholder-color: #131D73;
+  --text-color: #131D73;
+}
+
+ion-content ion-card.credentials-card ion-card-content ion-button.sign-in {
+  border-radius: 32px;
+}
+
+ion-content ion-card.credentials-card ion-card-content ion-button.aux-button {
+  background: transparent;
+  text-decoration: underline;
+}
+
+ion-content ion-card.credentials-card ion-card-content .separator {
   display: flex;
-  width: 100%;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 16px;
 }
 
-.sign-in-form .submit-button ion-button {
-  margin: 0;
+ion-content ion-card.credentials-card ion-card-content .separator h4 {
+  color: #131D73 !important;
 }

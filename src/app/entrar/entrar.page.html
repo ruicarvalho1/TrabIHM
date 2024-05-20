@@ -1,63 +1,81 @@
 <ion-content scrollY="false">
-  <ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <img src="/assets/logo.png" alt="">
+    </ion-toolbar>
+  </ion-header>
+  <ion-card class="banner">
+    <img src="../../assets/sign_in.png" alt="">
+    <ion-card-header>
+      <ion-card-title>
+        <h1 style="margin: 0;" translate>site.entrar</h1>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="credentials-card">
     <ion-card-content>
       <form (ngSubmit)="login()" [formGroup]="credentials">
-        <ion-item>
-          <ion-label position="stacked">Your Email</ion-label>
+        <ion-item color="bg-white">
+          <ion-label position="stacked" color="primary">Email:</ion-label>
           <ion-input
             type="email"
             inputmode="email"
-            placeholder="Email"
+            placeholder="Email institucional..."
             formControlName="email"
           ></ion-input>
           <ion-note
             slot="error"
             *ngIf="(email.dirty || email.touched) && email.errors"
-            >Please insert your email</ion-note
+            >Email em falta</ion-note
           >
         </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Password</ion-label>
+        <ion-item color="bg-white">
+          <ion-label position="stacked" color="primary">Palavra-passe:</ion-label>
           <ion-input
             type="password"
-            placeholder="Password"
+            placeholder="Palavra-passe..."
             formControlName="password"
           ></ion-input>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors"
-            >Please insert your password</ion-note
+            >Palavra-passe em falta</ion-note
           >
         </ion-item>
         <ion-button
+          color="primary"
           type="submit"
           expand="block"
           strong="true"
           [disabled]="!credentials.valid"
-          >Sign in</ion-button
+          class="sign-in"
+          >Entrar</ion-button
         >
 
         <div class="ion-margin-top">
           <ion-button
+          color="bg-white"
             type="button"
             expand="block"
-            color="primary"
-            fill="outline"
-            routerLink="register"
-          >
-            <ion-icon name="person-outline" slot="start"></ion-icon>
-            Create Account
-          </ion-button>
-
-          <ion-button
-            type="button"
-            expand="block"
-            color="secondary"
+            class="aux-button"
             (click)="forgotPw()"
           >
             <ion-icon name="key-outline" slot="start"></ion-icon>
-            Forgot password?
+            Esqueci-me da palavra-passe
           </ion-button>
+          <div class="separator">
+            <h4>Ainda não tem conta?</h4>
+          </div>
+          <ion-button
+            type="button"
+            expand="block"
+            color="primary"
+            routerLink="register"
+          >
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            Criar conta
+          </ion-button>
+
         </div>
       </form>
     </ion-card-content>

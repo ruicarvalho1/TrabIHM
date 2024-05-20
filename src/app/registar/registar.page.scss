@@ -1,0 +1,78 @@
+ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    height: 328px;
+    width: calc(100% - 16px);
+    background: linear-gradient(180deg, rgba(84, 111, 250, 0.46) 0%, #091267 100%);
+    border-radius: 32px;
+    margin: 8px 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 400px;
+    opacity: 1;
+  }
+  
+  ion-content .banner ion-card-title {
+    text-align: center;
+  }
+  
+  ion-content .banner h1 {
+    font-weight: 800;
+    color: #FFFFFF;
+    height: fit-content;
+  }
+  
+  ion-content ion-card.credentials-card {
+    margin: 32px 8px;
+    padding: 0;
+    background: transparent;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content {
+    width: 100%;
+    padding: 0;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content form{
+    background: transparent;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content ion-item {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0px 0px 8px rgba(236, 235, 245, 0.5);
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content ion-item ion-label {
+    margin: 8px 0 0 0;
+    font-weight: 800;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content ion-item ion-input {
+    --placeholder-color: #131D73;
+    --text-color: #131D73;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content ion-button.sign-in {
+    border-radius: 32px;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content ion-button.aux-button {
+    background: transparent;
+    text-decoration: underline;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content .separator {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  
+  ion-content ion-card.credentials-card ion-card-content .separator h4 {
+    color: #131D73 !important;
+  }
