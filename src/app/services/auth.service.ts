@@ -77,7 +77,12 @@ export class AuthService {
   // }
   //}
 
-  signInWithEmail(email: string) {
-    return this.supabase.auth.signInWithOtp({ email });
+  signInWithEmail(email: string, redirectTo: string) {
+    return this.supabase.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: redirectTo,
+      },
+    });
   }
 }

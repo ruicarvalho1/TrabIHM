@@ -98,4 +98,47 @@ export class EntrarPage {
     });
     await alert.present();
   }
+
+  async getMagicLink() {
+    const alert = await this.alertController.create({
+      header: 'Entrar com email',
+      message: 'Por favor insira o seu email!',
+      inputs: [
+        {
+          type: 'email',
+          name: 'email',
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'Cancelar',
+        },
+        {
+          text: 'Entrar com email',
+          handler: async (result) => {
+            const loading = await this.loadingController.create();
+            await loading.present();
+
+            const { data, error } = await this.authService.signInWithEmail(
+              result.email,
+              'http://localhost:8100/tabs/home'
+            );
+
+            await loading.dismiss();
+
+            if (error) {
+              this.showAlert('Falha', error.message);
+            } else {
+              this.showAlert(
+                'Sucesso',
+                'Por favor verifique seu email para o link de login.'
+              );
+            }
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 }
