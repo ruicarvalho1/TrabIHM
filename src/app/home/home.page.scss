@@ -43,13 +43,16 @@ ion-content .banner {
     height: fit-content;
   }
 
-  ion-content .upcoming-tasks {
-    margin: 16px 8px 0 8px;
+  ion-content .upcoming-tasks,
+  ion-content .relevant-chats {
+    margin: 32px 8px 0 8px;
   }
 
-  ion-content .upcoming-tasks h2 {
+  ion-content .upcoming-tasks h2,
+  ion-content .relevant-chats h2 {
     color: #131D73;
     padding-left: 16px;
+    margin: 0;
   }
 
   ion-content .upcoming-tasks .task-grid {
@@ -62,4 +65,44 @@ ion-content .banner {
   ion-content .upcoming-tasks .task-grid ion-card {
     margin: 0;
     height: 300px;
+  }
+
+  ion-content .relevant-chats ion-card {
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content {
+    padding: 0;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item {
+    border-radius: 32px;
+    height: 128px;
+    padding: 16px 0;
+    background: #131D73;
+    margin-bottom: 16px;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-thumbnail,
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-thumbnail img {
+    width: 96px;
+    height: 96px;
+    border-radius: 16px;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-label h4 {
+    font-weight: 400 !important;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ion-content .relevant-chats #SeeAll {
+    color: #C1BAF5;
+    text-decoration: underline;
+    padding-left: 16px;
+    margin: 0 0 32px 0;
   }
