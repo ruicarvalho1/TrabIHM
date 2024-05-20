@@ -44,7 +44,13 @@ export class RegistarPage {
         await loading.dismiss();
 
         if (data.error) {
-          this.showAlert('Registration failed', data.error.message);
+          this.showAlert('Registo Falhou', data.error.message);
+        } else {
+          this.showAlert(
+            'Registo feito com sucesso',
+            'Por favor confirma o email'
+          );
+          this.navCtrl.navigateBack('');
         }
       });
   }
