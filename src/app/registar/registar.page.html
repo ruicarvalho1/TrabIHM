@@ -1,57 +1,73 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Supa Chat</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content scrollY="false">
-  <ion-card>
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <img src="/assets/logo.png" alt="">
+    </ion-toolbar>
+  </ion-header>
+  <ion-card class="banner">
+    <img src="../../assets/User_add.png" alt="" />
+    <ion-card-header>
+      <ion-card-title>
+        <h1 style="margin: 0" translate>site.registar</h1>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card class="credentials-card">
     <ion-card-content>
       <form (ngSubmit)="createAccount()" [formGroup]="credentials">
         <ion-item>
-          <ion-label position="stacked">Your Email</ion-label>
+          <ion-label position="stacked" color="primary">Email:</ion-label>
           <ion-input
             type="email"
             inputmode="email"
-            placeholder="Email"
+            placeholder="Email institucional..."
             formControlName="email"
           ></ion-input>
           <ion-note
             slot="error"
             *ngIf="(email.dirty || email.touched) && email.errors"
-            >Please insert a valid email</ion-note
+            >Email em falta</ion-note
           >
         </ion-item>
         <ion-item>
-          <ion-label position="stacked">Password</ion-label>
+          <ion-label position="stacked" color="primary">Palavra-passe</ion-label>
           <ion-input
             type="password"
-            placeholder="Password"
+            placeholder="Palavra-passe..."
             formControlName="password"
-          ></ion-input>
+          >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors?.['required']"
           >
-            Please insert a password
+            Palavra-passe em falta
           </ion-note>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors?.['minlength']"
           >
-            Minlength 6 characters
+            Palavra-passa deve ter pelo menos 6 caracteres
           </ion-note>
         </ion-item>
         <ion-button
+          color="primary"
           type="submit"
           expand="block"
           strong="true"
+          class="sign-in"
           [disabled]="!credentials.valid"
-          >Create my account</ion-button
+          >Criar conta</ion-button
         >
+        <ion-button
+            color="bg-white"
+            type="button"
+            expand="block"
+            class="aux-button"
+            routerLink="/entrar"
+          >
+            Já tenho conta
+          </ion-button>
       </form>
     </ion-card-content>
   </ion-card>

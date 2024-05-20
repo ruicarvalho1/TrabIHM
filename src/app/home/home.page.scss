@@ -42,3 +42,24 @@ ion-content .banner {
     color: #FFFFFF;
     height: fit-content;
   }
+
+  ion-content .upcoming-tasks {
+    margin: 16px 8px 0 8px;
+  }
+
+  ion-content .upcoming-tasks h2 {
+    color: #131D73;
+    padding-left: 16px;
+  }
+
+  ion-content .upcoming-tasks .task-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  ion-content .upcoming-tasks .task-grid ion-card {
+    margin: 0;
+    height: 300px;
+  }

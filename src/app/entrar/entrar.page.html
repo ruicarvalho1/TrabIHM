@@ -37,7 +37,8 @@
             type="password"
             placeholder="Palavra-passe..."
             formControlName="password"
-          ></ion-input>
+          >
+          <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors"
@@ -72,7 +73,7 @@
             type="button"
             expand="block"
             color="primary"
-            routerLink="register"
+            routerLink="/registar"
           >
             <ion-icon name="person-outline" slot="start"></ion-icon>
             Criar conta
