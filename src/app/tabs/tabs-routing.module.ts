@@ -27,22 +27,25 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'chat',
+        path: 'conversas-grupo',
         loadChildren: () =>
-          import('../chat/chat.module').then((m) => m.ChatPageModule),
+          import('../conversas-grupo/conversas-grupo.module').then(
+            (m) => m.ConversasGrupoPageModule
+          ),
+      },
+      {
+        path: 'conversas-grupo/:conversas-grupoid',
+        loadChildren: () =>
+          import('../conversas-grupo/conversas-grupo.module').then(
+            (m) => m.ConversasGrupoPageModule
+          ),
       },
       {
         path: 'perfil',
         loadChildren: () =>
           import('../perfil/perfil.module').then((m) => m.PerfilPageModule),
       },
-      {
-        path: 'grupos/:gruposid',
-        loadChildren: () =>
-          import('../conversas-grupo/conversas-grupo.module').then(
-            (m) => m.ConversasGrupoPageModule
-          ),
-      },
+
       {
         path: '',
         redirectTo: '/entrar',
