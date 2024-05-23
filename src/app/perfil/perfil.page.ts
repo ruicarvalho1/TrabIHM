@@ -17,7 +17,7 @@ import { DataService } from './../services/data.service';
 export class PerfilPage {
   user = this.authService.getCurrentUser();
 
-  group: any = null;
+  users: any = null;
 
   appLanguageList = [
     { code: 'en', title: 'Inglês', text: 'Changed to English' },
@@ -55,9 +55,13 @@ export class PerfilPage {
   }
 
   async ionViewWillEnter() {
-    const id = '1';
-    this.group = await this.data.getUserById(id);
-    console.log('group: ', this.group);
+    const userId = this.authService.getCurrentUserId();
+    if (userId) {
+      this.users = await this.data.getUserById(userId);
+      console.log('group: ', this.users);
+    } else {
+      console.log('Nenhum usuário autenticado encontrado.');
+    }
   }
 
   signOut() {

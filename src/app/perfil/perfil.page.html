@@ -14,19 +14,19 @@
           src="https://ionicframework.com/docs/img/demos/avatar.svg"
         />
       </ion-avatar>
-      <h2 style="margin: 8px 0 0 0" *ngIf="group">{{group.users.nome}}</h2>
-      <h3 style="margin: 8px">Nº27629</h3>
+      <h2 style="margin: 8px 0 0 0" *ngIf="users">{{users.nome}}</h2>
+      <h3 style="margin: 8px" *ngIf="users">Nº {{users.numero}}</h3>
       <ion-button color="bgwhite" translate>site.perfil-editar</ion-button>
     </div>
   </ion-card>
   <div class="div-content">
     <ion-card class="info-card">
       <img src="/assets/SVG/Message.svg" alt="" />
-      <p>faisca.candido2ipvc.pt</p>
+      <p *ngIf="users">{{users.email}}</p>
     </ion-card>
     <ion-card class="info-card">
       <img src="/assets/SVG/Book_open.svg" alt="" />
-      <p>Engenharia de relvados</p>
+      <p *ngIf="users">Engenharia de relvados</p>
     </ion-card>
     <ion-card class="info-card">
       <img src="/assets/SVG/Pin.svg" alt="" />
