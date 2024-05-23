@@ -4,65 +4,100 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
   },
   {
     path: 'entrar',
-    loadChildren: () => import('./entrar/entrar.module').then( m => m.EntrarPageModule)
+    loadChildren: () =>
+      import('./entrar/entrar.module').then((m) => m.EntrarPageModule),
   },
   {
     path: 'registar',
-    loadChildren: () => import('./registar/registar.module').then( m => m.RegistarPageModule)
+    loadChildren: () =>
+      import('./registar/registar.module').then((m) => m.RegistarPageModule),
   },
   {
     path: 'disciplinas',
-    loadChildren: () => import('./disciplinas/disciplinas.module').then( m => m.DisciplinasPageModule)
+    loadChildren: () =>
+      import('./disciplinas/disciplinas.module').then(
+        (m) => m.DisciplinasPageModule
+      ),
   },
   {
     path: 'nova-disciplina',
-    loadChildren: () => import('./nova-disciplina/nova-disciplina.module').then( m => m.NovaDisciplinaPageModule)
+    loadChildren: () =>
+      import('./nova-disciplina/nova-disciplina.module').then(
+        (m) => m.NovaDisciplinaPageModule
+      ),
   },
   {
     path: 'nova-tarefa',
-    loadChildren: () => import('./nova-tarefa/nova-tarefa.module').then( m => m.NovaTarefaPageModule)
+    loadChildren: () =>
+      import('./nova-tarefa/nova-tarefa.module').then(
+        (m) => m.NovaTarefaPageModule
+      ),
   },
   {
     path: 'ver-disciplina',
-    loadChildren: () => import('./ver-disciplina/ver-disciplina.module').then( m => m.VerDisciplinaPageModule)
+    loadChildren: () =>
+      import('./ver-disciplina/ver-disciplina.module').then(
+        (m) => m.VerDisciplinaPageModule
+      ),
   },
   {
     path: 'tarefa',
-    loadChildren: () => import('./tarefa/tarefa.module').then( m => m.TarefaPageModule)
+    loadChildren: () =>
+      import('./tarefa/tarefa.module').then((m) => m.TarefaPageModule),
   },
   {
     path: 'conversas-grupo',
-    loadChildren: () => import('./conversas-grupo/conversas-grupo.module').then( m => m.ConversasGrupoPageModule)
+    loadChildren: () =>
+      import('./conversas-grupo/conversas-grupo.module').then(
+        (m) => m.ConversasGrupoPageModule
+      ),
+  },
+  {
+    path: 'conversas-grupo/:conversas-grupoid',
+    loadChildren: () =>
+      import('./conversas-grupo/conversas-grupo.module').then(
+        (m) => m.ConversasGrupoPageModule
+      ),
   },
   {
     path: 'chat',
-    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    loadChildren: () =>
+      import('./chat/chat.module').then((m) => m.ChatPageModule),
   },
   {
     path: 'criar-grupo',
-    loadChildren: () => import('./criar-grupo/criar-grupo.module').then( m => m.CriarGrupoPageModule)
+    loadChildren: () =>
+      import('./criar-grupo/criar-grupo.module').then(
+        (m) => m.CriarGrupoPageModule
+      ),
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () =>
+      import('./perfil/perfil.module').then((m) => m.PerfilPageModule),
   },
   {
     path: 'editar-perfil',
-    loadChildren: () => import('./editar-perfil/editar-perfil.module').then( m => m.EditarPerfilPageModule)
-  }
+    loadChildren: () =>
+      import('./editar-perfil/editar-perfil.module').then(
+        (m) => m.EditarPerfilPageModule
+      ),
+  },
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

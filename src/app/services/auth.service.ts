@@ -69,13 +69,13 @@ export class AuthService {
     return this.currentUser.asObservable();
   }
 
-  // getCurrentUserId(): string {
-  // if (this.currentUser.value) {
-  //    return (this.currentUser.value as User).id;
-  //  } else {
-  //  return null;
-  // }
-  //}
+  getCurrentUserId(): string {
+    if (this.currentUser.value) {
+      return (this.currentUser.value as User).id;
+    } else {
+      return '';
+    }
+  }
 
   signInWithEmail(email: string, redirectTo: string) {
     return this.supabase.auth.signInWithOtp({
