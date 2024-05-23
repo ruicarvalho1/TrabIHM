@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-
+import { register } from 'swiper/element/bundle';
 import { TranslateService } from '@ngx-translate/core';
 
+register();
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,16 +11,9 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   //translate
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang("pt");
-    this.translate.addLangs(['pt','en','es'])
+    this.translate.setDefaultLang('pt');
+    this.translate.addLangs(['pt', 'en', 'es']);
   }
-  
+
   //end
 }
-
-
-
-
-
-
-

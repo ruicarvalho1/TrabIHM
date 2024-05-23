@@ -1,12 +1,11 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img src="/assets/logo.png" alt="">
+      <img src="/assets/logo.png" alt="" />
     </ion-toolbar>
   </ion-header>
-
   <ion-card class="banner">
-    <img src="../../assets/image_47.png" alt="">
+    <img src="../../assets/image_47.png" alt="" />
     <ion-card-header>
       <ion-card-title>
         <h1 style="margin: 0" translate>site.titulo-inicial</h1>
@@ -19,13 +18,30 @@
   </ion-card>
   <div class="upcoming-tasks">
     <h2 translate>site.titulo-tarefaspro</h2>
+<<<<<<< HEAD
     <!-- <div class="task-grid">
         <ion-card>
           <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+=======
+    <swiper-container
+      class="mySwiper"
+      pace-between="30"
+      slides-per-view="auto"
+      pagination="true"
+      pagination-clickable="true"
+    >
+      <swiper-slide
+        ><ion-card>
+          <img
+            alt="Silhouette of mountains"
+            src="https://ionicframework.com/docs/img/demos/card-media.png"
+          />
+>>>>>>> 8c2d283a8f2d8c70f36927125098e4a16a2b4f3e
           <ion-card-header>
             <ion-card-title>Etapa 2 (Heurísticas)</ion-card-title>
             <ion-card-subtitle>Interação homem máquina</ion-card-subtitle>
           </ion-card-header>
+<<<<<<< HEAD
         
           <ion-card-content>
             Entrega 10/04
@@ -83,7 +99,15 @@
       <!-- If we need scrollbar -->
       <div class="swiper-scrollbar"></div>
     </div>
+=======
+
+          <ion-card-content> Entrega 10/04 </ion-card-content>
+        </ion-card></swiper-slide
+      >
+    </swiper-container>
+>>>>>>> 8c2d283a8f2d8c70f36927125098e4a16a2b4f3e
   </div>
+
   <div class="relevant-chats">
     <h2 translate>site.titulo-convsersasAber</h2>
     <ion-card>
@@ -91,43 +115,67 @@
         <ion-list>
           <ion-item lines="none" color="primary">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img
+                alt="Silhouette of mountains"
+                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              />
             </ion-thumbnail>
-            <ion-label><p>Grupo IHM</p>
-            <h4>Miguel: Os outros que façam, o meu trabalho é mandar e correr</h4>
+            <ion-label
+              ><p>Grupo IHM</p>
+              <h4>
+                Miguel: Os outros que façam, o meu trabalho é mandar e correr
+              </h4>
             </ion-label>
           </ion-item>
-    
+
           <ion-item lines="none" color="primary">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img
+                alt="Silhouette of mountains"
+                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              />
             </ion-thumbnail>
-            <ion-label><p>Grupo IHM</p>
-            <h4>Miguel: Os outros que façam, o meu trabalho é mandar e correr</h4>
+            <ion-label
+              ><p>Grupo IHM</p>
+              <h4>
+                Miguel: Os outros que façam, o meu trabalho é mandar e correr
+              </h4>
             </ion-label>
           </ion-item>
-    
+
           <ion-item lines="none" color="primary">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img
+                alt="Silhouette of mountains"
+                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              />
             </ion-thumbnail>
-            <ion-label><p>Grupo IHM</p>
-            <h4>Miguel: Os outros que façam, o meu trabalho é mandar e correr</h4>
+            <ion-label
+              ><p>Grupo IHM</p>
+              <h4>
+                Miguel: Os outros que façam, o meu trabalho é mandar e correr
+              </h4>
             </ion-label>
           </ion-item>
-    
+
           <ion-item lines="none" color="primary">
             <ion-thumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img
+                alt="Silhouette of mountains"
+                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+              />
             </ion-thumbnail>
-            <ion-label><p>Grupo IHM</p>
-            <h4>Miguel: Os outros que façam, o meu trabalho é mandar e correr e ainda grito com os outros</h4>
+            <ion-label
+              ><p>Grupo IHM</p>
+              <h4>
+                Miguel: Os outros que façam, o meu trabalho é mandar e correr e
+                ainda grito com os outros
+              </h4>
             </ion-label>
           </ion-item>
         </ion-list>
       </ion-card-content>
-    </ion-card> 
-    <p id="SeeAll" routerLink="/conversas-grupo" >Ver todas</p>
+    </ion-card>
+    <p id="SeeAll" routerLink="/conversas-grupo">Ver todas</p>
   </div>
-
 </ion-content>
