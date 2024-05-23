@@ -1,0 +1,116 @@
+ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    height: 328px;
+    width: calc(100% - 16px);
+    background: linear-gradient(154.52deg, #D2CEF5 0%, #6355D0 100%);
+    border-radius: 32px;
+    margin: 8px 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 500px;
+    opacity: 0.6;
+  }
+
+  ion-content .banner ion-card-title {
+    text-align: center;
+  }
+  
+  ion-content .banner .row-btn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    height: fit-content;
+    align-items: end;
+    padding: 0 8px;
+  }
+  
+  ion-content .banner .row-btn ion-button {
+    width: 200px;
+    margin: 16px ;
+  }
+  
+  ion-content .banner h1 {
+    color: #FFFFFF;
+    height: fit-content;
+  }
+
+  .subject-contents {
+    display: flex;
+    width: 100%;
+    padding: 0 8px;
+    margin-top: 16px;
+  }
+
+  ion-card.card-subjects {
+    width: 100%;
+    height: 252px;
+    margin: 0;
+    padding: 16px;
+    border-radius: 32px;
+    background: #685AD2;
+  }
+
+  .card-subjects .subject-img {
+    display: flex;
+  }
+
+  .card-subjects .subject-img img {
+    width: 118px;
+    height: 118px;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .card-subjects .subject-img ion-card-header {
+    padding: 8px 0 8px 16px;
+    justify-content: start;
+    display: flex;
+  }
+
+  .card-subjects ion-card-content {
+    padding: 32px 0 16px 0;
+  }
+
+  .card-subjects ion-card-content .bar-div {
+    display: flex;
+    position: relative;
+  }
+
+  .card-subjects ion-card-content .bar-div .bar {
+    background: #ECEBF5;
+    width: 100%;
+    height: 24px;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .card-subjects ion-card-content .bar-div .progress-bar {
+    background: #131D73;
+    width: 76%;
+    min-width: 5%;
+    height: 24px;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .card-subjects .completed {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .card-subjects .completed p{
+    color: #FFFFFF;
+  }

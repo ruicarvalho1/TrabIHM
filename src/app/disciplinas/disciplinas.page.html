@@ -1,13 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Disciplinas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Disciplinas</ion-title>
+      <img src="/assets/logo.png" alt="">
     </ion-toolbar>
   </ion-header>
+
+  <ion-card class="banner">
+    <img src="../../assets/subjects.png" alt="">
+    <ion-card-header>
+      <ion-card-title>
+        <h1 style="margin: 0" translate>site.titulo-disciplinas</h1>
+      </ion-card-title>
+    </ion-card-header>
+    <div class="row-btn">
+      <ion-button color="bgwhite" translate>site.botao-criar</ion-button>
+    </div>
+  </ion-card>
+
+  <div class="subject-contents">
+  <ion-card class="card-subjects">
+    <div class="subject-img">
+      <img src="../../assets/sub-img.png" alt="">
+      <ion-card-header>
+        <ion-card-title color="bgwhite"><h3 style="margin: 0;">Interacao Homem Maquina</h3></ion-card-title>
+      </ion-card-header>
+    </div>
+  
+    <ion-card-content>
+      <div class="bar-div">
+        <div class="bar"></div>
+        <div class="progress-bar"></div>
+      </div>
+    </ion-card-content>
+    <div class="completed">
+      <p translate><span>76%</span> Completo</p>
+    </div>
+  </ion-card>
+</div>
 </ion-content>
