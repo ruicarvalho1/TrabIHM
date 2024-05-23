@@ -59,6 +59,21 @@ export class DataService {
       .then((result) => result.data);
   }
 
+  async getUserById(id: any) {
+    return this.supabase
+      .from(GROUPS_DB)
+      .select(
+        `
+        id,
+        title,
+        users:creator(email, nome)
+      `
+      )
+      .eq('id', id)
+      .single()
+      .then((result) => result.data);
+  }
+
   async addGroupMessage(groupId: string, message: string) {
     const newMessage = {
       text: message,

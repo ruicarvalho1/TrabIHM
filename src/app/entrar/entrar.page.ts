@@ -62,43 +62,6 @@ export class EntrarPage {
     await alert.present();
   }
 
-  async forgotPw() {
-    const alert = await this.alertController.create({
-      header: 'Receber nova palavra-passe',
-      message: 'Por favor insira o seu email',
-      inputs: [
-        {
-          type: 'email',
-          name: 'email',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancelar',
-        },
-        {
-          text: 'Resetar a palavra-passe',
-          handler: async (result) => {
-            const loading = await this.loadingController.create();
-            await loading.present();
-            const { data, error } = await this.authService.sendPwReset(
-              result.email
-            );
-            await loading.dismiss();
-
-            if (error) {
-              this.showAlert('Falhou', error.message);
-            } else {
-              this.showAlert('Sucesso', 'Por favor aceda ao seu email');
-            }
-          },
-        },
-      ],
-    });
-    await alert.present();
-  }
-
   async getMagicLink() {
     const alert = await this.alertController.create({
       header: 'Entrar com email',
@@ -112,7 +75,7 @@ export class EntrarPage {
       buttons: [
         {
           text: 'Cancelar',
-          role: 'Cancelar',
+          role: 'cancel',
         },
         {
           text: 'Entrar com email',
@@ -120,9 +83,10 @@ export class EntrarPage {
             const loading = await this.loadingController.create();
             await loading.present();
 
+            const redirectTo = 'tabs/home';
             const { data, error } = await this.authService.signInWithEmail(
               result.email,
-              'http://localhost:8100/tabs/home'
+              redirectTo
             );
 
             await loading.dismiss();

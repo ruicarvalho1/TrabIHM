@@ -14,7 +14,7 @@
           src="https://ionicframework.com/docs/img/demos/avatar.svg"
         />
       </ion-avatar>
-      <h2 style="margin: 8px 0 0 0">Candido Faisca</h2>
+      <h2 style="margin: 8px 0 0 0" *ngIf="group">{{group.users.nome}}</h2>
       <h3 style="margin: 8px">Nº27629</h3>
       <ion-button color="bgwhite" translate>site.perfil-editar</ion-button>
     </div>

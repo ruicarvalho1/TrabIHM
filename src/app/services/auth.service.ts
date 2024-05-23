@@ -56,10 +56,6 @@ export class AuthService {
     return this.supabase.auth.signInWithPassword(credentials);
   }
 
-  sendPwReset(email: string) {
-    return this.supabase.auth.resetPasswordForEmail(email);
-  }
-
   async signOut() {
     await this.supabase.auth.signOut();
     this.router.navigateByUrl('/entrar', { replaceUrl: true });
