@@ -16,6 +16,10 @@ export class RegistarPage {
   credentials = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
+    nome: ['', [Validators.required, Validators.minLength(1)]],
+    numero_aluno: ['', [Validators.required, Validators.minLength(1)]],
+    curso: ['', [Validators.required, Validators.minLength(1)]],
+    universidade: ['', [Validators.required, Validators.minLength(1)]],
   });
 
   constructor(
@@ -32,6 +36,18 @@ export class RegistarPage {
 
   get password() {
     return this.credentials.controls.password;
+  }
+  get nome() {
+    return this.credentials.controls.nome;
+  }
+  get numero_aluno() {
+    return this.credentials.controls.numero_aluno;
+  }
+  get curso() {
+    return this.credentials.controls.curso;
+  }
+  get universidade() {
+    return this.credentials.controls.universidade;
   }
 
   async createAccount() {

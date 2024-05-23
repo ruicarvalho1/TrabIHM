@@ -26,11 +26,11 @@
     </ion-card>
     <ion-card class="info-card">
       <img src="/assets/SVG/Book_open.svg" alt="" />
-      <p *ngIf="users">Engenharia de relvados</p>
+      <p *ngIf="users">{{users.curso}}</p>
     </ion-card>
     <ion-card class="info-card">
       <img src="/assets/SVG/Pin.svg" alt="" />
-      <p>ESTG</p>
+      <p *ngIf="users">{{users.universidade}}</p>
     </ion-card>
     <ion-card class="info-card">
       <img src="/assets/SVG/Bell.svg" alt="" />

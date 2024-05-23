@@ -57,7 +57,7 @@ export class DataService {
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)
-      .select('email, nome')
+      .select('email, nome, numero, curso, universidade')
       .eq('id', id)
       .single()
       .then((result) => result.data);
