@@ -141,4 +141,40 @@ export class DataService {
       this.supabase.removeChannel(this.realtimeChannel);
     }
   }
+  /*async getUserTasksAndDisciplines() {
+    try {
+      const { data, error } = await this.supabase.rpc(
+        'get_user_tarefas_disciplinas'
+      );
+      if (error) {
+        throw error;
+      }
+      return data;
+    } catch (error) {
+      console.error('Erro ao obter tarefas e disciplinas do usuário:', error);
+      throw error;
+    }
+  }*/
+
+  async getDisciplinasDoUsuario(userId: string) {
+    try {
+      const { data, error } = await this.supabase
+        .from('disciplinas')
+        .select('nome')
+        .eq('user_id', userId);
+
+      if (error) {
+        throw error;
+      }
+
+      if (!data || data.length === 0) {
+        console.log('Não há disciplinas associadas a este usuário.');
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Erro ao obter as disciplinas do usuário:', error);
+      return [];
+    }
+  }
 }
