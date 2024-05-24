@@ -20,7 +20,7 @@ export class AuthService {
       environment.supabaseKey
     );
 
-    this.supabase.auth.onAuthStateChange((event, sess) => {
+    this.supabase.auth.onAuthStateChange((event: any, sess: any) => {
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         console.log('SET USER');
 
