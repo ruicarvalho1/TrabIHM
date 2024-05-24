@@ -59,37 +59,25 @@
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(nome.dirty || nome.touched) && nome.errors?.['required']"
+            *ngIf="(nome.dirty || nome.touched) && nome.errors"
           >
             Nome em falta
-          </ion-note>
-          <ion-note
-            slot="error"
-            *ngIf="(nome.dirty || nome.touched) && nome.errors?.['minlength']"
-          >
-            Nome deve ter pelo menos 1 caracter
           </ion-note>
         </ion-item>
 
         <ion-item>
           <ion-label position="stacked" color="primary">Número Aluno</ion-label>
           <ion-input
-            type="numero"
+            type="numero_aluno"
             placeholder="Nome..."
             formControlName="numero_aluno"
           >
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(numero_aluno.dirty || numero_aluno.touched) && numero_aluno.errors?.['required']"
+            *ngIf="(numero_aluno.dirty || numero_aluno.touched) && numero_aluno.errors"
           >
             Número Aluno
-          </ion-note>
-          <ion-note
-            slot="error"
-            *ngIf="(numero_aluno.dirty || numero_aluno.touched) && numero_aluno.errors?.['minlength']"
-          >
-            Número Aluno deve ter pelo menos 1 caracter
           </ion-note>
         </ion-item>
 
@@ -103,15 +91,9 @@
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(curso.dirty || curso.touched) && curso.errors?.['required']"
+            *ngIf="(curso.dirty || curso.touched) && curso.errors"
           >
             Curso em falta
-          </ion-note>
-          <ion-note
-            slot="error"
-            *ngIf="(curso.dirty || curso.touched) && curso.errors?.['minlength']"
-          >
-            Curso deve ter pelo menos 1 caracter
           </ion-note>
         </ion-item>
 
@@ -125,15 +107,9 @@
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(universidade.dirty || universidade.touched) && universidade.errors?.['required']"
+            *ngIf="(universidade.dirty || universidade.touched) && universidade.errors"
           >
             Universidade em falta
-          </ion-note>
-          <ion-note
-            slot="error"
-            *ngIf="(universidade.dirty || universidade.touched) && universidade.errors?.['minlength']"
-          >
-            Universidade deve ter pelo menos 1 caracter
           </ion-note>
         </ion-item>
 

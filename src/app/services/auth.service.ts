@@ -48,7 +48,14 @@ export class AuthService {
     }
   }
 
-  signUp(credentials: { email: string; password: string }) {
+  signUp(credentials: {
+    email: string;
+    password: string;
+    nome: string;
+    numero_aluno: string;
+    curso: string;
+    universidade: string;
+  }) {
     return this.supabase.auth.signUp(credentials);
   }
 
