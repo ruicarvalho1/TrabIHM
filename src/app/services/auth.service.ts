@@ -20,7 +20,7 @@ export class AuthService {
       environment.supabaseKey
     );
 
-    this.supabase.auth.onAuthStateChange((event, sess) => {
+    this.supabase.auth.onAuthStateChange((event: any, sess: any) => {
       if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
         console.log('SET USER');
 
@@ -48,16 +48,19 @@ export class AuthService {
     }
   }
 
-  signUp(credentials: { email: string; password: string }) {
+  signUp(credentials: {
+    email: string;
+    password: string;
+    nome: string;
+    numero_aluno: string;
+    curso: string;
+    universidade: string;
+  }) {
     return this.supabase.auth.signUp(credentials);
   }
 
   signIn(credentials: { email: string; password: string }) {
     return this.supabase.auth.signInWithPassword(credentials);
-  }
-
-  sendPwReset(email: string) {
-    return this.supabase.auth.resetPasswordForEmail(email);
   }
 
   async signOut() {

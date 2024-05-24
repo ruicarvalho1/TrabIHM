@@ -62,77 +62,41 @@ export class EntrarPage {
     await alert.present();
   }
 
-  async forgotPw() {
-    const alert = await this.alertController.create({
-      header: 'Receber nova palavra-passe',
-      message: 'Por favor insira o seu email',
-      inputs: [
-        {
-          type: 'email',
-          name: 'email',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancelar',
-        },
-        {
-          text: 'Resetar a palavra-passe',
-          handler: async (result) => {
-            const loading = await this.loadingController.create();
-            await loading.present();
-            const { data, error } = await this.authService.sendPwReset(
-              result.email
-            );
-            await loading.dismiss();
-
-            if (error) {
-              this.showAlert('Falhou', error.message);
-            } else {
-              this.showAlert('Sucesso', 'Por favor aceda ao seu email');
-            }
-          },
-        },
-      ],
-    });
-    await alert.present();
-  }
-
   async getMagicLink() {
     const alert = await this.alertController.create({
-      header: 'Entrar com email',
-      message: 'Por favor insira o seu email!',
+      header: 'Get a Magic Link',
+      message: 'We will send you a link to magically log in!',
       inputs: [
         {
           type: 'email',
           name: 'email',
+          value: 'isaacout@gmail.com',
         },
       ],
       buttons: [
         {
-          text: 'Cancelar',
-          role: 'Cancelar',
+          text: 'Cancel',
+          role: 'cancel',
         },
         {
-          text: 'Entrar com email',
+          text: 'Get Magic Link',
           handler: async (result) => {
             const loading = await this.loadingController.create();
             await loading.present();
-
             const { data, error } = await this.authService.signInWithEmail(
               result.email,
               'http://localhost:8100/tabs/home'
             );
-
             await loading.dismiss();
+            console.log('after signup: ', data);
+            console.log('after signup error: ', error);
 
             if (error) {
-              this.showAlert('Falha', error.message);
+              this.showAlert('Failed', error.message);
             } else {
               this.showAlert(
-                'Sucesso',
-                'Por favor verifique seu email para o link de login.'
+                'Success',
+                'Please check your emails for further instructions!'
               );
             }
           },

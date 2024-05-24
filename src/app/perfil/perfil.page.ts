@@ -2,6 +2,12 @@ import { TranslateService } from '@ngx-translate/core';
 import { Component, ViewChildren, QueryList } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
+import {
+  SupabaseClient,
+  createClient,
+  RealtimeChannel,
+} from '@supabase/supabase-js';
+import { DataService } from './../services/data.service';
 
 @Component({
   selector: 'app-perfil',
@@ -10,6 +16,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class PerfilPage {
   user = this.authService.getCurrentUser();
+
+  users: any = null;
 
   appLanguageList = [
     { code: 'en', title: 'Inglês', text: 'Changed to English' },
@@ -22,7 +30,8 @@ export class PerfilPage {
   constructor(
     private translateService: TranslateService,
     private toastController: ToastController,
-    private authService: AuthService
+    private authService: AuthService,
+    private data: DataService
   ) {}
 
   async presentToast(message: string) {
@@ -42,6 +51,16 @@ export class PerfilPage {
       this.translateService.use(selectedLanguage).subscribe(() => {
         this.presentToast(selectedLanguageData.text);
       });
+    }
+  }
+
+  async ionViewWillEnter() {
+    const userId = this.authService.getCurrentUserId();
+    if (userId) {
+      this.users = await this.data.getUserById(userId);
+      console.log('group: ', this.users);
+    } else {
+      console.log('Nenhum usuário autenticado encontrado.');
     }
   }
 

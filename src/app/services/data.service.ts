@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 
 const GROUPS_DB = 'groups';
 const MESSAGES_DB = 'messages';
+const USERS_DB = 'users';
 
 export interface Message {
   created_at: string;
@@ -23,6 +24,9 @@ export interface Message {
   providedIn: 'root',
 })
 export class DataService {
+  getUser() {
+    throw new Error('Method not implemented.');
+  }
   private supabase: SupabaseClient;
   private realtimeChannel: RealtimeChannel | null = null;
 
@@ -50,11 +54,11 @@ export class DataService {
     return this.supabase.from(GROUPS_DB).insert(newgroup).select().single();
   }
 
-  getGroupById(id: any) {
+  getUserById(id: any) {
     return this.supabase
-      .from(GROUPS_DB)
-      .select(`created_at, title, id, users:creator ( email, id )`)
-      .match({ id })
+      .from(USERS_DB)
+      .select('email, nome, numero, curso, universidade')
+      .eq('id', id)
       .single()
       .then((result) => result.data);
   }

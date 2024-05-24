@@ -1,7 +1,7 @@
 <ion-content scrollY="false">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img src="/assets/logo.png" alt="">
+      <img src="/assets/logo.png" alt="" />
     </ion-toolbar>
   </ion-header>
   <ion-card class="banner">
@@ -30,13 +30,16 @@
           >
         </ion-item>
         <ion-item>
-          <ion-label position="stacked" color="primary">Palavra-passe</ion-label>
+          <ion-label position="stacked" color="primary"
+            >Palavra-passe</ion-label
+          >
           <ion-input
             type="password"
             placeholder="Palavra-passe..."
             formControlName="password"
           >
-          <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle
+          ></ion-input>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors?.['required']"
@@ -50,6 +53,66 @@
             Palavra-passa deve ter pelo menos 6 caracteres
           </ion-note>
         </ion-item>
+        <ion-item>
+          <ion-label position="stacked" color="primary">Nome</ion-label>
+          <ion-input type="nome" placeholder="Nome..." formControlName="nome">
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(nome.dirty || nome.touched) && nome.errors"
+          >
+            Nome em falta
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" color="primary">Número Aluno</ion-label>
+          <ion-input
+            type="numero_aluno"
+            placeholder="Nome..."
+            formControlName="numero_aluno"
+          >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(numero_aluno.dirty || numero_aluno.touched) && numero_aluno.errors"
+          >
+            Número Aluno
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" color="primary">Curso</ion-label>
+          <ion-input
+            type="curso"
+            placeholder="Curso..."
+            formControlName="curso"
+          >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(curso.dirty || curso.touched) && curso.errors"
+          >
+            Curso em falta
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked" color="primary">Universidade</ion-label>
+          <ion-input
+            type="universidade"
+            placeholder="Universidade..."
+            formControlName="universidade"
+          >
+          </ion-input>
+          <ion-note
+            slot="error"
+            *ngIf="(universidade.dirty || universidade.touched) && universidade.errors"
+          >
+            Universidade em falta
+          </ion-note>
+        </ion-item>
+
         <ion-button
           color="primary"
           type="submit"
@@ -60,14 +123,14 @@
           >Criar conta</ion-button
         >
         <ion-button
-            color="bg-white"
-            type="button"
-            expand="block"
-            class="aux-button"
-            routerLink="/entrar"
-          >
-            Já tenho conta
-          </ion-button>
+          color="bg-white"
+          type="button"
+          expand="block"
+          class="aux-button"
+          routerLink="/entrar"
+        >
+          Já tenho conta
+        </ion-button>
       </form>
     </ion-card-content>
   </ion-card>
