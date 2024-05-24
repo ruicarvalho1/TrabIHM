@@ -277,8 +277,14 @@ export class DataService {
         );
         disciplina.verdade = tarefasTrue;
         disciplina.falso = tarefasFalse;
-        disciplina.percentagem =
-          ((tarefasTrue / (tarefasFalse + tarefasTrue)) * 100).toFixed(2) + '%';
+
+        if (tarefasFalse + tarefasTrue == 0) {
+          disciplina.percentagem = 0 + '%';
+        } else {
+          disciplina.percentagem =
+            ((tarefasTrue / (tarefasFalse + tarefasTrue)) * 100).toFixed(2) +
+            '%';
+        }
       }
 
       return data;
