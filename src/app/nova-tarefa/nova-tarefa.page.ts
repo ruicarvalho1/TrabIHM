@@ -48,7 +48,7 @@ export class NovaTarefaPage {
     });
 
     try {
-      await loading.present(); // Exibe o loading
+      await loading.present();
 
       const novaTarefa = this.formularioTarefa.value;
       const userId = this.authService.getCurrentUserId();
@@ -67,7 +67,7 @@ export class NovaTarefaPage {
       await this.dataService.createTarefa(novaTarefa);
       console.log('Tarefa criada com sucesso!');
 
-      await loading.dismiss(); // Remove o loading quando a tarefa for criada com sucesso
+      await loading.dismiss();
 
       // Exibe um toast de sucesso
       const successToast = await this.toastController.create({
@@ -79,7 +79,7 @@ export class NovaTarefaPage {
     } catch (error) {
       console.error('Erro ao criar tarefa:', error);
 
-      await loading.dismiss(); // Remove o loading em caso de erro
+      await loading.dismiss();
 
       // Exibe um toast de erro
       const errorToast = await this.toastController.create({
