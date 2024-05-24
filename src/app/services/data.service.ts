@@ -278,7 +278,7 @@ export class DataService {
         disciplina.verdade = tarefasTrue;
         disciplina.falso = tarefasFalse;
 
-        if (tarefasFalse + tarefasTrue == 0) {
+        if (tarefasFalse + tarefasTrue === 0) {
           disciplina.percentagem = 0 + '%';
         } else {
           disciplina.percentagem =
