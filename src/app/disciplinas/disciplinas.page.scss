@@ -44,6 +44,7 @@ ion-content .banner {
 
   .subject-contents {
     display: flex;
+    flex-direction: column;
     width: 100%;
     padding: 0 8px;
     margin-top: 16px;
