@@ -1,13 +1,59 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>NovaTarefa</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">NovaTarefa</ion-title>
+      <img src="/assets/logo.png" alt="">
     </ion-toolbar>
   </ion-header>
+
+  <ion-card class="banner">
+    <img src="../../assets/File_dock_add.png" alt="">
+    <ion-card-header>
+      <ion-card-title>
+        <h1 style="margin: 0" translate>site.nova-tarefa</h1>
+      </ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <div class="task-contents">
+    <ion-card class="card-new-task">
+      <h3 translate>Nome: </h3>
+      <ion-item lines="none">
+        <ion-input placeholder="Nome da tarefa..."></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card class="card-new-task">
+      <h3 translate>Nova tarefa: </h3>
+      <ion-item lines="none">
+        <ion-textarea placeholder="Tarefas..."></ion-textarea>
+      </ion-item>
+    </ion-card>
+    <ion-card class="card-new-task">
+      <h3 translate>Data limite: </h3>
+      <ion-datetime [firstDayOfWeek]="1" presentation="date"></ion-datetime>
+    </ion-card>
+    <ion-card class="card-new-task">
+      <h3 translate>Disciplina: </h3>
+      <ion-item>
+        <ion-select aria-label="" value="subject">
+          <ion-select-option value="ihm">ihm</ion-select-option>
+          <ion-select-option value="es2">es2</ion-select-option>
+          <ion-select-option value="abd">abd</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <ion-card class="card-new-task">
+      <h3 translate>Nível de prioridade: </h3>
+      <ion-item>
+        <ion-select aria-label="" value="priority">
+          <ion-select-option value="baixa">Baixa</ion-select-option>
+          <ion-select-option value="media">Media</ion-select-option>
+          <ion-select-option value="alta">Alta</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+    <div class="save-btn">
+      <ion-button translate>Cancelar</ion-button>
+      <ion-button translate>Guardar</ion-button>
+    </div>
+  </div>  
 </ion-content>

@@ -1,0 +1,112 @@
+ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    height: 328px;
+    width: calc(100% - 16px);
+    background: linear-gradient(154.52deg, #131D73 34.04%, #809AF8 85.76%);
+    border-radius: 32px;
+    margin: 8px 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 400px;
+    opacity: 0.6;
+  }
+
+  ion-content .banner ion-card-title {
+    text-align: center;
+    max-height: 140px;
+  }
+  
+  ion-content .banner .row-btn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 16px;
+    width: 100%;
+    height: fit-content;
+    align-items: end;
+    padding: 0 8px;
+  }
+  
+  ion-content .banner .row-btn ion-button {
+    width: 200px;
+    margin: 16px ;
+  }
+  
+  ion-content .banner h1 {
+    color: #FFFFFF;
+    height: fit-content;
+  }
+
+  .task-contents {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 8px;
+    margin-top: 16px;
+  }
+
+  ion-card.card-new-task {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 16px;
+    border-radius: 32px;
+    background: #2A49B9;
+  }
+
+  ion-card.card-new-task:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  ion-card.card-new-task ion-card-header {
+    padding: 0;
+  }
+  
+  ion-card.card-new-task h3, h3 {
+    margin: 0;
+    color: #FFFFFF;
+  }
+  
+  ion-card.card-new-task p {
+    margin: 8px 0 0 8px;
+    color: #FFFFFF;
+  }
+
+  .card-new-task ion-item {
+    background: #FFFFFF;
+    border-radius: 16px;
+    margin-top: 16px;
+  }
+
+  .card-new-task ion-item ion-textarea {
+    --placeholder-color: #D2CEF5;
+    --text-color: #131D73;
+  }
+
+  .card-new-task ion-item ion-input {
+    --placeholder-color: #D2CEF5;
+    --text-color: #131D73;
+  }
+
+  .save-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 32px 0;
+  }
+
+  .save-btn ion-button {
+    width: 164px;
+    height: 50px;
+    min-height: 0 !important;
+    margin: 0;
+    --border-radius: 32px;
+    --background: #2A49B9 !important;
+    color: #FFFFFF;
+  }
