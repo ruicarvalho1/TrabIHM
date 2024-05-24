@@ -159,8 +159,11 @@ export class DataService {
       this.supabase.removeChannel(this.realtimeChannel);
     }
   }
+
   /*async getUserTasksAndDisciplines() {
     try {
+
+
       const { data, error } = await this.supabase.rpc(
         'get_user_tarefas_disciplinas'
       );
@@ -172,13 +175,49 @@ export class DataService {
       console.error('Erro ao obter tarefas e disciplinas do usuário:', error);
       throw error;
     }
+
+
+
   }*/
+
+  async getDisciplinasTarefasTrue(userId: string, id_disciplina: number) {
+    const { data, error } = await this.supabase
+      .from('tarefas')
+      .select('concluida', { count: 'exact' })
+      .eq('user_id', userId)
+      .eq('concluida', true)
+      .eq('disciplina_id', id_disciplina);
+
+    if (error) {
+      throw error;
+    }
+    let tarefasTrue: number = data.length;
+
+    return tarefasTrue;
+  }
+
+  async getDisciplinasTarefasFalse(userId: string, id_disciplina: number) {
+    const { data, error } = await this.supabase
+      .from('tarefas')
+      .select('concluida', { count: 'exact' })
+      .eq('user_id', userId)
+      .eq('concluida', false)
+      .eq('disciplina_id', id_disciplina);
+
+    if (error) {
+      throw error;
+    }
+    let tarefasFalse: number = data.length;
+    return tarefasFalse;
+  }
 
   async getDisciplinasDoUsuario(userId: string) {
     try {
+      let percentagem: number = 0;
+
       const { data, error } = await this.supabase
         .from('disciplinas')
-        .select('nome')
+        .select('*')
         .eq('user_id', userId);
 
       if (error) {
@@ -189,7 +228,37 @@ export class DataService {
         console.log('Não há disciplinas associadas a este usuário.');
       }
 
-      return data || [];
+      /* data.forEach(async (disciplina) => {
+        disciplina.percentagem =
+          (await this.getDisciplinasTarefasFalse(
+            userId,
+            disciplina.id_disciplina
+          )) /
+          (await this.getDisciplinasTarefasTrue(
+            userId,
+            disciplina.id_disciplina
+          ));
+      });
+      */
+
+      for (let disciplina of data) {
+        let tarefasFalse = await this.getDisciplinasTarefasFalse(
+          userId,
+          disciplina.id_disciplina
+        );
+        let tarefasTrue = await this.getDisciplinasTarefasTrue(
+          userId,
+          disciplina.id_disciplina
+        );
+        disciplina.verdade = tarefasTrue;
+        disciplina.falso = tarefasFalse;
+        disciplina.percentagem =
+          (tarefasTrue / (tarefasFalse + tarefasTrue)) * 100 + '%';
+      }
+
+      return data;
+
+      //return data || [];
     } catch (error) {
       console.error('Erro ao obter as disciplinas do usuário:', error);
       return [];

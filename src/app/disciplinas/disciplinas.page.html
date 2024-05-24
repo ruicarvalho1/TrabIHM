@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-card class="banner">
+  <ion-card class="banner" style="margin-bottom: 16px">
     <img src="../../assets/subjects.png" alt="" />
     <ion-card-header>
       <ion-card-title>
@@ -18,14 +18,13 @@
   </ion-card>
 
   <div class="subject-contents">
-    <ion-card class="card-subjects">
+    <!-- Iterando sobre as disciplinas e criando um card para cada uma -->
+    <ion-card *ngFor="let disciplina of disciplinas" class="card-subjects">
       <div class="subject-img">
         <img src="../../assets/sub-img.png" alt="" />
         <ion-card-header>
           <ion-card-title color="bgwhite">
-            <h3 style="margin: 0" *ngFor="let disciplina of disciplinas">
-              {{ disciplina.nome }}
-            </h3>
+            <h3 style="margin: 0">{{ disciplina.nome }}</h3>
           </ion-card-title>
         </ion-card-header>
       </div>
@@ -33,11 +32,13 @@
       <ion-card-content>
         <div class="bar-div">
           <div class="bar"></div>
-          <div class="progress-bar"></div>
+          <div class="progress-bar" [style.width]="disciplina.percentagem">
+            {{disciplina.percentagem}}
+          </div>
         </div>
       </ion-card-content>
       <div class="completed">
-        <p translate><span>76%</span> Completo</p>
+        <p translate><span>{{disciplina.percentagem}}</span> Completo</p>
       </div>
     </ion-card>
   </div>
