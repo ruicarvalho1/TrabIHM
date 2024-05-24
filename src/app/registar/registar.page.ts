@@ -5,6 +5,7 @@ import {
   AlertController,
   NavController,
 } from '@ionic/angular';
+import { createClient } from '@supabase/supabase-js';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -22,13 +23,20 @@ export class RegistarPage {
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
+  supabase: any;
+
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private loadingController: LoadingController,
     private alertController: AlertController,
     private navCtrl: NavController
-  ) {}
+  ) {
+    this.supabase = createClient(
+      'https://fbygxfimudlqdbxzkmpo.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZieWd4ZmltdWRscWRieHprbXBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzMzM1NjQsImV4cCI6MjAzMDkwOTU2NH0.mEZm_BbKRRV9QcrzOgKE1pheMtt8zzhGIyZMwzdmsek'
+    );
+  }
 
   get email() {
     return this.credentials.controls.email;
@@ -54,20 +62,44 @@ export class RegistarPage {
     await loading.present();
 
     try {
-      const data = await this.authService.signUp(
-        this.credentials.getRawValue()
-      );
+      const credentials = this.credentials.getRawValue();
 
-      await loading.dismiss();
+      // Cria a conta no Supabase com email e password
+      const { data, error } = await this.authService.signUp({
+        email: credentials.email,
+        password: credentials.password,
+      });
 
-      if (data.error) {
-        this.showAlert('Registo Falhou', data.error.message);
+      const user = data?.user;
+
+      if (error) {
+        await loading.dismiss();
+        this.showAlert('Registo Falhou', error.message);
+      } else if (user?.id) {
+        // Salva os dados adicionais na tabela users
+        const { error: userError } = await this.authService.insertUserData({
+          id: user.id,
+          email: credentials.email,
+          nome: credentials.nome,
+          numero_aluno: credentials.numero_aluno,
+          curso: credentials.curso,
+          universidade: credentials.universidade,
+        });
+
+        await loading.dismiss();
+
+        if (userError) {
+          this.showAlert('Registo Falhou', userError.message);
+        } else {
+          this.showAlert(
+            'Registo feito com sucesso',
+            'Por favor confirma o email'
+          );
+          this.navCtrl.navigateBack('');
+        }
       } else {
-        this.showAlert(
-          'Registo feito com sucesso',
-          'Por favor confirma o email'
-        );
-        this.navCtrl.navigateBack('');
+        await loading.dismiss();
+        this.showAlert('Registo Falhou', 'O ID do usuário não foi retornado.');
       }
     } catch (err) {
       await loading.dismiss();
