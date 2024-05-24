@@ -9,6 +9,7 @@
     <ion-card-header>
       <ion-card-title>
         <h1 style="margin: 0" translate>site.titulo-inicial</h1>
+        <h1 style="margin: 0" *ngIf="users">{{users.nome}}</h1>
       </ion-card-title>
     </ion-card-header>
     <div class="row-btn">
@@ -25,37 +26,23 @@
       pagination="true"
       pagination-clickable="true"
     >
-      <swiper-slide
-        ><ion-card>
-          <img
-            alt="Silhouette of mountains"
-            src="https://ionicframework.com/docs/img/demos/card-media.png"
-          />
-          <ion-card-header>
-            <ion-card-title>Etapa 2 (Heurísticas)</ion-card-title>
-            <ion-card-subtitle>Interação homem máquina</ion-card-subtitle>
-          </ion-card-header>
-<<<<<<< HEAD
-
-          <ion-card-content> Entrega 10/04 </ion-card-content>
-        </ion-card></swiper-slide
-      >
-      <swiper-slide
-        ><ion-card>
-          <img
-            alt="Silhouette of mountains"
-            src="https://ionicframework.com/docs/img/demos/card-media.png"
-          />
-          <ion-card-header>
-            <ion-card-title>Etapa 2 (Heurísticas)</ion-card-title>
-            <ion-card-subtitle>Interação homem máquina</ion-card-subtitle>
-          </ion-card-header>
-=======
->>>>>>> 61350c256fc39c9cefc7a8cd135ca080518c24c2
-
-          <ion-card-content> Entrega 10/04 </ion-card-content>
-        </ion-card></swiper-slide
-      >
+      <ng-container *ngFor="let tarefa of tarefas">
+        <swiper-slide>
+          <ion-card>
+            <img
+              src="https://ionicframework.com/docs/img/demos/card-media.png"
+              alt="Silhouette of mountains"
+            />
+            <ion-card-header>
+              <ion-card-subtitle
+                >Prioriedade: {{ tarefa.prioridade }}</ion-card-subtitle
+              >
+              <ion-card-title>{{ tarefa.tarefa }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>{{ tarefa.data_limite }}</ion-card-content>
+          </ion-card>
+        </swiper-slide>
+      </ng-container>
     </swiper-container>
   </div>
 

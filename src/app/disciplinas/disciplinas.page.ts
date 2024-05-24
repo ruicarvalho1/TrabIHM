@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { ToastController } from '@ionic/angular';
+
 @Component({
   selector: 'app-disciplinas',
   templateUrl: './disciplinas.page.html',
@@ -9,12 +12,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class DisciplinasPage {
   tasksAndDisciplines: any[] = [];
-  Disciplines: any[] = []; // Inicialize com um array vazio
 
+  disciplinas: any[] = [];
   users: any = null;
   user = this.authService.getCurrentUser();
-
-  constructor(public data: DataService, public authService: AuthService) {}
+  constructor(
+    private translateService: TranslateService,
+    private toastController: ToastController,
+    private authService: AuthService,
+    private data: DataService
+  ) {}
 
   /*
   async ngOnInit() {
@@ -35,10 +42,10 @@ export class DisciplinasPage {
   async ionViewWillEnter() {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
-      this.Disciplines = await this.data.getDisciplinasDoUsuario(userId);
+      this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
       this.users = await this.data.getUserById(userId);
 
-      console.log('disciplinas: ', this.Disciplines);
+      console.log('disciplinas: ', this.disciplinas);
     } else {
       console.log('Nenhum usuário autenticado encontrado.');
     }

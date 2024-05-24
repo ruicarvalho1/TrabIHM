@@ -85,6 +85,24 @@ export class DataService {
       .then((result) => result.data);
   }
 
+  async getTarefasDoUsuario(userId: string) {
+    try {
+      const { data, error } = await this.supabase
+        .from('tarefas')
+        .select('*')
+        .eq('user_id', userId);
+
+      if (error) {
+        throw error;
+      }
+
+      return data || [];
+    } catch (error) {
+      console.error('Erro ao obter as tarefas do usuário:', error);
+      return [];
+    }
+  }
+
   async addGroupMessage(groupId: string, message: string) {
     const newMessage = {
       text: message,
