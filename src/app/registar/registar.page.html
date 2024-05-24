@@ -65,15 +65,12 @@
         <ion-item>
           <ion-label position="stacked" color="primary">Número Aluno</ion-label>
           <ion-input
-            type="numero_aluno"
+            type="numero"
             placeholder="Nome..."
-            formControlName="numero_aluno"
+            formControlName="numero"
           >
           </ion-input>
-          <ion-note
-            slot="error"
-            *ngIf="(numero_aluno.dirty || numero_aluno.touched)"
-          >
+          <ion-note slot="error" *ngIf="(numero.dirty || numero.touched)">
             Número Aluno
           </ion-note>
         </ion-item>

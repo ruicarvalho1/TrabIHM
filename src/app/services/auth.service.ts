@@ -56,7 +56,7 @@ export class AuthService {
     id: string;
     email: string;
     nome: string;
-    numero_aluno: string;
+    numero: string;
     curso: string;
     universidade: string;
   }) {

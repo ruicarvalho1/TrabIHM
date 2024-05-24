@@ -17,7 +17,7 @@ export class RegistarPage {
   credentials = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email]],
     nome: ['', [Validators.required, Validators.minLength(1)]],
-    numero_aluno: ['', [Validators.required, Validators.minLength(1)]],
+    numero: ['', [Validators.required, Validators.minLength(1)]],
     curso: ['', [Validators.required, Validators.minLength(1)]],
     universidade: ['', [Validators.required, Validators.minLength(1)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
@@ -44,8 +44,8 @@ export class RegistarPage {
   get nome() {
     return this.credentials.controls.nome;
   }
-  get numero_aluno() {
-    return this.credentials.controls.numero_aluno;
+  get numero() {
+    return this.credentials.controls.numero;
   }
   get curso() {
     return this.credentials.controls.curso;
@@ -81,7 +81,7 @@ export class RegistarPage {
           id: user.id,
           email: credentials.email,
           nome: credentials.nome,
-          numero_aluno: credentials.numero_aluno,
+          numero: credentials.numero,
           curso: credentials.curso,
           universidade: credentials.universidade,
         });
