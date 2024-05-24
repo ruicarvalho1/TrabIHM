@@ -7,6 +7,7 @@ import {
 } from '@supabase/supabase-js';
 import { ReplaySubject, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { StorageError } from '@supabase/storage-js';
 
 const GROUPS_DB = 'groups';
 const MESSAGES_DB = 'messages';
@@ -54,6 +55,29 @@ export class DataService {
     return this.supabase.from(GROUPS_DB).insert(newgroup).select().single();
   }
 
+  async uploadImagem(file: File): Promise<string> {
+    try {
+      const { data, error } = await this.supabase.storage
+        .from('images')
+        .upload(`images/${file.name}`, file, {
+          cacheControl: '3600',
+          contentType: 'image/png',
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      // Construir a URL pública manualmente
+      const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
+
+      return publicURL; // Retorna a URL pública da imagem
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem:', error);
+      throw error;
+    }
+  }
+
   async createTarefa(novaTarefa: {
     prioridade: string;
     concluida: boolean;
@@ -61,6 +85,8 @@ export class DataService {
     nome_tarefa: string;
     data_limite: string;
     imagem: string;
+    user_id: string;
+    disciplina_id: number;
   }) {
     try {
       const { data, error } = await this.supabase
@@ -75,7 +101,6 @@ export class DataService {
       throw error;
     }
   }
-
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)

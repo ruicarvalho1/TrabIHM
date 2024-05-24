@@ -29,10 +29,7 @@
       <ng-container *ngFor="let tarefa of tarefas">
         <swiper-slide>
           <ion-card>
-            <img
-              src="https://ionicframework.com/docs/img/demos/card-media.png"
-              alt="Silhouette of mountains"
-            />
+            <img src="{{tarefa.imagem}}" />
             <ion-card-header>
               <ion-card-subtitle
                 >Prioriedade: {{ tarefa.prioridade }}</ion-card-subtitle

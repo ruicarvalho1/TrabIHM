@@ -59,8 +59,14 @@ ion-content .banner {
     background: #685AD2;
   }
 
+  ion-card.card-subjects{
+    margin-bottom: 16px;
+
+  }
+
   .card-subjects .subject-img {
     display: flex;
+    margin-bottom: 16px;
   }
 
   .card-subjects .subject-img img {
@@ -78,6 +84,7 @@ ion-content .banner {
 
   .card-subjects ion-card-content {
     padding: 32px 0 16px 0;
+
   }
 
   .card-subjects ion-card-content .bar-div {

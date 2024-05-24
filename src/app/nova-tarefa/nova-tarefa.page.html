@@ -52,9 +52,9 @@
         <ion-item lines="none">
           <!-- Vinculando o ion-select ao FormGroup -->
           <ion-select aria-label="" formControlName="disciplina_id">
-            <ion-select-option value="ihm">ihm</ion-select-option>
-            <ion-select-option value="es2">es2</ion-select-option>
-            <ion-select-option value="abd">abd</ion-select-option>
+            <ion-select-option value="1">IHM</ion-select-option>
+            <ion-select-option value="2">ES2</ion-select-option>
+            <ion-select-option value="3">ABD</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-card>
@@ -67,6 +67,20 @@
             <ion-select-option value="media">Media</ion-select-option>
             <ion-select-option value="alta">Alta</ion-select-option>
           </ion-select>
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-new-task">
+        <h3 translate>Tarefa concluída:</h3>
+        <ion-item lines="none">
+          <!-- Vinculando o ion-checkbox ao FormGroup -->
+          <ion-checkbox formControlName="concluida" slot="start"></ion-checkbox>
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-new-task">
+        <h3 translate>Imagem:</h3>
+        <ion-item lines="none">
+          <!-- Adicione um campo de entrada de arquivo -->
+          <input type="file" id="imagemUpload" accept="image/*" />
         </ion-item>
       </ion-card>
       <div class="save-btn">
