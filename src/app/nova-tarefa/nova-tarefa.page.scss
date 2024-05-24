@@ -87,18 +87,25 @@ ion-content .banner {
   .card-new-task ion-item ion-textarea {
     --placeholder-color: #D2CEF5;
     --text-color: #131D73;
+    height: 128px;
   }
 
   .card-new-task ion-item ion-input {
     --placeholder-color: #D2CEF5;
     --text-color: #131D73;
   }
+  
+  ion-datetime {
+    border-radius: 16px;
+    margin-top: 16px;
+  }
 
   .save-btn {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     margin: 32px 0;
+    padding: 0 16px;
   }
 
   .save-btn ion-button {
