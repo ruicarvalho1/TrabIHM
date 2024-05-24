@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-nova-tarefa',
@@ -16,7 +16,8 @@ export class NovaTarefaPage {
     private fb: FormBuilder,
     private dataService: DataService,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingController: LoadingController
   ) {
     this.formularioTarefa = this.fb.group({
       prioridade: [''],
@@ -29,14 +30,25 @@ export class NovaTarefaPage {
     });
   }
 
+  formatarData(event: any) {
+    const data = new Date(event.detail.value);
+    const ano = data.getFullYear();
+    const mes = String(data.getMonth() + 1).padStart(2, '0');
+    const dia = String(data.getDate()).padStart(2, '0');
+    const dataFormatada = `${dia}-${mes}-${ano}`;
+
+    this.formularioTarefa.patchValue({ data_limite: dataFormatada });
+  }
+
   async criarTarefa() {
-    const loadingToast = await this.toastController.create({
+    const loading = await this.loadingController.create({
       message: 'Criando tarefa...',
-      duration: 0, // Definimos 0 para que ele não desapareça automaticamente
+      spinner: 'circles',
+      backdropDismiss: false,
     });
 
     try {
-      await loadingToast.present(); // Exibe o toast
+      await loading.present(); // Exibe o loading
 
       const novaTarefa = this.formularioTarefa.value;
       const userId = this.authService.getCurrentUserId();
@@ -55,7 +67,7 @@ export class NovaTarefaPage {
       await this.dataService.createTarefa(novaTarefa);
       console.log('Tarefa criada com sucesso!');
 
-      await loadingToast.dismiss(); // Remove o toast de carregamento quando a tarefa for criada com sucesso
+      await loading.dismiss(); // Remove o loading quando a tarefa for criada com sucesso
 
       // Exibe um toast de sucesso
       const successToast = await this.toastController.create({
@@ -67,7 +79,7 @@ export class NovaTarefaPage {
     } catch (error) {
       console.error('Erro ao criar tarefa:', error);
 
-      await loadingToast.dismiss(); // Remove o toast de carregamento em caso de erro
+      await loading.dismiss(); // Remove o loading em caso de erro
 
       // Exibe um toast de erro
       const errorToast = await this.toastController.create({
