@@ -48,15 +48,19 @@ export class AuthService {
     }
   }
 
-  signUp(credentials: {
+  signUp(credentials: { email: string; password: string }) {
+    return this.supabase.auth.signUp(credentials);
+  }
+
+  insertUserData(userData: {
+    id: string;
     email: string;
-    password: string;
     nome: string;
     numero_aluno: string;
     curso: string;
     universidade: string;
   }) {
-    return this.supabase.auth.signUp(credentials);
+    return this.supabase.from('users').insert(userData);
   }
 
   signIn(credentials: { email: string; password: string }) {

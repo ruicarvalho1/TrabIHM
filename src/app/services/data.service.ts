@@ -54,6 +54,28 @@ export class DataService {
     return this.supabase.from(GROUPS_DB).insert(newgroup).select().single();
   }
 
+  async createTarefa(novaTarefa: {
+    prioridade: string;
+    concluida: boolean;
+    tarefa: string;
+    nome_tarefa: string;
+    data_limite: string;
+    imagem: string;
+  }) {
+    try {
+      const { data, error } = await this.supabase
+        .from('tarefas')
+        .insert([novaTarefa])
+        .single();
+      if (error) {
+        throw error;
+      }
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)

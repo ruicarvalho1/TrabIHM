@@ -57,10 +57,7 @@
           <ion-label position="stacked" color="primary">Nome</ion-label>
           <ion-input type="nome" placeholder="Nome..." formControlName="nome">
           </ion-input>
-          <ion-note
-            slot="error"
-            *ngIf="(nome.dirty || nome.touched) && nome.errors"
-          >
+          <ion-note slot="error" *ngIf="(nome.dirty || nome.touched) ">
             Nome em falta
           </ion-note>
         </ion-item>
@@ -75,7 +72,7 @@
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(numero_aluno.dirty || numero_aluno.touched) && numero_aluno.errors"
+            *ngIf="(numero_aluno.dirty || numero_aluno.touched)"
           >
             Número Aluno
           </ion-note>
@@ -89,10 +86,7 @@
             formControlName="curso"
           >
           </ion-input>
-          <ion-note
-            slot="error"
-            *ngIf="(curso.dirty || curso.touched) && curso.errors"
-          >
+          <ion-note slot="error" *ngIf="(curso.dirty || curso.touched)">
             Curso em falta
           </ion-note>
         </ion-item>
@@ -107,7 +101,7 @@
           </ion-input>
           <ion-note
             slot="error"
-            *ngIf="(universidade.dirty || universidade.touched) && universidade.errors"
+            *ngIf="(universidade.dirty || universidade.touched)"
           >
             Universidade em falta
           </ion-note>
