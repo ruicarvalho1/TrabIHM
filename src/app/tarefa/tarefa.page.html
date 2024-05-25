@@ -1,12 +1,12 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img src="/assets/logo.png" alt="">
+      <img src="/assets/logo.png" alt="" />
     </ion-toolbar>
   </ion-header>
 
   <ion-card class="banner">
-    <img src="../../assets/task-banner.png" alt="">
+    <img src="../../assets/task-banner.png" alt="" />
     <ion-card-header>
       <ion-card-title>
         <h2 style="margin: 0" translate>site.titulo-disciplina</h2>
@@ -14,31 +14,31 @@
     </ion-card-header>
   </ion-card>
 
-  <div class="task-contents">
-  <ion-card class="card-task">
-    <h3 translate>Data de entrega: 10/04</h3>
-  </ion-card>
-  <ion-card class="card-task">
-    <h3 translate>Nível de prioridade: Alta</h3>
-  </ion-card>
-  <ion-card class="card-task">
-    <h3 translate>Tarefas:</h3>
-    <p>Criar protótipos para mobile e web;</p>
-    <p>Desenvolver storyboards (confirmar);</p>
-    <p>Fazer cenários de interação;</p>
-    <p>Estudar avaliações heurísticas.</p>
-  </ion-card>
-  <ion-card class="card-task">
-    <h3 translate>Adicionar tarefa:</h3>
-    <ion-item lines="none">
-      <ion-input placeholder="Nova tarefa..."></ion-input>
-    </ion-item>
-  </ion-card>
-  <ion-card class="card-task">
-    <h3 translate>Documentos:</h3>
-  </ion-card>
-  <div class="save-btn">
-    <ion-button translate>Guardar</ion-button>
+  <div class="task-contents" *ngFor="let tarefa of tarefas">
+    <ion-card class="card-task">
+      <h3 translate>Data de entrega: {{tarefa.data_limite}}</h3>
+    </ion-card>
+    <ion-card class="card-task">
+      <h3 translate>Nível de prioridade: {{tarefa.prioridade}}</h3>
+    </ion-card>
+    <ion-card class="card-task">
+      <h3 translate>Tarefas:</h3>
+      <p>Criar protótipos para mobile e web;</p>
+      <p>Desenvolver storyboards (confirmar);</p>
+      <p>Fazer cenários de interação;</p>
+      <p>Estudar avaliações heurísticas.</p>
+    </ion-card>
+    <ion-card class="card-task">
+      <h3 translate>Adicionar tarefa:</h3>
+      <ion-item lines="none">
+        <ion-input placeholder="Nova tarefa..."></ion-input>
+      </ion-item>
+    </ion-card>
+    <ion-card class="card-task">
+      <h3 translate>Documentos:</h3>
+    </ion-card>
+    <div class="save-btn">
+      <ion-button translate>Guardar</ion-button>
+    </div>
   </div>
-</div>
 </ion-content>

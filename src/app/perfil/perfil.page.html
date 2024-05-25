@@ -16,7 +16,9 @@
       </ion-avatar>
       <h2 style="margin: 8px 0 0 0" *ngIf="users">{{users.nome}}</h2>
       <h3 style="margin: 8px" *ngIf="users">Nº {{users.numero}}</h3>
-      <ion-button color="bgwhite" translate>site.perfil-editar</ion-button>
+      <ion-button color="bgwhite" routerLink="/editar-perfil" translate
+        >site.perfil-editar</ion-button
+      >
     </div>
   </ion-card>
   <div class="div-content">
