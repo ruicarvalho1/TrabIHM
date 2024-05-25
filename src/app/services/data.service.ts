@@ -128,6 +128,19 @@ export class DataService {
     }
   }
 
+  async getTarefasPorDisciplina(idDisciplina: string): Promise<any[]> {
+    try {
+      const response = await this.supabase
+        .from('tarefas')
+        .select('*')
+        .eq('disciplina_id', idDisciplina)
+        .order('data_limite', { ascending: true });
+      return response.data || [];
+    } catch (error) {
+      console.error('Erro ao obter tarefas por disciplina:', error);
+      throw error;
+    }
+  }
   async addGroupMessage(groupId: string, message: string) {
     const newMessage = {
       text: message,
