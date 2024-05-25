@@ -16,6 +16,13 @@
   <form (ngSubmit)="updatePerfil()" [formGroup]="dadosAtualizados">
     <div class="div-content">
       <ion-card class="card-edit">
+        <h4 translate>Novo perfil:</h4>
+        <ion-item lines="none">
+          <input type="file" id="imagemUpload" accept="image/*" />
+          <img src="/assets/SVG/Edit.svg" alt="" />
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-edit">
         <h4 translate>Nome:</h4>
         <ion-item>
           <ion-input
@@ -82,13 +89,6 @@
           </ion-select>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
-
-        <ion-card class="card-new-task">
-          <h3 translate>Imagem:</h3>
-          <ion-item lines="none">
-            <input type="file" id="imagemUpload" accept="image/*" />
-          </ion-item>
-        </ion-card>
       </ion-card>
       <div class="save-btn">
         <ion-button type="button" routerLink="/tabs/perfil" translate
