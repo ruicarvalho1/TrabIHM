@@ -16,17 +16,31 @@
   <form (ngSubmit)="updatePerfil()" [formGroup]="dadosAtualizados">
     <div class="div-content">
       <ion-card class="card-edit">
-        <h4 translate>Novo perfil:</h4>
-        <ion-item lines="none">
-          <input type="file" id="imagemUpload" accept="image/*" />
-          <img src="/assets/SVG/Edit.svg" alt="" />
+        <h4 translate>site.editar-imagem</h4>
+        <ion-item lines="none" class="upload-container">
+          <input
+            type="file"
+            id="imagemUpload"
+            accept="image/*"
+            class="upload-input"
+            (change)="onImageUpload($event)"
+          />
+          <label for="imagemUpload" class="upload-label">
+            <div class="upload-content">
+              <div class="circle">
+                <ion-icon name="add" class="plus-icon"></ion-icon>
+              </div>
+              <span class="upload-text">{{ uploadedFileName }}</span>
+            </div>
+          </label>
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
-        <h4 translate>Nome:</h4>
+        <h4 translate>site.editar-nome</h4>
         <ion-item>
           <ion-input
-            placeholder="Nome..."
+            *ngIf="users"
+            placeholder="{{users.nome}}..."
             formControlName="nome"
             name="nome"
           ></ion-input>
@@ -34,10 +48,11 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
-        <h4 translate>Número:</h4>
+        <h4 translate>site.editar-numero</h4>
         <ion-item>
           <ion-input
-            placeholder="Número..."
+            *ngIf="users"
+            placeholder="{{users.numero}}..."
             formControlName="numero"
             name="numero"
           ></ion-input>
@@ -45,10 +60,12 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
-        <h4 translate>Curso:</h4>
+        <h4 translate>site.editar-curso</h4>
         <ion-item>
           <ion-select
-            placeholder="Selecione um curso..."
+            translate
+            *ngIf="users"
+            placeholder="{{users.curso}}..."
             formControlName="curso"
             name="curso"
           >
@@ -60,10 +77,11 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
-        <h4 translate>Instituição:</h4>
+        <h4 translate>site.editar-instituicao</h4>
         <ion-item>
           <ion-select
-            placeholder="Selecione a Instituição..."
+            *ngIf="users"
+            placeholder="{{users.universidade}}..."
             formControlName="universidade"
             name="universidade"
           >
@@ -89,19 +107,12 @@
           </ion-select>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
-
-        <ion-card class="card-new-task">
-          <h3 translate>Imagem:</h3>
-          <ion-item lines="none">
-            <input type="file" id="imagemUpload" accept="image/*" />
-          </ion-item>
-        </ion-card>
       </ion-card>
       <div class="save-btn">
         <ion-button type="button" routerLink="/tabs/perfil" translate
-          >Cancelar</ion-button
+          >site.editar-cancelar</ion-button
         >
-        <ion-button type="submit" translate>Guardar</ion-button>
+        <ion-button type="submit" translate>site.editar-guardar</ion-button>
       </div>
     </div>
   </form>

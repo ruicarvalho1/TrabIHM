@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 
 import { EditarPerfilPageRoutingModule } from './editar-perfil-routing.module';
@@ -15,6 +15,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     IonicModule,
     EditarPerfilPageRoutingModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   declarations: [EditarPerfilPage],
 })

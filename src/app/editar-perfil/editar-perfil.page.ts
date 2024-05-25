@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
+
 import {
   LoadingController,
   AlertController,
@@ -23,6 +25,9 @@ export class EditarPerfilPage {
     universidade: [''],
     imagem: [''],
   });
+  uploadedFileName: string = '';
+  users: any = null;
+  user = this.authService.getCurrentUser();
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +36,14 @@ export class EditarPerfilPage {
     private alertController: AlertController,
     private navCtrl: NavController,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private translateService: TranslateService,
+    private data: DataService
   ) {}
+
+  onchangeLanguage(e: any) {
+    this.translateService.use(e.target.value ? e.target.value : 'en');
+  }
 
   cursos = [
     'Engenharia Informática',
@@ -114,6 +125,22 @@ export class EditarPerfilPage {
       await errorToast.present();
     } finally {
       await loading.dismiss();
+    }
+  }
+
+  onImageUpload(event: any) {
+    const fileInput = event.target as HTMLInputElement;
+    this.uploadedFileName = fileInput.files?.[0]?.name ?? '';
+  }
+
+  async ionViewWillEnter() {
+    const userId = this.authService.getCurrentUserId();
+    if (userId) {
+      this.users = await this.data.getUserById(userId);
+
+      console.log('group: ', this.users);
+    } else {
+      console.log('Nenhum usuário autenticado encontrado.');
     }
   }
 }

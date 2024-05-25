@@ -9,7 +9,16 @@
             "perfil-notif": "Notifications",
             "perfil-idioma": "Language",
             "perfil-ajuda": "Help",
-            "mudar_lingua": "Changed to English"
+            "mudar_lingua": "Changed to English",
+            "perfil-sair": "Logout",
+            "editar-perfil": "Edit Profile",
+            "editar-nome": "Name:",
+            "editar-numero": "Number:",
+            "editar-curso": "Course:",
+            "editar-instituicao": "Institution:",
+            "editar-cancelar": "Cancel",
+            "editar-guardar": "Save",
+            "editar-imagem": "Change Profile Image"
             
         }
     
