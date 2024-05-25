@@ -92,6 +92,7 @@ export class AuthService {
     numero?: string;
     curso?: string;
     universidade?: string;
+    imagem?: string;
   }) {
     const { id, ...updateData } = userData;
     return this.supabase.from('users').update(updateData).eq('id', id);

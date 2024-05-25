@@ -78,6 +78,29 @@ export class DataService {
     }
   }
 
+  async uploadImagemPerfil(file: File): Promise<string> {
+    try {
+      const { data, error } = await this.supabase.storage
+        .from('images')
+        .upload(`perfil/${file.name}`, file, {
+          cacheControl: '3600',
+          contentType: 'image/png',
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      // Construir a URL pública manualmente
+      const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
+
+      return publicURL; // Retorna a URL pública da imagem
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem:', error);
+      throw error;
+    }
+  }
+
   async createTarefa(novaTarefa: {
     prioridade: string;
     concluida: boolean;
@@ -104,7 +127,7 @@ export class DataService {
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)
-      .select('email, nome, numero, curso, universidade')
+      .select('email, nome, numero, curso, universidade,imagem')
       .eq('id', id)
       .single()
       .then((result) => result.data);

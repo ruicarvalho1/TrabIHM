@@ -17,10 +17,11 @@ import { AuthService } from '../services/auth.service';
 })
 export class EditarPerfilPage {
   dadosAtualizados = this.fb.nonNullable.group({
-    nome: ['', [Validators.required, Validators.minLength(1)]],
-    numero: ['', [Validators.required, Validators.minLength(1)]],
-    curso: ['', [Validators.required, Validators.minLength(1)]],
-    universidade: ['', [Validators.required, Validators.minLength(1)]],
+    nome: [''],
+    numero: [''],
+    curso: [''],
+    universidade: [''],
+    imagem: [''],
   });
 
   constructor(
@@ -77,31 +78,36 @@ export class EditarPerfilPage {
     try {
       await loading.present();
 
-      if (this.dadosAtualizados.valid) {
-        const userDataToUpdate = this.dadosAtualizados.value;
-        // Obtém o ID do usuário atualmente logado
-        const userId = this.authService.getCurrentUserId();
-        // Atualiza os dados do usuário com o Supabase
+      const userId = this.authService.getCurrentUserId();
+      const fileInput = document.getElementById(
+        'imagemUpload'
+      ) as HTMLInputElement;
+      const file = fileInput.files?.[0];
+
+      if (file) {
+        const imageUrl = await this.dataservice.uploadImagemPerfil(file);
+        // Atualiza apenas a imagem do perfil no Supabase
         await this.authService.updateUserData({
           id: userId,
-          ...userDataToUpdate,
+          imagem: imageUrl,
         });
-        console.log('Perfil do usuário atualizado com sucesso.');
+
+        console.log('Imagem do perfil atualizada com sucesso.');
         // Exibe um toast de sucesso
         const successToast = await this.toastController.create({
-          message: 'Perfil atualizado com sucesso!',
+          message: 'Imagem do perfil atualizada com sucesso!',
           duration: 2000,
           color: 'success',
         });
         await successToast.present();
       } else {
-        console.error('Dados do formulário inválidos.');
+        console.error('Nenhuma imagem selecionada.');
       }
     } catch (error) {
-      console.error('Erro ao atualizar perfil do usuário:', error);
+      console.error('Erro ao atualizar a imagem do perfil:', error);
       // Exibe um toast de erro
       const errorToast = await this.toastController.create({
-        message: 'Erro ao atualizar perfil. Tente novamente.',
+        message: 'Erro ao atualizar a imagem do perfil. Tente novamente.',
         duration: 2000,
         color: 'danger',
       });
