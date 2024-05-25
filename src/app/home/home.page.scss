@@ -107,12 +107,6 @@ ion-content .banner {
     margin: 0 0 32px 0;
   }
 
-
-  body {
-    position: relative;
-    height: 100%;
-  }
-
   swiper-container {
     width: 100%;
     height: 100%;
@@ -131,10 +125,43 @@ ion-content .banner {
   swiper-slide img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 260px;
     object-fit: cover;
   }
 
   swiper-slide {
-    width: 80%;
+    width: 100%;
+  }
+
+  swiper-slide ion-card {
+    width: 100%;
+    margin: 16px 0 32px 0;
+  }
+
+  swiper-slide ion-card ion-card-content,
+  swiper-slide ion-card ion-card-title,
+  swiper-slide ion-card ion-card-subtitle {
+    text-align: start;
+  }
+
+  swiper-slide ion-card ion-card-title h3,
+  swiper-slide ion-card ion-card-subtitle h4 {
+    color: #131D73;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-title h4 {
+    color: #C1BAF5;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-content h3 {
+    color: #FD3A4A;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-title {
+    height: 76px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
