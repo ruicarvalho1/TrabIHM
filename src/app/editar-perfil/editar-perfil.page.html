@@ -6,45 +6,53 @@
   </ion-header>
 
   <ion-card class="banner">
-    <img src="../../assets/SVG/perfil.svg" alt="">
+    <img src="../../assets/SVG/perfil.svg" alt="" />
     <ion-card-header>
       <ion-card-title>
         <h1 style="margin: 0" translate>site.editar-perfil</h1>
       </ion-card-title>
     </ion-card-header>
   </ion-card>
-  <div class="div-content">
-    <ion-card class="card-edit">
-      <h4 translate>Nome: </h4>
-      <ion-item>
-        <ion-input placeholder="Nome..."></ion-input>
-        <img src="/assets/SVG/Edit.svg" alt="" />
-      </ion-item>
-    </ion-card>
-    <ion-card class="card-edit">
-      <h4 translate>Número: </h4>
-      <ion-item>
-        <ion-input placeholder="Número..."></ion-input>
-        <img src="/assets/SVG/Edit.svg" alt="" />
-      </ion-item>
-    </ion-card>
-    <ion-card class="card-edit">
-      <h4 translate>Curso: </h4>
-      <ion-item>
-        <ion-input placeholder="Curso..."></ion-input>
-        <img src="/assets/SVG/Edit.svg" alt="" />
-      </ion-item>
-    </ion-card>
-    <ion-card class="card-edit">
-      <h4 translate>Instituição: </h4>
-      <ion-item>
-        <ion-input placeholder="Instituição.."></ion-input>
-        <img src="/assets/SVG/Edit.svg" alt="" />
-      </ion-item>
-    </ion-card>
-    <div class="save-btn">
-      <ion-button translate>Cancelar</ion-button>
-      <ion-button translate>Guardar</ion-button>
+  <form (ngSubmit)="updatePerfil()">
+    <div class="div-content">
+      <ion-card class="card-edit">
+        <h4 translate>Nome:</h4>
+        <ion-item>
+          <ion-input placeholder="Nome..." formControlName="nome"></ion-input>
+          <img src="/assets/SVG/Edit.svg" alt="" />
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-edit">
+        <h4 translate>Número:</h4>
+        <ion-item>
+          <ion-input
+            placeholder="Número..."
+            formControlName="numero"
+          ></ion-input>
+          <img src="/assets/SVG/Edit.svg" alt="" />
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-edit">
+        <h4 translate>Curso:</h4>
+        <ion-item>
+          <ion-input placeholder="Curso..." formControlName="curso"></ion-input>
+          <img src="/assets/SVG/Edit.svg" alt="" />
+        </ion-item>
+      </ion-card>
+      <ion-card class="card-edit">
+        <h4 translate>Instituição:</h4>
+        <ion-item>
+          <ion-input
+            placeholder="Instituição.."
+            formControlName="universidade"
+          ></ion-input>
+          <img src="/assets/SVG/Edit.svg" alt="" />
+        </ion-item>
+      </ion-card>
+      <div class="save-btn">
+        <ion-button translate>Cancelar</ion-button>
+        <ion-button translate>Guardar</ion-button>
+      </div>
     </div>
-  </div>
+  </form>
 </ion-content>

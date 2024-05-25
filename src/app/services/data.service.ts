@@ -253,19 +253,6 @@ export class DataService {
         console.log('Não há disciplinas associadas a este usuário.');
       }
 
-      /* data.forEach(async (disciplina) => {
-        disciplina.percentagem =
-          (await this.getDisciplinasTarefasFalse(
-            userId,
-            disciplina.id_disciplina
-          )) /
-          (await this.getDisciplinasTarefasTrue(
-            userId,
-            disciplina.id_disciplina
-          ));
-      });
-      */
-
       for (let disciplina of data) {
         let tarefasFalse = await this.getDisciplinasTarefasFalse(
           userId,
