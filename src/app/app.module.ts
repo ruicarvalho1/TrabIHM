@@ -1,6 +1,7 @@
 import { NgModule, importProvidersFrom } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -12,19 +13,25 @@ import { createTranslateLoader } from 'src/main';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    ReactiveFormsModule,
+  ],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     //translate
     importProvidersFrom(HttpClientModule),
-    importProvidersFrom(TranslateModule.forRoot(
-      {
+    importProvidersFrom(
+      TranslateModule.forRoot({
         loader: {
-            provide:TranslateLoader,
-            useFactory: createTranslateLoader,
-            deps: [HttpClient]
-        }
-      }
-    )),
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient],
+        },
+      })
+    ),
     //end
   ],
   bootstrap: [AppComponent],

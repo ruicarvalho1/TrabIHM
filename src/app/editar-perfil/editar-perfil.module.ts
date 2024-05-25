@@ -5,16 +5,17 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { EditarPerfilPageRoutingModule } from './editar-perfil-routing.module';
-
 import { EditarPerfilPage } from './editar-perfil.page';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EditarPerfilPageRoutingModule
+    EditarPerfilPageRoutingModule,
+    ReactiveFormsModule,
   ],
-  declarations: [EditarPerfilPage]
+  declarations: [EditarPerfilPage],
 })
 export class EditarPerfilPageModule {}

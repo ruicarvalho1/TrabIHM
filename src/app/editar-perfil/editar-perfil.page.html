@@ -13,12 +13,16 @@
       </ion-card-title>
     </ion-card-header>
   </ion-card>
-  <form (ngSubmit)="updatePerfil()">
+  <form (ngSubmit)="updatePerfil()" [formGroup]="dadosAtualizados">
     <div class="div-content">
       <ion-card class="card-edit">
         <h4 translate>Nome:</h4>
         <ion-item>
-          <ion-input placeholder="Nome..." formControlName="nome"></ion-input>
+          <ion-input
+            placeholder="Nome..."
+            formControlName="nome"
+            name="nome"
+          ></ion-input>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
       </ion-card>
@@ -28,6 +32,7 @@
           <ion-input
             placeholder="Número..."
             formControlName="numero"
+            name="numero"
           ></ion-input>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
@@ -35,23 +40,54 @@
       <ion-card class="card-edit">
         <h4 translate>Curso:</h4>
         <ion-item>
-          <ion-input placeholder="Curso..." formControlName="curso"></ion-input>
+          <ion-select
+            placeholder="Selecione um curso..."
+            formControlName="curso"
+            name="curso"
+          >
+            <ion-select-option *ngFor="let curso of cursos" [value]="curso"
+              >{{ curso }}</ion-select-option
+            >
+          </ion-select>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
         <h4 translate>Instituição:</h4>
         <ion-item>
-          <ion-input
-            placeholder="Instituição.."
+          <ion-select
+            placeholder="Selecione a Instituição..."
             formControlName="universidade"
-          ></ion-input>
+            name="universidade"
+          >
+            <ion-select-option value="ESTG"
+              >Escola Superior de Tecnologia e Gestão - IPVC
+            </ion-select-option>
+            <ion-select-option value="ESE"
+              >Escola Superior de Educação - IPVC</ion-select-option
+            >
+            <ion-select-option value="ESS"
+              >Escola Superior de Saúde - IPVC</ion-select-option
+            >
+            <ion-select-option value="ESDL"
+              >Escola Superior de Desporto e Lazer - IPVC</ion-select-option
+            >
+            <ion-select-option value="ESCE"
+              >Escola Superior de Ciências Empresariais -
+              IPVC</ion-select-option
+            >
+            <ion-select-option value="ESA"
+              >Escola Superior Agrária - IPVC</ion-select-option
+            >
+          </ion-select>
           <img src="/assets/SVG/Edit.svg" alt="" />
         </ion-item>
       </ion-card>
       <div class="save-btn">
-        <ion-button translate>Cancelar</ion-button>
-        <ion-button translate>Guardar</ion-button>
+        <ion-button type="button" routerLink="/tabs/perfil" translate
+          >Cancelar</ion-button
+        >
+        <ion-button type="submit" translate>Guardar</ion-button>
       </div>
     </div>
   </form>

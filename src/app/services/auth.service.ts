@@ -5,6 +5,7 @@ import { isPlatform } from '@ionic/angular';
 import { createClient, SupabaseClient, User } from '@supabase/supabase-js';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { PostgrestError, PostgrestResponse } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root',
@@ -82,6 +83,18 @@ export class AuthService {
     } else {
       return '';
     }
+  }
+
+  updateUserData(userData: {
+    id: string;
+    email?: string;
+    nome?: string;
+    numero?: string;
+    curso?: string;
+    universidade?: string;
+  }) {
+    const { id, ...updateData } = userData;
+    return this.supabase.from('users').update(updateData).eq('id', id);
   }
 
   signInWithEmail(email: string, redirectTo: string) {
