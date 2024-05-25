@@ -1,0 +1,103 @@
+ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    height: 328px;
+    width: calc(100% - 16px);
+    background: linear-gradient(154.52deg, #131D73 34.04%, #809AF8 85.76%);
+    border-radius: 32px;
+    margin: 8px 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 400px;
+    opacity: 0.6;
+  }
+
+  ion-content .banner ion-card-title {
+    text-align: center;
+    max-height: 140px;
+  }
+  
+  ion-content .banner h1 {
+    color: #FFFFFF;
+    height: fit-content;
+  }
+
+  .subject-contents {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 8px;
+    margin-top: 16px;
+  }
+
+  ion-card.card-new-subject {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 16px;
+    border-radius: 32px;
+    background: rgba(42, 73, 185, 0.77);     
+  }
+
+  ion-card.card-new-subject:not(:first-child) {
+    margin-top: 16px;
+  }
+
+  ion-card.card-new-subject ion-card-header {
+    padding: 0;
+  }
+  
+  ion-card.card-new-subject h3, h3 {
+    margin: 0;
+    color: #FFFFFF;
+  }
+  
+  ion-card.card-new-subject p {
+    margin: 8px 0 0 8px;
+    color: #FFFFFF;
+  }
+
+  .card-new-subject ion-item {
+    background: #FFFFFF;
+    border-radius: 16px;
+    margin-top: 16px;
+  }
+
+  .card-new-subject ion-item ion-textarea {
+    --placeholder-color: #D2CEF5;
+    --text-color: #131D73;
+    height: 128px;
+  }
+
+  .card-new-subject ion-item ion-input {
+    --placeholder-color: #D2CEF5;
+    --text-color: #131D73;
+  }
+  
+  ion-datetime {
+    border-radius: 16px;
+    margin-top: 16px;
+  }
+
+  .save-btn {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin: 32px 0;
+    padding: 0 16px;
+  }
+
+  .save-btn ion-button {
+    width: 164px;
+    height: 50px;
+    min-height: 0 !important;
+    margin: 0;
+    --border-radius: 32px;
+    --background: rgba(42, 73, 185, 0.77) !important;
+    color: #FFFFFF;
+  }

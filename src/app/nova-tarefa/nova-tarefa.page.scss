@@ -57,7 +57,7 @@ ion-content .banner {
     margin: 0;
     padding: 16px;
     border-radius: 32px;
-    background: #2A49B9;
+    background: rgba(42, 73, 185, 0.77);
   }
 
   ion-card.card-new-task:not(:first-child) {
@@ -114,6 +114,6 @@ ion-content .banner {
     min-height: 0 !important;
     margin: 0;
     --border-radius: 32px;
-    --background: #2A49B9 !important;
+    --background: rgba(42, 73, 185, 0.77) !important;
     color: #FFFFFF;
   }
