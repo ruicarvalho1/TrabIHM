@@ -95,30 +95,54 @@ export class EditarPerfilPage {
       ) as HTMLInputElement;
       const file = fileInput.files?.[0];
 
-      if (file) {
-        const imageUrl = await this.dataservice.uploadImagemPerfil(file);
-        // Atualiza apenas a imagem do perfil no Supabase
-        await this.authService.updateUserData({
-          id: userId,
-          imagem: imageUrl,
+      // Verifica se há uma imagem fornecida e se há outros campos a serem atualizados
+      if (file || this.dadosAtualizados.dirty) {
+        // Se houver uma nova imagem selecionada, faz o upload
+        let imageUrl: string | undefined;
+        if (file) {
+          imageUrl = await this.dataservice.uploadImagemPerfil(file);
+        }
+
+        // Atualiza apenas os campos que foram modificados no formulário
+        const dadosAtualizados: any = {};
+        Object.keys(this.dadosAtualizados.controls).forEach((key) => {
+          const control = this.dadosAtualizados.get(key);
+          if (control && control.dirty) {
+            dadosAtualizados[key] = control.value;
+          }
         });
 
-        console.log('Imagem do perfil atualizada com sucesso.');
+        // Atualiza os dados do perfil no Supabase
+        await this.authService.updateUserData({
+          id: userId,
+          ...dadosAtualizados,
+          imagem: imageUrl, // Se houver uma imagem nova, atualiza também a imagem
+        });
+
+        console.log('Perfil atualizado com sucesso.');
         // Exibe um toast de sucesso
         const successToast = await this.toastController.create({
-          message: 'Imagem do perfil atualizada com sucesso!',
+          message: 'Perfil atualizado com sucesso!',
           duration: 2000,
           color: 'success',
         });
         await successToast.present();
       } else {
-        console.error('Nenhuma imagem selecionada.');
+        // Se nenhum arquivo de imagem for selecionado e nenhum outro dado for fornecido, exibe uma mensagem informativa
+        console.log('Nenhuma alteração feita.');
+        // Exibe um toast informativo
+        const infoToast = await this.toastController.create({
+          message: 'Nenhuma alteração feita.',
+          duration: 2000,
+          color: 'warning',
+        });
+        await infoToast.present();
       }
     } catch (error) {
-      console.error('Erro ao atualizar a imagem do perfil:', error);
+      console.error('Erro ao atualizar o perfil:', error);
       // Exibe um toast de erro
       const errorToast = await this.toastController.create({
-        message: 'Erro ao atualizar a imagem do perfil. Tente novamente.',
+        message: 'Erro ao atualizar o perfil. Tente novamente.',
         duration: 2000,
         color: 'danger',
       });
