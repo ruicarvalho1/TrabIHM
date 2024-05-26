@@ -24,6 +24,7 @@
             accept="image/*"
             class="upload-input"
             (change)="onImageUpload($event)"
+            capture="user"
           />
           <label for="imagemUpload" class="upload-label">
             <div class="upload-content">
@@ -33,6 +34,20 @@
               <span class="upload-text">{{ uploadedFileName }}</span>
             </div>
           </label>
+          <!-- Ícone para abrir a câmera -->
+          <ion-icon
+            name="camera"
+            slot="end"
+            (click)="onAddButtonClick('camera')"
+            class="camera-icon"
+          ></ion-icon>
+          <!-- Ícone para abrir a galeria -->
+          <ion-icon
+            name="images"
+            slot="end"
+            (click)="onAddButtonClick('gallery')"
+            class="gallery-icon"
+          ></ion-icon>
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">

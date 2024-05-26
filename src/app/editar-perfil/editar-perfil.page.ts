@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+import { CameraResultType, CameraSource } from '@capacitor/camera';
+const { Camera } = Plugins;
 
 import {
   LoadingController,
@@ -79,6 +82,38 @@ export class EditarPerfilPage {
   get numero() {
     return this.dadosAtualizados.controls.numero;
   }
+
+  async openCameraOrGallery(source: string) {
+    try {
+      let image;
+      if (source === 'camera') {
+        image = await Camera['getPhoto']({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.Uri,
+          source: CameraSource.Camera,
+        });
+      } else if (source === 'gallery') {
+        image = await Camera['getPhoto']({
+          quality: 90,
+          allowEditing: false,
+          resultType: CameraResultType.Uri,
+          source: CameraSource.Photos,
+        });
+      }
+
+      // Use a imagem capturada ou selecionada da galeria
+      const imageUrl = image.webPath;
+    } catch (error) {
+      console.error('Erro ao acessar a câmera ou a galeria:', error);
+      // Lida com erros de acesso à câmera ou galeria aqui
+    }
+  }
+
+  async onAddButtonClick(source: string) {
+    await this.openCameraOrGallery(source);
+  }
+
   async updatePerfil() {
     const loading = await this.loadingController.create({
       message: 'Atualizando perfil...',
