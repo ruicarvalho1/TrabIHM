@@ -31,11 +31,10 @@
     <ion-card class="info-card">
       <img src="/assets/SVG/Bell.svg" alt="" />
       <p translate>site.perfil-notif</p>
-      <div class="notif-status">
-        <ion-radio-group [allowEmptySelection]="true" value="language">
-          <ion-radio value="notifications "></ion-radio>
-        </ion-radio-group>
-      </div>
+      <ion-button (click)="toggleNotifications()">
+        {{ notificationState ? 'Desativar Notificações' : 'Ativar Notificações'
+        }}
+      </ion-button>
     </ion-card>
     <ion-card class="info-card">
       <div class="div-icon">
