@@ -4,7 +4,7 @@ import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import { CameraResultType, CameraSource } from '@capacitor/camera';
-const { Camera } = Plugins;
+const { Camera, Permissions } = Plugins;
 
 import {
   LoadingController,
@@ -85,35 +85,56 @@ export class EditarPerfilPage {
 
   async openCameraOrGallery(source: string) {
     try {
-      let image;
-      if (source === 'camera') {
-        image = await Camera['getPhoto']({
-          quality: 90,
-          allowEditing: false,
-          resultType: CameraResultType.Uri,
-          source: CameraSource.Camera,
-        });
-      } else if (source === 'gallery') {
-        image = await Camera['getPhoto']({
-          quality: 90,
-          allowEditing: false,
-          resultType: CameraResultType.Uri,
-          source: CameraSource.Photos,
-        });
+      const hasPermission = await this.checkCameraPermissions();
+      if (!hasPermission) {
+        throw new Error('Permissão negada para acessar a câmera ou a galeria.');
       }
 
-      // Use a imagem capturada ou selecionada da galeria
-      const imageUrl = image.webPath;
+      const image = await Plugins['Camera']['getPhoto']({
+        quality: 90,
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: source === 'camera' ? CameraSource.Camera : CameraSource.Photos,
+      });
+
+      // Upload da imagem para o Supabase
+      const imageUrl = await this.dataservice.uploadImagemPerfil(image.path);
+
+      // Atualização dos dados do perfil do usuário
+      const userId = this.authService.getCurrentUserId();
+      await this.authService.updateUserData({
+        id: userId,
+        imagem: imageUrl,
+      });
+
+      console.log('Perfil atualizado com sucesso.');
+      // Exibe um toast de sucesso
+      const successToast = await this.toastController.create({
+        message: 'Perfil atualizado com sucesso!',
+        duration: 2000,
+        color: 'success',
+      });
+      await successToast.present();
     } catch (error) {
       console.error('Erro ao acessar a câmera ou a galeria:', error);
-      // Lida com erros de acesso à câmera ou galeria aqui
+      // Lida com erros de acesso à câmera ou à galeria
+      const errorToast = await this.toastController.create({
+        message: 'Erro ao acessar a câmera ou a galeria. Tente novamente.',
+        duration: 2000,
+        color: 'danger',
+      });
+      await errorToast.present();
     }
+  }
+
+  async checkCameraPermissions() {
+    const result = await Permissions['query']({ name: 'camera' });
+    return result.state === 'granted';
   }
 
   async onAddButtonClick(source: string) {
     await this.openCameraOrGallery(source);
   }
-
   async updatePerfil() {
     const loading = await this.loadingController.create({
       message: 'Atualizando perfil...',
