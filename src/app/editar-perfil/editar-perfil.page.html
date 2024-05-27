@@ -1,7 +1,10 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img src="/assets/logo.png" alt="" />
+      <img routerLink="/tabs/home" src="/assets/logo.png" alt="" />
+      <ion-button id="backButton" routerLink="/tabs/perfil" slot="end">
+        <img src="../../assets/SVG/arrow-left.svg" alt="">
+    </ion-button>
     </ion-toolbar>
   </ion-header>
 
@@ -52,7 +55,7 @@
       </ion-card>
       <ion-card class="card-edit">
         <h4 translate>site.editar-nome</h4>
-        <ion-item>
+        <ion-item lines="none">
           <ion-input
             *ngIf="users"
             placeholder="{{users.nome}}..."
@@ -64,7 +67,7 @@
       </ion-card>
       <ion-card class="card-edit">
         <h4 translate>site.editar-numero</h4>
-        <ion-item>
+        <ion-item lines="none">
           <ion-input
             *ngIf="users"
             placeholder="{{users.numero}}..."
@@ -76,7 +79,7 @@
       </ion-card>
       <ion-card class="card-edit">
         <h4 translate>site.editar-curso</h4>
-        <ion-item>
+        <ion-item lines="none">
           <ion-select
             translate
             *ngIf="users"
@@ -93,7 +96,7 @@
       </ion-card>
       <ion-card class="card-edit">
         <h4 translate>site.editar-instituicao</h4>
-        <ion-item>
+        <ion-item lines="none">
           <ion-select
             *ngIf="users"
             placeholder="{{users.universidade}}..."

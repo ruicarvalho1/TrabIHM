@@ -143,3 +143,21 @@ ion-content {
   opacity: 1;
 }
 
+#backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  min-height: 0 !important;
+  --background: #ECEBF5;
+  --border-radius: 16px;
+  margin: 0 12px 0 0;
+  font-size: 0 !important;
+}
+
+#backButton img {
+  width: 24px;
+  height: 24px;
+}
+
