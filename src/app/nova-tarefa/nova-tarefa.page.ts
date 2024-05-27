@@ -1,23 +1,26 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
 import { ToastController, LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-nova-tarefa',
   templateUrl: './nova-tarefa.page.html',
   styleUrls: ['./nova-tarefa.page.scss'],
 })
-export class NovaTarefaPage {
+export class NovaTarefaPage implements OnInit {
   formularioTarefa: FormGroup;
+  disciplinas: any[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private dataService: DataService,
+    private data: DataService,
     private authService: AuthService,
     private toastController: ToastController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private translateService: TranslateService
   ) {
     this.formularioTarefa = this.fb.group({
       prioridade: [''],
@@ -30,14 +33,47 @@ export class NovaTarefaPage {
     });
   }
 
+  ngOnInit() {
+    // Carrega as disciplinas ao iniciar a página
+    this.carregarDisciplinas();
+  }
+
+  async carregarDisciplinas() {
+    try {
+      this.disciplinas = await this.data.getAllDisciplinas();
+      console.log('Disciplinas:', this.disciplinas);
+    } catch (error) {
+      console.error('Erro ao carregar disciplinas:', error);
+    }
+  }
+
   formatarData(event: any) {
     const data = new Date(event.detail.value);
     const ano = data.getFullYear();
     const mes = String(data.getMonth() + 1).padStart(2, '0');
     const dia = String(data.getDate()).padStart(2, '0');
     const dataFormatada = `${dia}-${mes}-${ano}`;
-
     this.formularioTarefa.patchValue({ data_limite: dataFormatada });
+    console.log('formularioTarefa:', this.formularioTarefa.value);
+  }
+  getMinDate(): string {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+    return `${year}-${month}-${day}`;
+  }
+  resetToMinDate(event: any) {
+    const selectedDate = new Date(event.detail.value);
+    const minDate = new Date(this.getMinDate());
+
+    if (selectedDate < minDate) {
+      this.formularioTarefa.patchValue({ data_limite: this.getMinDate() });
+    }
+  }
+
+  onchangeLanguage(e: any) {
+    this.translateService.use(e.target.value ? e.target.value : 'en');
   }
 
   async criarTarefa() {
@@ -60,11 +96,11 @@ export class NovaTarefaPage {
       ) as HTMLInputElement;
       const file = fileInput.files?.[0];
       if (file) {
-        const imageUrl = await this.dataService.uploadImagem(file);
+        const imageUrl = await this.data.uploadImagem(file);
         novaTarefa.imagem = imageUrl; // Define o URL da imagem no objeto da tarefa
       }
 
-      await this.dataService.createTarefa(novaTarefa);
+      await this.data.createTarefa(novaTarefa);
       console.log('Tarefa criada com sucesso!');
 
       await loading.dismiss();

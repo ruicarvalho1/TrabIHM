@@ -17,7 +17,7 @@
   <div class="task-contents">
     <form [formGroup]="formularioTarefa" (ngSubmit)="criarTarefa()">
       <ion-card class="card-new-task">
-        <h3 translate>Nome da tarefa:</h3>
+        <h3 translate>site.nome-tarefa</h3>
         <ion-item lines="none">
           <!-- Vinculando o input ao FormGroup -->
           <ion-input
@@ -27,7 +27,7 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-new-task">
-        <h3 translate>Nova tarefa:</h3>
+        <h3 translate>site.nova-tarefa</h3>
         <ion-item lines="none">
           <!-- Vinculando o textarea ao FormGroup -->
           <ion-textarea
@@ -37,30 +37,33 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-new-task">
-        <h3 translate>Data limite:</h3>
+        <h3 translate>site.data-limite</h3>
         <ion-item lines="none">
           <!-- Vinculando o ion-datetime ao FormGroup -->
           <ion-datetime
-            [formControlName]="'data_limite'"
             [firstDayOfWeek]="1"
             presentation="date"
             (ionChange)="formatarData($event)"
+            [min]="getMinDate()"
           ></ion-datetime>
         </ion-item>
       </ion-card>
       <ion-card class="card-new-task">
-        <h3 translate>Disciplina:</h3>
+        <h3 translate>site.disciplina</h3>
         <ion-item lines="none">
           <!-- Vinculando o ion-select ao FormGroup -->
           <ion-select aria-label="" formControlName="disciplina_id">
-            <ion-select-option value="1">IHM</ion-select-option>
-            <ion-select-option value="2">ES2</ion-select-option>
-            <ion-select-option value="3">ABD</ion-select-option>
+            <ion-select-option
+              *ngFor="let disciplina of disciplinas"
+              [value]="disciplina.id_disciplina"
+            >
+              {{ disciplina.nome }}
+            </ion-select-option>
           </ion-select>
         </ion-item>
       </ion-card>
       <ion-card class="card-new-task">
-        <h3 translate>Nível de prioridade:</h3>
+        <h3 translate>site.nivel-prioridade</h3>
         <ion-item lines="none">
           <!-- Vinculando o ion-select ao FormGroup -->
           <ion-select aria-label="" formControlName="prioridade">
@@ -71,7 +74,7 @@
         </ion-item>
       </ion-card>
       <ion-card class="card-new-task">
-        <h3 translate>Imagem:</h3>
+        <h3 translate>site.imagem</h3>
         <ion-item lines="none">
           <input type="file" id="imagemUpload" accept="image/*" />
         </ion-item>

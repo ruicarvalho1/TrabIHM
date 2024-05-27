@@ -20,6 +20,7 @@ import { createTranslateLoader } from 'src/main';
     AppRoutingModule,
     ReactiveFormsModule,
     IonicStorageModule.forRoot(),
+    TranslateModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

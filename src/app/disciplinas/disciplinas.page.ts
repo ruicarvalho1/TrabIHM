@@ -23,6 +23,9 @@ export class DisciplinasPage {
     private data: DataService
   ) {}
 
+  onchangeLanguage(e: any) {
+    this.translateService.use(e.target.value ? e.target.value : 'en');
+  }
   /*
   async ngOnInit() {
     try {

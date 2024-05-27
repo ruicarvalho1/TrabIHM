@@ -101,6 +101,29 @@ export class DataService {
     }
   }
 
+  async uploadImagemDisciplina(file: File): Promise<string> {
+    try {
+      const { data, error } = await this.supabase.storage
+        .from('images')
+        .upload(`disciplinas/${file.name}`, file, {
+          cacheControl: '3600',
+          contentType: 'image/png',
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      // Construir a URL pública manualmente
+      const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
+
+      return publicURL; // Retorna a URL pública da imagem
+    } catch (error) {
+      console.error('Erro ao fazer upload da imagem:', error);
+      throw error;
+    }
+  }
+
   async createTarefa(novaTarefa: {
     prioridade: string;
     concluida: boolean;
@@ -124,6 +147,26 @@ export class DataService {
       throw error;
     }
   }
+
+  async createDisciplina(createDisciplina: {
+    nome: string;
+    area_estudo: boolean;
+    notas: string;
+    imagem: string;
+  }) {
+    try {
+      const { data, error } = await this.supabase
+        .from('disciplinas')
+        .insert([createDisciplina])
+        .single();
+      if (error) {
+        throw error;
+      }
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)
@@ -131,6 +174,13 @@ export class DataService {
       .eq('id', id)
       .single()
       .then((result) => result.data);
+  }
+
+  getAllDisciplinas() {
+    return this.supabase
+      .from('disciplinas')
+      .select(`*`)
+      .then((result) => result.data || []);
   }
 
   async getTarefasDoUsuario(userId: string) {
@@ -245,26 +295,6 @@ export class DataService {
       this.supabase.removeChannel(this.realtimeChannel);
     }
   }
-
-  /*async getUserTasksAndDisciplines() {
-    try {
-
-
-      const { data, error } = await this.supabase.rpc(
-        'get_user_tarefas_disciplinas'
-      );
-      if (error) {
-        throw error;
-      }
-      return data;
-    } catch (error) {
-      console.error('Erro ao obter tarefas e disciplinas do usuário:', error);
-      throw error;
-    }
-
-
-
-  }*/
 
   async getDisciplinasTarefasTrue(userId: string, id_disciplina: number) {
     const { data, error } = await this.supabase

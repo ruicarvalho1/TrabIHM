@@ -35,8 +35,8 @@
             <img src="{{ tarefa.imagem }}" />
             <ion-card-header>
               <ion-card-subtitle
-                ><h4>
-                  Prioriedade: {{ tarefa.prioridade }}
+                ><h4 translate>
+                  {{ 'site.prioridade' | translate }} {{ tarefa.prioridade }}
                 </h4></ion-card-subtitle
               >
               <ion-card-title>
@@ -45,7 +45,9 @@
               </ion-card-title>
             </ion-card-header>
             <ion-card-content
-              ><h3>Entrega: {{ tarefa.data_limite }}</h3></ion-card-content
+              ><h3 translate>
+                {{ 'site.entrega' | translate }} {{ tarefa.data_limite }}
+              </h3></ion-card-content
             >
           </ion-card>
         </swiper-slide>
@@ -121,6 +123,6 @@
         </ion-list>
       </ion-card-content>
     </ion-card>
-    <p id="SeeAll" routerLink="/conversas-grupo">Ver todas</p>
+    <p id="SeeAll" routerLink="/conversas-grupo" translate>site.ver-todas</p>
   </div>
 </ion-content>

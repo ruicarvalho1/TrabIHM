@@ -19,7 +19,25 @@
             "editar-cancelar": "Cancelar",
             "editar-guardar": "Guardar",
             "editar-imagem": "Mudar Imagem de Perfil",
-            "titulo-conversasHome": "Conversas de Grupo"
+            "titulo-conversasHome": "Conversas de Grupo",
+            "nova-disciplina": "Nova Disciplina",
+            "nome-disciplina": "Nome da Disciplina",
+            "area-estudo": "Área de Estudo", 
+            "notas-sobre-disciplina": "Notas sobre a Disciplina",
+            "imagem": "Imagem",
+            "titulo-disciplinas": "Disciplinas",
+            "completo": "Completo",
+            "prioridade": "Prioridade:",
+            "entrega": "Entrega:",
+            "ver-todas": "Ver todas",
+            "nova-tarefa": "Nova Tarefa",
+            "nome-tarefa": "Nome da Tarefa",
+            "data-limite":  "Data Limite",
+            "disciplina": "Disciplina:",
+            "nivel-prioridade": "Nível de Prioridade"
+
+            
+
 
             
         }

@@ -19,8 +19,22 @@
             "editar-cancelar": "Cancel",
             "editar-guardar": "Save",
             "editar-imagem": "Change Profile Image",
-            "titulo-conversasHome": "Group Conversations"
-            
+            "titulo-conversasHome": "Group Conversations",
+            "nova-disciplina": "New Course",
+            "nome-disciplina": "Course Name",
+            "area-estudo": "Study Area",
+            "notas-sobre-disciplina": "Notes about the course",
+            "imagem": "Image",
+            "titulo-disciplinas": "Courses",
+            "completo": "Complete",
+            "prioridade": "Priority:",
+            "entrega": "Delivery Date:",
+            "ver-todas": "See All",
+            "nova-tarefa": "New Task",
+            "nome-tarefa": "Task Name",
+            "data-limite": "Deadline",
+            "disciplina": "Course:",
+            "nivel-prioridade": "Priority Level"
         }
     
     }

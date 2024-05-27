@@ -15,38 +15,49 @@
   </ion-card>
 
   <div class="subject-contents">
-    <form action="">
+    <form [formGroup]="formularioDisciplina" (ngSubmit)="criarDisciplina()">
       <ion-card class="card-new-subject">
-        <h3 translate>Nome da disciplina:</h3>
+        <h3 translate>site.nome-disciplina</h3>
         <ion-item lines="none">
           <ion-input
             placeholder="Nome da disciplina..."
+            formControlName="nome"
           ></ion-input>
         </ion-item>
       </ion-card>
       <ion-card class="card-new-subject">
-        <h3 translate>Área de estudo:</h3>
+        <h3 translate>site.area-estudo</h3>
         <ion-item lines="none">
           <!-- Vinculando o textarea ao FormGroup -->
           <ion-input
             placeholder="Área..."
+            formControlName="area_estudo"
           ></ion-input>
         </ion-item>
       </ion-card>
       <ion-card class="card-new-subject">
-        <h3 translate>Notas sobre a disciplina:</h3>
+        <h3 translate>site.notas-sobre-disciplina</h3>
         <ion-item lines="none">
           <!-- Vinculando o textarea ao FormGroup -->
           <ion-textarea
             placeholder="Notas..."
+            formControlName="notas"
           ></ion-textarea>
         </ion-item>
       </ion-card>
+
+      <ion-card class="card-new-subject">
+        <h3 translate>site.imagem</h3>
+        <ion-item lines="none">
+          <input type="file" id="imagemUpload" accept="image/*" />
+        </ion-item>
+      </ion-card>
       <div class="save-btn">
-        <ion-button type="button">Cancelar</ion-button>
+        <ion-button type="button" routerLink="/tabs/disciplinas"
+          >Cancelar</ion-button
+        >
         <ion-button type="submit">Criar</ion-button>
       </div>
     </form>
   </div>
-
 </ion-content>
