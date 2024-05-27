@@ -151,28 +151,33 @@ export class EditarPerfilPage {
       ) as HTMLInputElement;
       const file = fileInput.files?.[0];
 
-      // Verifica se há uma imagem fornecida e se há outros campos a serem atualizados
-      if (file || this.dadosAtualizados.dirty) {
-        // Se houver uma nova imagem selecionada, faz o upload
-        let imageUrl: string | undefined;
-        if (file) {
-          imageUrl = await this.dataservice.uploadImagemPerfil(file);
-        }
+      // Inicializa a variável para armazenar a URL da imagem
+      let imageUrl: string | undefined;
 
-        // Atualiza apenas os campos que foram modificados no formulário
-        const dadosAtualizados: any = {};
-        Object.keys(this.dadosAtualizados.controls).forEach((key) => {
-          const control = this.dadosAtualizados.get(key);
-          if (control && control.dirty) {
-            dadosAtualizados[key] = control.value;
-          }
-        });
+      // Se houver uma nova imagem selecionada, faz o upload
+      if (file) {
+        imageUrl = await this.dataservice.uploadImagemPerfil(file);
+      }
+
+      // Atualiza apenas os campos que foram modificados no formulário
+      const dadosAtualizados: any = {};
+      Object.keys(this.dadosAtualizados.controls).forEach((key) => {
+        const control = this.dadosAtualizados.get(key);
+        if (control && control.dirty) {
+          dadosAtualizados[key] = control.value;
+        }
+      });
+
+      // Se houver uma imagem nova ou outros campos modificados, atualiza o perfil
+      if (file || Object.keys(dadosAtualizados).length > 0) {
+        if (imageUrl) {
+          dadosAtualizados.imagem = imageUrl;
+        }
 
         // Atualiza os dados do perfil no Supabase
         await this.authService.updateUserData({
           id: userId,
           ...dadosAtualizados,
-          imagem: imageUrl, // Se houver uma imagem nova, atualiza também a imagem
         });
 
         console.log('Perfil atualizado com sucesso.');

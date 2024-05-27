@@ -164,6 +164,31 @@ export class DataService {
       throw error;
     }
   }
+  async getDisciplinaPorTarefa(idDisciplina: number): Promise<string | null> {
+    try {
+      const { data, error } = await this.supabase
+        .from('disciplinas')
+        .select('nome')
+        .eq('id_disciplina', idDisciplina)
+        .single();
+
+      if (error) {
+        console.error('Erro ao obter a disciplina:', error);
+        return null;
+      }
+
+      if (!data) {
+        console.error('Disciplina não encontrada.');
+        return null;
+      }
+
+      return data.nome;
+    } catch (error) {
+      console.error('Erro ao obter o nome da disciplina:', error);
+      throw error;
+    }
+  }
+
   async addGroupMessage(groupId: string, message: string) {
     const newMessage = {
       text: message,

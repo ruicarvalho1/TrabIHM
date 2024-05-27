@@ -17,6 +17,7 @@ export class HomePage {
   user = this.authService.getCurrentUser();
   public swiper!: Swiper;
   tarefas: any[] = [];
+  disciplinas: any[] = [];
 
   constructor(
     private translateService: TranslateService,
@@ -32,10 +33,36 @@ export class HomePage {
   async ionViewWillEnter() {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
-      this.tarefas = await this.data.getTarefasDoUsuario(userId);
-      this.users = await this.data.getUserById(userId);
+      try {
+        // Obter tarefas do usuário
+        this.tarefas = await this.data.getTarefasDoUsuario(userId);
 
-      console.log('group: ', this.users);
+        // Log das tarefas para verificar o conteúdo
+        console.log('Tarefas:', this.tarefas);
+
+        // Obter informações do usuário
+        this.users = await this.data.getUserById(userId);
+
+        // Verificar se há tarefas antes de buscar disciplinas
+        if (this.tarefas && this.tarefas.length > 0) {
+          // Para cada tarefa, obter a disciplina associada e adicionar à lista de disciplinas
+          for (const tarefa of this.tarefas) {
+            const disciplinaNome = await this.data.getDisciplinaPorTarefa(
+              tarefa.disciplina_id
+            );
+            if (disciplinaNome !== null) {
+              // Adiciona o nome da disciplina à tarefa
+              tarefa.nome_disciplina = disciplinaNome;
+            }
+          }
+        } else {
+          console.log('Nenhuma tarefa encontrada para o usuário.');
+        }
+
+        console.log('group: ', this.users);
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+      }
     } else {
       console.log('Nenhum usuário autenticado encontrado.');
     }

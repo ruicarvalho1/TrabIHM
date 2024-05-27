@@ -25,26 +25,28 @@
     <h2 translate>site.titulo-tarefaspro</h2>
     <swiper-container
       class="mySwiper"
-      space-between="30"
-      slides-per-view="1.5"
+      slides-per-view="1"
       pagination="true"
       pagination-clickable="true"
     >
       <ng-container *ngFor="let tarefa of tarefas">
         <swiper-slide>
           <ion-card>
-            <img src="{{tarefa.imagem}}" />
+            <img src="{{ tarefa.imagem }}" />
             <ion-card-header>
               <ion-card-subtitle
-                ><h4>Prioriedade: {{ tarefa.prioridade }}</h4>  </ion-card-subtitle
+                ><h4>
+                  Prioriedade: {{ tarefa.prioridade }}
+                </h4></ion-card-subtitle
               >
               <ion-card-title>
-                <!-- NOME DA DISCIPLINA AQUI NO H4-->
-                <h4>IHMHMHMHMHMH</h4>
                 <h3>{{ tarefa.tarefa }}</h3>
+                <h4>{{ tarefa.nome_disciplina }}</h4>
               </ion-card-title>
             </ion-card-header>
-            <ion-card-content><h3>Entrega: {{ tarefa.data_limite }}</h3></ion-card-content>
+            <ion-card-content
+              ><h3>Entrega: {{ tarefa.data_limite }}</h3></ion-card-content
+            >
           </ion-card>
         </swiper-slide>
       </ng-container>
@@ -52,7 +54,7 @@
   </div>
 
   <div class="relevant-chats">
-    <h2 translate>site.titulo-convsersasAber</h2>
+    <h2 translate>site.titulo-conversasHome</h2>
     <ion-card>
       <ion-card-content>
         <ion-list>
