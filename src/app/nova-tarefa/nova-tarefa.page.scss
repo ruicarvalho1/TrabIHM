@@ -117,3 +117,45 @@ ion-content .banner {
     --background: rgba(42, 73, 185, 0.77) !important;
     color: #FFFFFF;
   }
+
+  .upload-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .upload-input {
+    position: absolute; /* Adiciona position: absolute para remover o input padrão da ordem do documento */
+    opacity: 0; /* Torna o input padrão invisível */
+    z-index: 2; /* Define um z-index maior para que o input customizado fique acima do input padrão */
+  }
+  
+  .upload-label {
+    cursor: pointer;
+    z-index: 1; /* Define um z-index menor para que o label não cubra o input customizado */
+  }
+  
+  .upload-content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .circle {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #3cbccc; /* Cor de fundo do círculo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .plus-icon {
+    font-size: 24px;
+    color: white;
+  }
+  
+  .upload-text {
+    margin-left: 10px;
+    font-weight: 800;
+    color: #131D73;
+  }
