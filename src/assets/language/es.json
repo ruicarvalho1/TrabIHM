@@ -34,8 +34,15 @@
         "nova-tarefa": "Nueva tarea",
         "nome-tarefa": "Nombre de la tarea",
         "data-limite": "Fecha límite",
-        "disciplina": "Disciplina:",
-        "nivel-prioridade": "Nivel de prioridad"
+        "disciplina": "Disciplina",
+        "nivel-prioridade": "Nivel de prioridad",
+        "data-entrega": "Fecha de entrega:",
+        "tipo-tarefa": "Tipo de tarea",
+        "tarefas": "Tareas",
+        "documentos": "Documentos",
+        "botao-criar-tarefa": "Crear tarea",
+        "marcar-como-concluida": "Marcar como concluida",
+        "ver": "Ver"
         
         
 

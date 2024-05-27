@@ -1,15 +1,22 @@
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let chat of groups" [routerLink]="[chat.id]" button>
-      <ion-label
-        >{{chat.title }}
-        <p>Bydsad {{chat.users.email}}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="user | async">
-    <ion-fab-button (click)="createGroup()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <div class="relevant-chats">
+    <h2 translate>site.titulo-conversasHome</h2>
+    <ion-card>
+      <ion-card-content *ngFor="let disciplina of disciplinas">
+        <ion-list>
+          <ion-item lines="none" color="primary">
+            <ion-thumbnail slot="start">
+              <img src="{{ disciplina.imagem }}" />
+            </ion-thumbnail>
+            <ion-label translate>
+              <p>{{ 'site.grupo' | translate }} {{disciplina.nome}}</p>
+              <h4>
+                Miguel: Os outros que façam, o meu trabalho é mandar e correr
+              </h4>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

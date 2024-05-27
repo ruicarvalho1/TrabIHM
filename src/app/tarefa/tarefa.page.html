@@ -3,7 +3,7 @@
     <ion-toolbar>
       <img routerLink="/tabs/home" src="/assets/logo.png" alt="" />
       <ion-button id="backButton" routerLink="/tabs/disciplinas" slot="end">
-          <img src="../../assets/SVG/arrow-left.svg" alt="">
+        <img src="../../assets/SVG/arrow-left.svg" alt="" />
       </ion-button>
     </ion-toolbar>
   </ion-header>
@@ -12,36 +12,28 @@
     <img src="../../assets/task-banner.png" alt="" />
     <ion-card-header>
       <ion-card-title>
-        <h2 style="margin: 0" translate>site.titulo-disciplina</h2>
+        <h1 style="color: #ffffff" translate>site.disciplina</h1>
       </ion-card-title>
     </ion-card-header>
   </ion-card>
 
-  <div class="task-contents" *ngFor="let tarefa of tarefas">
+  <div class="task-contents">
     <ion-card class="card-task">
-      <h3 translate>Data de entrega: {{tarefa.data_limite}}</h3>
+      <h3>Data de entrega: {{ tarefaSelecionada?.data_limite}}</h3>
     </ion-card>
     <ion-card class="card-task">
-      <h3 translate>Nível de prioridade: Alta</h3>
+      <h3>Nível de prioridade: {{tarefaSelecionada?.prioridade}}</h3>
     </ion-card>
     <ion-card class="card-task">
       <h3 translate>Tarefas:</h3>
-      <p>Criar protótipos para mobile e web;</p>
-      <p>Desenvolver storyboards (confirmar);</p>
-      <p>Fazer cenários de interação;</p>
-      <p>Estudar avaliações heurísticas.</p>
-    </ion-card>
-    <ion-card class="card-task">
-      <h3 translate>Adicionar tarefa:</h3>
-      <ion-item lines="none">
-        <ion-input placeholder="Nova tarefa..."></ion-input>
-      </ion-item>
+      <p>{{tarefaSelecionada?.tarefa}}</p>
     </ion-card>
     <ion-card class="card-task">
       <h3 translate>Documentos:</h3>
+      <ion-img
+        *ngIf="tarefaSelecionada"
+        [src]="tarefaSelecionada.imagem"
+      ></ion-img>
     </ion-card>
-    <div class="save-btn">
-      <ion-button translate>Guardar</ion-button>
-    </div>
   </div>
 </ion-content>

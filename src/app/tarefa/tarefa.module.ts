@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { TarefaPageRoutingModule } from './tarefa-routing.module';
-
 import { TarefaPage } from './tarefa.page';
 
 @NgModule({
@@ -13,8 +11,9 @@ import { TarefaPage } from './tarefa.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TarefaPageRoutingModule
+    TarefaPageRoutingModule,
+    TranslateModule,
   ],
-  declarations: [TarefaPage]
+  declarations: [TarefaPage],
 })
 export class TarefaPageModule {}

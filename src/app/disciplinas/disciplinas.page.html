@@ -19,9 +19,15 @@
     </div>
   </ion-card>
 
-  <div class="subject-contents" routerLink="/ver-disciplina">
+  <div class="subject-contents">
     <!-- Iterando sobre as disciplinas e criando um card para cada uma -->
-    <ion-card *ngFor="let disciplina of disciplinas" class="card-subjects">
+
+    <ion-card
+      *ngFor="let disciplina of disciplinas"
+      class="card-subjects"
+      (click)="verDisciplina(disciplina.id_disciplina)"
+    >
+      >
       <div class="subject-img">
         <img src="{{disciplina.imagem}}" alt="" />
         <ion-card-header>

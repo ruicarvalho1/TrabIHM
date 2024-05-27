@@ -1,0 +1,167 @@
+ion-content .banner {
+    display: flex;
+    flex-direction: column;
+    // position: absolute;
+    justify-content: center;
+    height: 520px;
+    width: calc(100% - 16px);
+    background: linear-gradient(180deg, rgba(84, 111, 250, 0.46) 0%, #091267 100%);
+    border-radius: 32px;
+    margin: 8px 0 0 8px;
+  }
+  
+  ion-content .banner img {
+    position: absolute;
+    right: 0;
+    height: 400px;
+    opacity: 0.3;
+  }
+  
+  ion-content .banner ion-card-title {
+    text-align: center;
+  }
+  
+  ion-content .banner .row-btn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    bottom: 64px;
+    width: 100%;
+    height: fit-content;
+    align-items: end;
+    padding: 0 8px;
+  }
+  
+  ion-content .banner .row-btn ion-button {
+    width: 100%;
+    margin: 16px ;
+    
+  }
+  
+  ion-content .banner h1 {
+    color: #FFFFFF;
+    height: fit-content;
+  }
+
+  ion-content .upcoming-tasks,
+  ion-content .relevant-chats {
+    margin: 32px 8px 0 8px;
+  }
+
+  ion-content .upcoming-tasks h2,
+  ion-content .relevant-chats h2 {
+    color: #131D73;
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  ion-content .upcoming-tasks .task-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  ion-content .upcoming-tasks .task-grid ion-card {
+    margin: 0;
+    height: 300px;
+  }
+
+  ion-content .relevant-chats ion-card {
+    background: transparent;
+    box-shadow: none;
+    width: 100%;
+    margin: 0;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content {
+    padding: 0;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item {
+    border-radius: 32px;
+    height: 128px;
+    padding: 16px 0;
+    background: #131D73;
+    margin-bottom: 16px;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-thumbnail,
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-thumbnail img {
+    width: 96px;
+    height: 96px;
+    border-radius: 16px;
+  }
+
+  ion-content .relevant-chats ion-card ion-card-content ion-item ion-label h4 {
+    font-weight: 400 !important;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  ion-content .relevant-chats #SeeAll {
+    color: #C1BAF5;
+    text-decoration: underline;
+    padding-left: 16px;
+    margin: 0 0 32px 0;
+  }
+
+  swiper-container {
+    width: 100%;
+    height: 100%;
+    --swiper-theme-color: #131D73;
+  }
+
+  swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #FAFAFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+  }
+
+  swiper-slide {
+    width: 100%;
+  }
+
+  swiper-slide ion-card {
+    width: 100%;
+    margin: 16px 0 32px 0;
+  }
+
+  swiper-slide ion-card ion-card-content,
+  swiper-slide ion-card ion-card-title,
+  swiper-slide ion-card ion-card-subtitle {
+    text-align: start;
+  }
+
+  swiper-slide ion-card ion-card-title h3,
+  swiper-slide ion-card ion-card-subtitle h4 {
+    color: #131D73;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-title h4 {
+    color: #C1BAF5;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-content h3 {
+    color: #FD3A4A;
+    margin: 0;
+  }
+
+  swiper-slide ion-card ion-card-title {
+    height: 76px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

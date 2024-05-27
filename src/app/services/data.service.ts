@@ -201,19 +201,102 @@ export class DataService {
     }
   }
 
-  async getTarefasPorDisciplina(idDisciplina: string): Promise<any[]> {
+  async getDisciplinaById(id: string) {
+    return await this.supabase
+      .from('disciplinas')
+      .select('*')
+      .eq('id_disciplina', id)
+      .single();
+  }
+
+  async atualizarTarefa(idTarefa: number, concluida: boolean): Promise<any> {
+    // Verifica se o ID da tarefa é válido
+    if (typeof idTarefa !== 'number' || isNaN(idTarefa)) {
+      console.error('ID da tarefa inválido:', idTarefa);
+      throw new Error('ID da tarefa inválido');
+    }
+
     try {
-      const response = await this.supabase
+      // Atualize apenas o campo 'concluída' da tarefa na base de dados
+      const { error } = await this.supabase
+        .from('tarefas')
+        .update({ concluida: concluida })
+        .eq('id_tarefa', idTarefa);
+
+      if (error) {
+        console.error('Erro ao atualizar a tarefa:', error);
+        throw error;
+      }
+
+      // Busque os dados atualizados da tarefa após a atualização
+      const { data: updatedTarefa, error: fetchError } = await this.supabase
         .from('tarefas')
         .select('*')
-        .eq('disciplina_id', idDisciplina)
-        .order('data_limite', { ascending: true });
-      return response.data || [];
+        .eq('id_tarefa', idTarefa)
+        .single();
+
+      if (fetchError) {
+        console.error('Erro ao buscar a tarefa atualizada:', fetchError);
+        throw fetchError;
+      }
+
+      console.log('Tarefa atualizada com sucesso:', updatedTarefa);
+      return updatedTarefa;
     } catch (error) {
-      console.error('Erro ao obter tarefas por disciplina:', error);
+      console.error('Erro ao atualizar a tarefa:', error);
       throw error;
     }
   }
+
+  async getDisciplinaIdForUser(userId: string): Promise<number | null> {
+    try {
+      const { data, error } = await this.supabase
+        .from('disciplinas')
+        .select('id_disciplina')
+        .eq('user_id', userId)
+        .single();
+
+      if (error) {
+        console.error('Erro ao obter a disciplina para o usuário:', error);
+        return null;
+      }
+
+      if (!data) {
+        console.error('Nenhuma disciplina encontrada para este usuário.');
+        return null;
+      }
+
+      return data.id_disciplina;
+    } catch (error) {
+      console.error('Erro ao obter a disciplina do usuário:', error);
+      throw error;
+    }
+  }
+
+  async getTarefasPorDisciplina(idDisciplina: number): Promise<any[]> {
+    try {
+      const { data, error } = await this.supabase
+        .from('tarefas')
+        .select('*')
+        .eq('disciplina_id', idDisciplina);
+
+      if (error) {
+        console.error('Erro ao obter as tarefas:', error);
+        return [];
+      }
+
+      if (!data) {
+        console.error('Nenhuma tarefa encontrada para esta disciplina.');
+        return [];
+      }
+
+      return data;
+    } catch (error) {
+      console.error('Erro ao obter as tarefas:', error);
+      return [];
+    }
+  }
+
   async getDisciplinaPorTarefa(idDisciplina: number): Promise<string | null> {
     try {
       const { data, error } = await this.supabase
@@ -364,9 +447,7 @@ export class DataService {
             '%';
         }
       }
-
       return data;
-
       //return data || [];
     } catch (error) {
       console.error('Erro ao obter as disciplinas do usuário:', error);

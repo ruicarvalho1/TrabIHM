@@ -1,8 +1,10 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense"
-    >s
+  <ion-header collapse="condense">
     <ion-toolbar>
       <img routerLink="/tabs/home" src="/assets/logo.png" alt="" />
+      <ion-button id="backButton" routerLink="/tabs/disciplinas" slot="end">
+        <img src="../../assets/SVG/arrow-left.svg" alt="" />
+      </ion-button>
     </ion-toolbar>
   </ion-header>
 
@@ -10,34 +12,49 @@
     <img src="../../assets/task-banner.png" alt="" />
     <ion-card-header>
       <ion-card-title>
-        <h1 style="margin: 0" translate>site.titulo-disciplina</h1>
+        <h1 style="margin: 0" translate>site.disciplina</h1>
       </ion-card-title>
     </ion-card-header>
     <div class="row-btn">
-      <ion-button color="bgwhite" translate>site.botao-criar-tarefa</ion-button>
+      <ion-button color="bgwhite" translate routerLink="/tabs/nova-tarefa"
+        >site.botao-criar-tarefa</ion-button
+      >
     </div>
   </ion-card>
 
-  <div class="subject-contents">
+  <div
+    class="subject-contents"
+    *ngFor="let tarefa of tarefasDaDisciplinaSelecionada"
+  >
     <ion-card class="card-task">
       <ion-card-header>
         <ion-card-title color="bgwhite"
-          ><h3 style="margin: 0">
-            Etapa 1 ( Análise de Tarefas + Modelo Conceptual )
-          </h3></ion-card-title
+          ><h3 style="margin: 0">{{tarefa.nome_tarefa}}</h3></ion-card-title
         >
       </ion-card-header>
 
       <ion-card-content>
-        <p style="color: #ffffff">Nível de prioridade: Alta</p>
+        <p style="color: #ffffff" translate>
+          {{ 'site.prioridade' | translate }} {{ tarefa.prioridade }}
+        </p>
         <div class="complete">
-          <ion-radio-group [allowEmptySelection]="true" value="completed">
-            <ion-radio value="completed"></ion-radio>
-          </ion-radio-group>
-          <p>Marcar como concluída</p>
+          <ion-toggle
+            [(ngModel)]="tarefa.concluida"
+            color="success"
+            (ionChange)="atualizarTarefaDaDisciplina(tarefa.id_tarefa, tarefa)"
+          ></ion-toggle>
+          <p translate>site.marcar-como-concluida</p>
         </div>
+
         <div class="see-btn">
-          <ion-button id="openTask" color="bgwhite" translate>Ver</ion-button>
+          <!-- Aqui você passa o id_tarefa como argumento para a função verTarefa -->
+          <ion-button
+            id="openTask"
+            color="bgwhite"
+            (click)="verTarefa(tarefa.id_tarefa)"
+            translate
+            >site.ver</ion-button
+          >
         </div>
       </ion-card-content>
     </ion-card>

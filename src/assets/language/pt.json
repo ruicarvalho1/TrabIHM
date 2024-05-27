@@ -34,8 +34,16 @@
             "nova-tarefa": "Nova tarefa",
             "nome-tarefa": "Nome da tarefa",
             "data-limite":  "Data limite",
-            "disciplina": "Disciplina:",
-            "nivel-prioridade": "Nível de prioridade"
+            "disciplina": "Disciplina",
+            "nivel-prioridade": "Nível de prioridade",
+            "data-entrega": "Data de entrega:",
+            "tipo-tarefa": "Tipo de tarefa",
+            "tarefas": "Tarefas",
+            "documentos": "Documentos",
+            "botao-criar-tarefa": "Criar tarefa",
+            "marcar-como-concluida": "Marcar como concluída",
+            "ver": "Ver"
+
 
             
 

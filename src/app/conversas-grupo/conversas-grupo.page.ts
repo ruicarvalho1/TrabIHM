@@ -1,5 +1,6 @@
 import { Router } from '@angular/router';
 import { AuthService } from './../services/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 import {
   AlertController,
   NavController,
@@ -13,9 +14,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './conversas-grupo.page.html',
   styleUrls: ['./conversas-grupo.page.scss'],
 })
-export class ConversasGrupoPage implements OnInit {
+export class ConversasGrupoPage {
   user = this.authService.getCurrentUser();
-  groups: any[] = [];
+  users: any = null;
+
+  tarefas: any[] = [];
+  disciplinas: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -23,49 +27,23 @@ export class ConversasGrupoPage implements OnInit {
     private alertController: AlertController,
     private loadingController: LoadingController,
     private navController: NavController,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {}
 
-  ngOnInit() {}
-
-  async ionViewWillEnter() {
-    this.groups = await this.data.getGroups();
+  onchangeLanguage(e: any) {
+    this.translateService.use(e.target.value ? e.target.value : 'en');
   }
 
-  async createGroup() {
-    const alert = await this.alertController.create({
-      header: 'Start Chat Group',
-      message:
-        'Enter a name for your group. Note that all groups are public in this app!',
-      inputs: [
-        {
-          type: 'text',
-          name: 'title',
-          placeholder: 'My cool group',
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-        },
-        {
-          text: 'Create group',
-          handler: async (data) => {
-            const loading = await this.loadingController.create();
-            await loading.present();
+  async ionViewWillEnter() {
+    const userId = this.authService.getCurrentUserId();
+    if (userId) {
+      // Obter tarefas do usuário
+      this.tarefas = await this.data.getTarefasDoUsuario(userId);
+      this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
 
-            const newGroup = await this.data.createGroup(data.title);
-            if (newGroup) {
-              this.groups = await this.data.getGroups();
-              await loading.dismiss();
-              this.router.navigateByUrl(`/conversas-grupo/${newGroup.data.id}`);
-            }
-          },
-        },
-      ],
-    });
-
-    await alert.present();
+      // Obter informações do usuário
+      this.users = await this.data.getUserById(userId);
+    }
   }
 }

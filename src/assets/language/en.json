@@ -34,8 +34,17 @@
             "nova-tarefa": "New task",
             "nome-tarefa": "Task name",
             "data-limite": "Deadline",
-            "disciplina": "Course:",
-            "nivel-prioridade": "Priority level"
+            "disciplina": "Course",
+            "nivel-prioridade": "Priority level",
+            "data-entrega": "Delivery date:",
+            "tipo-tarefa": "Task type",
+            "tarefas": "Tasks",
+            "documentos": "Documents",
+            "botao-criar-tarefa": "Create task",
+            "marcar-como-concluida": "Mark as completed",
+            "ver": "View"
+            
+           
         }
     
     }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { Router } from '@angular/router';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { ToastController } from '@ionic/angular';
 
@@ -20,7 +20,8 @@ export class DisciplinasPage {
     private translateService: TranslateService,
     private toastController: ToastController,
     private authService: AuthService,
-    private data: DataService
+    private data: DataService,
+    private router: Router
   ) {}
 
   onchangeLanguage(e: any) {
@@ -51,6 +52,15 @@ export class DisciplinasPage {
       console.log('disciplinas: ', this.disciplinas);
     } else {
       console.log('Nenhum usuário autenticado encontrado.');
+    }
+  }
+
+  verDisciplina(disciplinaId: number) {
+    console.log('ID da disciplina:', disciplinaId);
+    if (disciplinaId) {
+      this.router.navigate(['/ver-disciplina', disciplinaId]);
+    } else {
+      console.error('ID da disciplina não está definido.');
     }
   }
 }

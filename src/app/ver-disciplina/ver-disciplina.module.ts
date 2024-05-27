@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
+import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
-
 import { VerDisciplinaPageRoutingModule } from './ver-disciplina-routing.module';
-
 import { VerDisciplinaPage } from './ver-disciplina.page';
 
 @NgModule({
@@ -13,8 +11,9 @@ import { VerDisciplinaPage } from './ver-disciplina.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    VerDisciplinaPageRoutingModule
+    VerDisciplinaPageRoutingModule,
+    TranslateModule,
   ],
-  declarations: [VerDisciplinaPage]
+  declarations: [VerDisciplinaPage],
 })
 export class VerDisciplinaPageModule {}

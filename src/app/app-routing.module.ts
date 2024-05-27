@@ -1,3 +1,4 @@
+import { TarefaPage } from './tarefa/tarefa.page';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -92,6 +93,18 @@ const routes: Routes = [
       import('./editar-perfil/editar-perfil.module').then(
         (m) => m.EditarPerfilPageModule
       ),
+  },
+  {
+    path: 'ver-disciplina/:id',
+    loadChildren: () =>
+      import('./ver-disciplina/ver-disciplina.module').then(
+        (m) => m.VerDisciplinaPageModule
+      ),
+  },
+  {
+    path: 'tarefa/:id',
+    loadChildren: () =>
+      import('./tarefa/tarefa.module').then((m) => m.TarefaPageModule),
   },
 ];
 @NgModule({
