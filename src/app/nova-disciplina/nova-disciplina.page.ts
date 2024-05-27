@@ -35,7 +35,7 @@ export class NovaDisciplinaPage {
 
   async criarDisciplina() {
     const loading = await this.loadingController.create({
-      message: 'Criando tarefa...',
+      message: 'Criando Disciplina...',
       spinner: 'circles',
       backdropDismiss: false,
     });

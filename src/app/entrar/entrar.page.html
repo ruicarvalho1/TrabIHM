@@ -8,7 +8,7 @@
     <img src="../../assets/sign_in.png" alt="" />
     <ion-card-header>
       <ion-card-title>
-        <h1 style="margin: 0" translate>site.entrar</h1>
+        <h1 style="margin: 0" translate>Entrar</h1>
       </ion-card-title>
     </ion-card-header>
   </ion-card>
@@ -38,7 +38,8 @@
             placeholder="Palavra-passe..."
             formControlName="password"
           >
-          <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle
+          ></ion-input>
           <ion-note
             slot="error"
             *ngIf="(password.dirty || password.touched) && password.errors"

@@ -19,11 +19,11 @@
     </div>
   </ion-card>
 
-  <div class="subject-contents" routerLink="/tarefa">
+  <div class="subject-contents" routerLink="/ver-disciplina">
     <!-- Iterando sobre as disciplinas e criando um card para cada uma -->
     <ion-card *ngFor="let disciplina of disciplinas" class="card-subjects">
       <div class="subject-img">
-        <img src="../../assets/sub-img.png" alt="" />
+        <img src="{{disciplina.imagem}}" alt="" />
         <ion-card-header>
           <ion-card-title color="bgwhite">
             <h3 style="margin: 0">{{ disciplina.nome }}</h3>

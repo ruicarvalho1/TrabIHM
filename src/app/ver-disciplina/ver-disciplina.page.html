@@ -1,12 +1,12 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <img src="/assets/logo.png" alt="">
+      <img src="/assets/logo.png" alt="" />
     </ion-toolbar>
   </ion-header>
 
   <ion-card class="banner">
-    <img src="../../assets/task-banner.png" alt="">
+    <img src="../../assets/task-banner.png" alt="" />
     <ion-card-header>
       <ion-card-title>
         <h1 style="margin: 0" translate>site.titulo-disciplina</h1>
@@ -18,24 +18,26 @@
   </ion-card>
 
   <div class="subject-contents">
-  <ion-card class="card-task">
+    <ion-card class="card-task">
       <ion-card-header>
-        <ion-card-title color="bgwhite"><h3 style="margin: 0;">Etapa 1 ( Análise de Tarefas + Modelo Conceptual )</h3></ion-card-title>
+        <ion-card-title color="bgwhite"
+          ><h3 style="margin: 0">
+            Etapa 1 ( Análise de Tarefas + Modelo Conceptual )
+          </h3></ion-card-title
+        >
       </ion-card-header>
-  
-    <ion-card-content>
-      <p style="color: #FFFFFF;">Nível de prioridade: Alta</p>
-      <div class="complete">
-        <ion-radio-group [allowEmptySelection]="true" value="completed">
-          <ion-radio value="completed"></ion-radio>
-        </ion-radio-group>
-        <p>Marcar como concluída</p>
-      </div>
-      <div class="see-btn">
-        <ion-button id="openTask" color="bgwhite" translate>Ver</ion-button>
-      </div>
-    </ion-card-content>
-    
-  </ion-card>
-</div>
+      <ion-card-content>
+        <p style="color: #ffffff">Nível de prioridade: Alta</p>
+        <div class="complete">
+          <ion-radio-group [allowEmptySelection]="true" value="completed">
+            <ion-radio value="completed"></ion-radio>
+          </ion-radio-group>
+          <p>Marcar como concluída</p>
+        </div>
+        <div class="see-btn">
+          <ion-button id="openTask" color="bgwhite" translate>Ver</ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

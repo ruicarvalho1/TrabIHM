@@ -36,6 +36,7 @@ export class HomePage {
       try {
         // Obter tarefas do usuário
         this.tarefas = await this.data.getTarefasDoUsuario(userId);
+        this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
 
         // Log das tarefas para verificar o conteúdo
         console.log('Tarefas:', this.tarefas);
