@@ -3,8 +3,8 @@
     <ion-toolbar>
       <img routerLink="/tabs/home" src="/assets/logo.png" alt="" />
       <ion-button id="backButton" routerLink="/tabs/perfil" slot="end">
-        <img src="../../assets/SVG/arrow-left.svg" alt="">
-    </ion-button>
+        <img src="../../assets/SVG/arrow-left.svg" alt="" />
+      </ion-button>
     </ion-toolbar>
   </ion-header>
 
@@ -20,37 +20,8 @@
     <div class="div-content">
       <ion-card class="card-edit">
         <h4 translate>site.editar-imagem</h4>
-        <ion-item lines="none" class="upload-container">
-          <input
-            type="file"
-            id="imagemUpload"
-            accept="image/*"
-            class="upload-input"
-            (change)="onImageUpload($event)"
-            capture="user"
-          />
-          <label for="imagemUpload" class="upload-label">
-            <div class="upload-content">
-              <div class="circle">
-                <ion-icon name="add" class="plus-icon"></ion-icon>
-              </div>
-              <span class="upload-text">{{ uploadedFileName }}</span>
-            </div>
-          </label>
-          <!-- Ícone para abrir a câmera -->
-          <ion-icon
-            name="camera"
-            slot="end"
-            (click)="onAddButtonClick('camera')"
-            class="camera-icon"
-          ></ion-icon>
-          <!-- Ícone para abrir a galeria -->
-          <ion-icon
-            name="images"
-            slot="end"
-            (click)="onAddButtonClick('gallery')"
-            class="gallery-icon"
-          ></ion-icon>
+        <ion-item lines="none">
+          <input type="file" id="imagemUpload" accept="image/*" />
         </ion-item>
       </ion-card>
       <ion-card class="card-edit">
