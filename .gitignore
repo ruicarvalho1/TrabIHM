@@ -70,3 +70,5 @@ testem.log
 Thumbs.db
 /src/environment/environment.prod.ts
 /src/environment/environment.ts
+Cenas/src/environments/environment.prod.ts
+Cenas/src/environments/environment.ts
