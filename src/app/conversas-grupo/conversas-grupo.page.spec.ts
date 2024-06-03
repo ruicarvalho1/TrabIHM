@@ -1,5 +1,8 @@
+/* Impostação de elementos "angular" para criar testes em angular (TestBed) e (ComponentFixture) para debug*/
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConversasGrupoPage } from './conversas-grupo.page';
+
+/*Cria um grupo de especificações,podendo ser também chamado de (suite)*/
 
 describe('ConversasGrupoPage', () => {
   let component: ConversasGrupoPage;

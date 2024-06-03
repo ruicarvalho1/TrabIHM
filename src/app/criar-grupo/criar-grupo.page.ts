@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarGrupoPage implements OnInit {
 
+  /*Construtores e "ngOnInit" vazios pois esta página atualmente encontra-se vazia.*/ */
+
   constructor() { }
 
   ngOnInit() {
