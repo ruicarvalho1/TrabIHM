@@ -31,7 +31,7 @@ export class AuthService {
       }
     });
 
-    // Trigger initial session load
+    // Trigger inicial para carregamento de dados da sessão
     this.loadUser();
   }
 
