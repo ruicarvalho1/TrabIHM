@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
 import { ToastController, LoadingController } from '@ionic/angular';
@@ -23,13 +23,13 @@ export class NovaTarefaPage implements OnInit {
     private translateService: TranslateService
   ) {
     this.formularioTarefa = this.fb.group({
-      prioridade: [''],
+      prioridade: ['', Validators.required],
       concluida: [false],
-      tarefa: [''],
-      nome_tarefa: [''],
-      data_limite: [''],
+      tarefa: ['', Validators.required],
+      nome_tarefa: ['', Validators.required],
+      data_limite: ['', Validators.required],
       imagem: [''],
-      disciplina_id: [null],
+      disciplina_id: [null, Validators.required],
     });
   }
 
@@ -56,6 +56,7 @@ export class NovaTarefaPage implements OnInit {
     this.formularioTarefa.patchValue({ data_limite: dataFormatada });
     console.log('formularioTarefa:', this.formularioTarefa.value);
   }
+
   getMinDate(): string {
     const today = new Date();
     const day = String(today.getDate()).padStart(2, '0');
@@ -63,6 +64,7 @@ export class NovaTarefaPage implements OnInit {
     const year = today.getFullYear();
     return `${year}-${month}-${day}`;
   }
+
   resetToMinDate(event: any) {
     const selectedDate = new Date(event.detail.value);
     const minDate = new Date(this.getMinDate());
@@ -77,6 +79,11 @@ export class NovaTarefaPage implements OnInit {
   }
 
   async criarTarefa() {
+    if (this.formularioTarefa.invalid) {
+      this.displayFormErrors();
+      return;
+    }
+
     const loading = await this.loadingController.create({
       message: 'Criando tarefa...',
       spinner: 'circles',
@@ -125,6 +132,19 @@ export class NovaTarefaPage implements OnInit {
       });
       await errorToast.present();
     }
+  }
+
+  displayFormErrors() {
+    Object.keys(this.formularioTarefa.controls).forEach((key) => {
+      const controlErrors = this.formularioTarefa.get(key)?.errors;
+      if (controlErrors) {
+        Object.keys(controlErrors).forEach((keyError) => {
+          console.log(
+            `Key control: ${key}, keyError: ${keyError}, error: ${controlErrors[keyError]}`
+          );
+        });
+      }
+    });
   }
 
   cancelar() {

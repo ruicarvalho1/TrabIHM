@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import Validators
 import { DataService } from '../services/data.service';
 import { AuthService } from '../services/auth.service';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
@@ -10,7 +10,7 @@ import { ToastController, LoadingController } from '@ionic/angular';
   templateUrl: './nova-disciplina.page.html',
   styleUrls: ['./nova-disciplina.page.scss'],
 })
-export class NovaDisciplinaPage {
+export class NovaDisciplinaPage implements OnInit {
   formularioDisciplina: FormGroup;
 
   constructor(
@@ -22,18 +22,25 @@ export class NovaDisciplinaPage {
     private translateService: TranslateService
   ) {
     this.formularioDisciplina = this.fb.group({
-      nome: [''],
-      area_estudo: [''],
+      nome: ['', Validators.required],
+      area_estudo: ['', Validators.required],
       notas: [''],
       imagem: [''],
     });
   }
+
+  ngOnInit() {}
 
   onchangeLanguage(e: any) {
     this.translateService.use(e.target.value ? e.target.value : 'en');
   }
 
   async criarDisciplina() {
+    if (this.formularioDisciplina.invalid) {
+      this.formularioDisciplina.markAllAsTouched();
+      return;
+    }
+
     const loading = await this.loadingController.create({
       message: 'Criando Disciplina...',
       spinner: 'circles',
@@ -58,7 +65,7 @@ export class NovaDisciplinaPage {
       }
 
       await this.dataService.createDisciplina(novaDisciplina);
-      console.log('Tarefa criada com sucesso!');
+      console.log('Disciplina criada com sucesso!');
 
       await loading.dismiss();
 

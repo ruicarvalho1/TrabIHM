@@ -19,39 +19,57 @@
       <ion-card class="card-new-task">
         <h3 translate>site.nome-tarefa</h3>
         <ion-item lines="none">
-          <!-- Vinculando o input ao FormGroup -->
           <ion-input
             placeholder="Nome da tarefa..."
             formControlName="nome_tarefa"
           ></ion-input>
         </ion-item>
+        <div
+          *ngIf="formularioTarefa.controls['nome_tarefa'].errors?.['required']"
+          class="error-message"
+        >
+          Nome da tarefa é obrigatório.
+        </div>
       </ion-card>
+
       <ion-card class="card-new-task">
         <h3 translate>site.nova-tarefa</h3>
         <ion-item lines="none">
-          <!-- Vinculando o textarea ao FormGroup -->
           <ion-textarea
             placeholder="Tarefas..."
             formControlName="tarefa"
           ></ion-textarea>
         </ion-item>
+        <div
+          *ngIf="formularioTarefa.controls['tarefa'].errors?.['required']"
+          class="error-message"
+        >
+          Tarefa é obrigatória.
+        </div>
       </ion-card>
+
       <ion-card class="card-new-task">
         <h3 translate>site.data-limite</h3>
         <ion-item lines="none">
-          <!-- Vinculando o ion-datetime ao FormGroup -->
           <ion-datetime
             [firstDayOfWeek]="1"
             presentation="date"
             (ionChange)="formatarData($event)"
             [min]="getMinDate()"
+            formControlName="data_limite"
           ></ion-datetime>
         </ion-item>
+        <div
+          *ngIf="formularioTarefa.controls['data_limite'].errors?.['required']"
+          class="error-message"
+        >
+          Data limite é obrigatória.
+        </div>
       </ion-card>
+
       <ion-card class="card-new-task">
         <h3 translate>site.disciplina</h3>
         <ion-item lines="none">
-          <!-- Vinculando o ion-select ao FormGroup -->
           <ion-select aria-label="" formControlName="disciplina_id">
             <ion-select-option
               *ngFor="let disciplina of disciplinas"
@@ -61,24 +79,38 @@
             </ion-select-option>
           </ion-select>
         </ion-item>
+        <div
+          *ngIf="formularioTarefa.controls['disciplina_id'].errors?.['required']"
+          class="error-message"
+        >
+          Disciplina é obrigatória.
+        </div>
       </ion-card>
+
       <ion-card class="card-new-task">
         <h3 translate>site.nivel-prioridade</h3>
         <ion-item lines="none">
-          <!-- Vinculando o ion-select ao FormGroup -->
           <ion-select aria-label="" formControlName="prioridade">
             <ion-select-option value="baixa">Baixa</ion-select-option>
             <ion-select-option value="media">Media</ion-select-option>
             <ion-select-option value="alta">Alta</ion-select-option>
           </ion-select>
         </ion-item>
+        <div
+          *ngIf="formularioTarefa.controls['prioridade'].errors?.['required']"
+          class="error-message"
+        >
+          Nível de prioridade é obrigatório.
+        </div>
       </ion-card>
+
       <ion-card class="card-new-task">
         <h3 translate>site.imagem</h3>
         <ion-item lines="none">
           <input type="file" id="imagemUpload" accept="image/*" />
         </ion-item>
       </ion-card>
+
       <div class="save-btn">
         <ion-button type="button" (click)="cancelar()">Cancelar</ion-button>
         <ion-button type="submit">Criar</ion-button>

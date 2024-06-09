@@ -106,6 +106,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./tarefa/tarefa.module').then((m) => m.TarefaPageModule),
   },
+  {
+    path: 'ajuda',
+    loadChildren: () => import('./ajuda/ajuda.module').then( m => m.AjudaPageModule)
+  },
 ];
 @NgModule({
   imports: [

@@ -63,11 +63,16 @@
       </div>
     </ion-card>
     <ion-card class="info-card">
-      <img src="/assets/SVG/megaphone.svg" alt="" />
-      <p translate>site.perfil-ajuda</p>
+      <img src="/assets/SVG/megaphone.svg" alt="" routerLink="/ajuda" />
+      <p translate routerLink="/ajuda">site.perfil-ajuda</p>
     </ion-card>
 
-    <ion-card class="info-card logout" (click)="signOut()" *ngIf="user | async">
+    <ion-card
+      class="info-card logout"
+      (click)="signOut()"
+      *ngIf="user | async"
+      style="padding: 16px"
+    >
       <p translate>site.perfil-sair</p>
     </ion-card>
   </div>

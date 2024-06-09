@@ -70,14 +70,17 @@ export class RegistarPage {
         password: credentials.password,
       });
 
-      const user = data?.user;
-
       if (error) {
         await loading.dismiss();
         this.showAlert('Registo Falhou', error.message);
-      } else if (user?.id) {
+        return;
+      }
+
+      const user = data?.user;
+
+      if (user?.id) {
         // Salva os dados adicionais na tabela users
-        const { error: userError } = await this.authService.insertUserData({
+        const insertResult = await this.authService.insertUserData({
           id: user.id,
           email: credentials.email,
           nome: credentials.nome,
@@ -86,17 +89,19 @@ export class RegistarPage {
           universidade: credentials.universidade,
         });
 
-        await loading.dismiss();
-
-        if (userError) {
-          this.showAlert('Registo Falhou', userError.message);
-        } else {
-          this.showAlert(
-            'Registo feito com sucesso',
-            'Por favor confirma o email'
-          );
-          this.navCtrl.navigateBack('');
+        if (insertResult.error) {
+          const error = insertResult.error as { message: string };
+          await loading.dismiss();
+          this.showAlert('Registo Falhou', error.message);
+          return;
         }
+
+        await loading.dismiss();
+        this.showAlert(
+          'Registo feito com sucesso',
+          'Por favor confirma o email'
+        );
+        this.navCtrl.navigateBack('');
       } else {
         await loading.dismiss();
         this.showAlert('Registo Falhou', 'O ID do usuário não foi retornado.');

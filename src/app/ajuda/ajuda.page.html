@@ -1,0 +1,14 @@
+<ion-content>
+  <!-- Vídeo -->
+  <div class="video-container">
+    <video controls>
+      <source src="caminho_para_seu_video.mp4" type="video/mp4" />
+      Seu navegador não suporta o elemento de vídeo.
+    </video>
+  </div>
+
+  <!-- Lista de Autores -->
+  <ion-list>
+    <ion-item *ngFor="let autor of autores"> {{ autor }} </ion-item>
+  </ion-list>
+</ion-content>

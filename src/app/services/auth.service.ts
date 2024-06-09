@@ -53,7 +53,7 @@ export class AuthService {
     return this.supabase.auth.signUp(credentials);
   }
 
-  insertUserData(userData: {
+  async insertUserData(userData: {
     id: string;
     email: string;
     nome: string;
@@ -61,7 +61,33 @@ export class AuthService {
     curso: string;
     universidade: string;
   }) {
-    return this.supabase.from('users').insert(userData);
+    try {
+      const { data: existingUser, error: fetchError } = await this.supabase
+        .from('users')
+        .select('*')
+        .eq('email', userData.email)
+        .single();
+
+      if (fetchError && fetchError.code !== 'PGRST116') {
+        throw fetchError;
+      }
+
+      if (existingUser) {
+        return { error: { message: 'Este email já está registado.' } };
+      }
+
+      const { data: insertedUser, error: insertError } = await this.supabase
+        .from('users')
+        .insert([userData]);
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      return { data: insertedUser };
+    } catch (error) {
+      return { error };
+    }
   }
 
   signIn(credentials: { email: string; password: string }) {

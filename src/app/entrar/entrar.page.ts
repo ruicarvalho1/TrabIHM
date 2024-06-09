@@ -64,13 +64,12 @@ export class EntrarPage {
 
   async getMagicLink() {
     const alert = await this.alertController.create({
-      header: 'Get a Magic Link',
-      message: 'We will send you a link to magically log in!',
+      header: 'Entrar com email',
+      message: 'Verifique o seu email para obter o link de entrada.',
       inputs: [
         {
           type: 'email',
           name: 'email',
-          value: 'isaacout@gmail.com',
         },
       ],
       buttons: [
@@ -79,7 +78,7 @@ export class EntrarPage {
           role: 'cancel',
         },
         {
-          text: 'Get Magic Link',
+          text: 'Entrar com email',
           handler: async (result) => {
             const loading = await this.loadingController.create();
             await loading.present();
@@ -88,16 +87,11 @@ export class EntrarPage {
               'http://localhost:8100/tabs/home'
             );
             await loading.dismiss();
-            console.log('after signup: ', data);
-            console.log('after signup error: ', error);
 
             if (error) {
-              this.showAlert('Failed', error.message);
+              this.showAlert('Falhou', error.message);
             } else {
-              this.showAlert(
-                'Success',
-                'Please check your emails for further instructions!'
-              );
+              this.showAlert('Sucesso!', 'Por favor, verifique o seu email');
             }
           },
         },
