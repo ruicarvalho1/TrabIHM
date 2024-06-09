@@ -24,7 +24,7 @@ export class PerfilPage {
     { code: 'pt', title: 'Português', text: 'Alterado para Português' },
   ];
 
-  @ViewChildren('toast') toastComponents!: QueryList<any>; // Inicialização da propriedade
+  @ViewChildren('toast') toastComponents!: QueryList<any>; // Inicia da propriedade
 
   constructor(
     private translateService: TranslateService,
@@ -37,7 +37,7 @@ export class PerfilPage {
   }
 
   async initStorage() {
-    this.storage = await this.storage.create(); // Inicializa o armazenamento
+    this.storage = await this.storage.create(); // Inicia o armazenamento
   }
 
   async presentToast(message: string) {

@@ -68,7 +68,8 @@ export class DataService {
         throw error;
       }
 
-      // Construir a URL pública manualmente
+      /* Construir a URL pública manualmente*/
+
       const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
 
       return publicURL; // Retorna a URL pública da imagem
@@ -91,10 +92,10 @@ export class DataService {
         throw error;
       }
 
-      // Construir a URL pública manualmente
+      /* Contrução da URL pública manualmente*/
       const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
 
-      return publicURL; // Retorna a URL pública da imagem
+      return publicURL; /* Retorna a URL pública da imagem*/
     } catch (error) {
       console.error('Erro ao fazer upload da imagem:', error);
       throw error;
@@ -114,16 +115,17 @@ export class DataService {
         throw error;
       }
 
-      // Construir a URL pública manualmente
+      /* Contrução da URL pública manualmente para o (supabase storage)*/
       const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
 
-      return publicURL; // Retorna a URL pública da imagem
+      return publicURL; /* Retorna a URL pública da imagem*/
     } catch (error) {
       console.error('Erro ao fazer upload da imagem:', error);
       throw error;
     }
   }
 
+  /* Objeto de nova tarefa para ser enviado para a base de dados */
   async createTarefa(novaTarefa: {
     prioridade: string;
     concluida: boolean;
@@ -135,6 +137,8 @@ export class DataService {
     disciplina_id: number;
   }) {
     try {
+      /*Tipo de ORM para criação de queries sem o uso de SQL diretamente, 
+      havendo uma abstração para maior segurança contra SQL Injection por exemplo.*/
       const { data, error } = await this.supabase
         .from('tarefas')
         .insert([novaTarefa])
@@ -217,7 +221,7 @@ export class DataService {
     }
 
     try {
-      // Atualize apenas o campo 'concluída' da tarefa na base de dados
+      // Atualiza apenas o campo 'concluída' da tarefa na base de dados
       const { error } = await this.supabase
         .from('tarefas')
         .update({ concluida: concluida })
@@ -228,7 +232,7 @@ export class DataService {
         throw error;
       }
 
-      // Busque os dados atualizados da tarefa após a atualização
+      // Procura os dados atualizados da tarefa após a atualização na base de dados
       const { data: updatedTarefa, error: fetchError } = await this.supabase
         .from('tarefas')
         .select('*')

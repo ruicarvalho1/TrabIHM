@@ -34,14 +34,14 @@ export class HomePage {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
       try {
-        // Obter tarefas do usuário
+        // Obter tarefas do utilizador
         this.tarefas = await this.data.getTarefasDoUsuario(userId);
         this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
 
-        // Log das tarefas para verificar o conteúdo
+        // Log das tarefas para verificar o conteúdo (para efeitos de debug)
         console.log('Tarefas:', this.tarefas);
 
-        // Obter informações do usuário
+        // Obter informações do utilizador
         this.users = await this.data.getUserById(userId);
 
         // Verificar se há tarefas antes de buscar disciplinas

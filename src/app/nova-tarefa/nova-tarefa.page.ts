@@ -112,7 +112,7 @@ export class NovaTarefaPage implements OnInit {
 
       await loading.dismiss();
 
-      // Exibe um toast de sucesso
+      // Mostra um toast de sucesso
       const successToast = await this.toastController.create({
         message: 'Tarefa criada com sucesso!',
         duration: 2000,
@@ -124,7 +124,7 @@ export class NovaTarefaPage implements OnInit {
 
       await loading.dismiss();
 
-      // Exibe um toast de erro
+      // Mostra um toast de erro
       const errorToast = await this.toastController.create({
         message: 'Erro ao criar tarefa. Tente novamente.',
         duration: 2000,
