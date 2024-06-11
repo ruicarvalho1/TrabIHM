@@ -25,31 +25,36 @@ export class TarefaPage implements OnInit {
     this.ionViewWillEnter();
   }
 
+  // Função para mudar o idioma
+
   onchangeLanguage(e: any) {
     this.translateService.use(e.target.value ? e.target.value : 'en');
   }
 
+  // Função para entrar na página
   async ionViewWillEnter() {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
       this.user = this.authService.getCurrentUser();
 
-      const tarefasDoUsuario = await this.data.getTarefasDoUsuario(userId);
-      console.log('Tarefas do usuário:', tarefasDoUsuario);
+      const tarefasDoUtilizador = await this.data.getTarefasDoUtilizador(
+        userId
+      );
+      console.log('Tarefas do utilizador:', tarefasDoUtilizador);
 
-      if (tarefasDoUsuario.length > 0) {
+      if (tarefasDoUtilizador.length > 0) {
         const tarefaIdParam = this.route.snapshot.paramMap.get('id');
         if (tarefaIdParam) {
           const tarefaId = +tarefaIdParam;
           if (!isNaN(tarefaId)) {
-            this.tarefaSelecionada = tarefasDoUsuario.find(
+            this.tarefaSelecionada = tarefasDoUtilizador.find(
               (tarefa) => tarefa.id_tarefa === tarefaId
             );
             if (this.tarefaSelecionada) {
               console.log('Tarefa selecionada:', this.tarefaSelecionada);
             } else {
               console.log(
-                'Tarefa não encontrada na lista de tarefas do usuário.'
+                'Tarefa não encontrada na lista de tarefas do utilizador.'
               );
             }
           } else {
@@ -59,10 +64,10 @@ export class TarefaPage implements OnInit {
           console.log('ID da tarefa não encontrado na URL.');
         }
       } else {
-        console.log('Nenhuma tarefa encontrada para este usuário.');
+        console.log('Nenhuma tarefa encontrada para este utilizador.');
       }
     } else {
-      console.log('Nenhum usuário autenticado encontrado.');
+      console.log('Nenhum utilizador autenticado encontrado.');
     }
   }
 }

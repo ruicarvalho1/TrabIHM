@@ -20,6 +20,7 @@ export class VerDisciplinaPage {
   tarefaId = 0;
   concluida = true;
 
+  //Contrutor das depências
   constructor(
     private authService: AuthService,
     private data: DataService,
@@ -38,13 +39,15 @@ export class VerDisciplinaPage {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
       this.user = this.authService.getCurrentUser();
-      const tarefasDoUsuario = await this.data.getTarefasDoUsuario(userId);
-      console.log('Tarefas do usuário:', tarefasDoUsuario);
+      const tarefasDoUtilizador = await this.data.getTarefasDoUtilizador(
+        userId
+      );
+      console.log('Tarefas do utilizador:', tarefasDoUtilizador);
 
-      if (tarefasDoUsuario.length > 0) {
-        // Obter os IDs únicos das disciplinas das tarefas do usuário
+      if (tarefasDoUtilizador.length > 0) {
+        // Obter os IDs únicos das disciplinas das tarefas do utilizador
         const disciplinasIds = [
-          ...new Set(tarefasDoUsuario.map((tarefa) => tarefa.disciplina_id)),
+          ...new Set(tarefasDoUtilizador.map((tarefa) => tarefa.disciplina_id)),
         ];
 
         // Buscar todas as disciplinas
@@ -71,13 +74,14 @@ export class VerDisciplinaPage {
           console.log('ID da disciplina não encontrado na URL.');
         }
       } else {
-        console.log('Nenhuma tarefa encontrada para este usuário.');
+        console.log('Nenhuma tarefa encontrada para este utilizador.');
       }
     } else {
-      console.log('Nenhum usuário autenticado encontrado.');
+      console.log('Nenhum utilizador autenticado encontrado.');
     }
   }
 
+  // Função para carregar a disciplina
   async loadDisciplina(id: string) {
     try {
       const { data, error } = await this.data.getDisciplinaById(id);
@@ -91,6 +95,7 @@ export class VerDisciplinaPage {
     }
   }
 
+  // Função para atualizar a tarefa da disciplina
   async atualizarTarefaDaDisciplina(idTarefa: number, disciplina: any) {
     const loading = await this.loadingController.create({
       message: 'Atualizando tarefa...',
@@ -106,8 +111,6 @@ export class VerDisciplinaPage {
 
       // Atualize a tarefa específica
       await this.data.atualizarTarefa(idTarefa, disciplina.concluida);
-
-      console.log('Tarefa atualizada com sucesso.');
 
       const successToast = await this.toastController.create({
         message: 'Tarefa atualizada com sucesso!',
@@ -129,12 +132,44 @@ export class VerDisciplinaPage {
     }
   }
 
+  // Função para navegar para a página de adicionar tarefa
   verTarefa(tarefaId: number) {
     console.log('ID da disciplina:', tarefaId);
     if (tarefaId) {
       this.router.navigate(['/tarefa', tarefaId]);
     } else {
       console.error('ID da disciplina não está definido.');
+    }
+  }
+
+  // Função para excluir tarefa
+  async excluirTarefa(id: number) {
+    try {
+      const { error } = await this.data.deleteTarefa(id);
+      if (error) {
+        throw new Error('Erro ao excluir tarefa');
+      } else {
+        this.tarefasDaDisciplinaSelecionada =
+          this.tarefasDaDisciplinaSelecionada.filter(
+            (tarefa) => tarefa.id_tarefa !== id
+          );
+
+        const successToast = await this.toastController.create({
+          message: 'Tarefa apagada com sucesso!',
+          duration: 2000,
+          color: 'success',
+        });
+        await successToast.present();
+      }
+    } catch (error) {
+      console.error('Erro ao excluir tarefa:', error);
+
+      const errorToast = await this.toastController.create({
+        message: 'Erro ao excluir tarefa. Tente novamente.',
+        duration: 2000,
+        color: 'danger',
+      });
+      await errorToast.present();
     }
   }
 }

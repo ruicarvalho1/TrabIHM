@@ -5,11 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-<<<<<<< HEAD
-	<string>Cenas</string>
-=======
         <string>Cenas</string>
->>>>>>> f6e3f784a8b0238587b1f872d5bb9a81ea5169b0
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

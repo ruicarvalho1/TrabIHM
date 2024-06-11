@@ -62,8 +62,11 @@
         </div>
       </div>
     </ion-card>
-    <ion-card class="info-card">
-      <img src="/assets/SVG/megaphone.svg" alt="" routerLink="/ajuda" />
+    <ion-card
+      class="info-card ajuda"
+      style="display: -ms-inline-grid !important"
+    >
+      <img src="/assets/SVG/megaphone.svg" alt="" (click)="paginaAjuda()" />
       <p translate routerLink="/ajuda">site.perfil-ajuda</p>
     </ion-card>
 

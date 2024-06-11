@@ -270,7 +270,7 @@ export class EditarPerfilPage {
 
       console.log('group: ', this.users);
     } else {
-      console.log('Nenhum usuário autenticado encontrado.');
+      console.log('Nenhum utilizador autenticado encontrado.');
     }
   }
 }

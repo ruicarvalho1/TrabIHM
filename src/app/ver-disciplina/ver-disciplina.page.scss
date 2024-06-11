@@ -110,3 +110,31 @@ ion-content .banner {
     --color-checked: #FFFFFF;
   }
 
+  .card-task {
+    position: relative; /* Para definir o contexto de posicionamento */
+  }
+  
+  .delete-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 1; /* Garantir que o botão esteja acima de outros elementos */
+  }
+  
+  ion-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+  
+  ion-card-title {
+    flex: 1;
+  }
+  
+  .delete-icon ion-button {
+    padding: 0;
+  }
+
+  
+  

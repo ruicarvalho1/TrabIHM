@@ -3,5 +3,17 @@
   "integrations": {
     "capacitor": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "webDir": "dist/Cenas",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "android": {
+    "orientation": "portrait"
+  },
+  "ios": {
+    "orientation": "portrait"
+  }
 }

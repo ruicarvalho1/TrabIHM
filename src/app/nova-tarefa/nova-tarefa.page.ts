@@ -37,7 +37,7 @@ export class NovaTarefaPage implements OnInit {
     // Carrega as disciplinas ao iniciar a página
     this.carregarDisciplinas();
   }
-
+  //  Função para carregar as disciplinas
   async carregarDisciplinas() {
     try {
       this.disciplinas = await this.data.getAllDisciplinas();
@@ -46,7 +46,7 @@ export class NovaTarefaPage implements OnInit {
       console.error('Erro ao carregar disciplinas:', error);
     }
   }
-
+  // Função para formatar a data
   formatarData(event: any) {
     const data = new Date(event.detail.value);
     const ano = data.getFullYear();
@@ -56,15 +56,18 @@ export class NovaTarefaPage implements OnInit {
     this.formularioTarefa.patchValue({ data_limite: dataFormatada });
     console.log('formularioTarefa:', this.formularioTarefa.value);
   }
-
+  // Função para obter a data mínima
   getMinDate(): string {
+    // Obtém a data atual
     const today = new Date();
+    // Formata a data atual
     const day = String(today.getDate()).padStart(2, '0');
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const year = today.getFullYear();
+    // Retorna a data mínima no formato 'YYYY-MM-DD'
     return `${year}-${month}-${day}`;
   }
-
+  // Função para resetar a data
   resetToMinDate(event: any) {
     const selectedDate = new Date(event.detail.value);
     const minDate = new Date(this.getMinDate());
@@ -73,11 +76,11 @@ export class NovaTarefaPage implements OnInit {
       this.formularioTarefa.patchValue({ data_limite: this.getMinDate() });
     }
   }
-
+  // Função para mudar o idioma
   onchangeLanguage(e: any) {
     this.translateService.use(e.target.value ? e.target.value : 'en');
   }
-
+  // Função para criar a tarefa
   async criarTarefa() {
     if (this.formularioTarefa.invalid) {
       this.displayFormErrors();
@@ -133,11 +136,14 @@ export class NovaTarefaPage implements OnInit {
       await errorToast.present();
     }
   }
-
+  // Função para mostrar os erros do formulário
   displayFormErrors() {
+    // Itera sobre os controles do formulário
     Object.keys(this.formularioTarefa.controls).forEach((key) => {
+      // Obtém os erros de cada controle
       const controlErrors = this.formularioTarefa.get(key)?.errors;
       if (controlErrors) {
+        // Itera sobre os erros de cada controle
         Object.keys(controlErrors).forEach((keyError) => {
           console.log(
             `Key control: ${key}, keyError: ${keyError}, error: ${controlErrors[keyError]}`
@@ -146,11 +152,11 @@ export class NovaTarefaPage implements OnInit {
       }
     });
   }
-
+  // Função para cancelar
   cancelar() {
     console.log('Operação cancelada');
   }
-
+  // Função para guardar
   async guardar() {
     try {
       console.log('Tarefa criada e guardada com sucesso!');

@@ -13,6 +13,7 @@ import { User } from '@supabase/supabase-js';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage {
+  // Variáveis
   users: any = null;
   user = this.authService.getCurrentUser();
   public swiper!: Swiper;
@@ -25,7 +26,7 @@ export class HomePage {
     private authService: AuthService,
     private data: DataService
   ) {}
-
+  // Função para mudar o idioma
   onchangeLanguage(e: any) {
     this.translateService.use(e.target.value ? e.target.value : 'en');
   }
@@ -35,8 +36,8 @@ export class HomePage {
     if (userId) {
       try {
         // Obter tarefas do utilizador
-        this.tarefas = await this.data.getTarefasDoUsuario(userId);
-        this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
+        this.tarefas = await this.data.getTarefasDoUtilizador(userId);
+        this.disciplinas = await this.data.getDisciplinasDoUtilizador(userId);
 
         // Log das tarefas para verificar o conteúdo (para efeitos de debug)
         console.log('Tarefas:', this.tarefas);
@@ -57,7 +58,7 @@ export class HomePage {
             }
           }
         } else {
-          console.log('Nenhuma tarefa encontrada para o usuário.');
+          console.log('Nenhuma tarefa encontrada para o utilizador.');
         }
 
         console.log('group: ', this.users);
@@ -65,7 +66,7 @@ export class HomePage {
         console.error('Erro ao carregar dados:', error);
       }
     } else {
-      console.log('Nenhum usuário autenticado encontrado.');
+      console.log('Nenhum utilizador autenticado encontrado.');
     }
   }
 }

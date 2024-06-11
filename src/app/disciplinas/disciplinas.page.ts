@@ -43,11 +43,11 @@ export class DisciplinasPage {
       this.tasksAndDisciplines =
         await this.data.getUserTasksAndDisciplines();
       console.log(
-        'Tarefas e disciplinas do usuário:',
+        'Tarefas e disciplinas do utilizador:',
         this.tasksAndDisciplines
       );
     } catch (error) {
-      console.error('Erro ao obter tarefas e disciplinas do usuário:', error);
+      console.error('Erro ao obter tarefas e disciplinas do utilizador:', error);
     }
   }
   */
@@ -59,7 +59,7 @@ export class DisciplinasPage {
   async ionViewWillEnter() {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
-      this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
+      this.disciplinas = await this.data.getDisciplinasDoUtilizador(userId);
       this.users = await this.data.getUserById(userId);
 
       console.log('disciplinas: ', this.disciplinas);

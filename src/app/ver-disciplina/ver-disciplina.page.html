@@ -28,9 +28,18 @@
   >
     <ion-card class="card-task">
       <ion-card-header>
-        <ion-card-title color="bgwhite"
-          ><h3 style="margin: 0">{{tarefa.nome_tarefa}}</h3></ion-card-title
+        <ion-card-title color="bgwhite">
+          <h3 style="margin: 0">{{tarefa.nome_tarefa}}</h3>
+        </ion-card-title>
+        <ion-button
+          id="deleteTask"
+          fill="clear"
+          color="danger"
+          (click)="excluirTarefa(tarefa.id_tarefa)"
+          class="delete-icon"
         >
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
       </ion-card-header>
 
       <ion-card-content>
@@ -47,7 +56,6 @@
         </div>
 
         <div class="see-btn">
-          <!-- Aqui você passa o id_tarefa como argumento para a função verTarefa -->
           <ion-button
             id="openTask"
             color="bgwhite"

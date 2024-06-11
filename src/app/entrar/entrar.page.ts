@@ -23,13 +23,14 @@ export class EntrarPage {
     private alertController: AlertController,
     private router: Router
   ) {
+    // Verificar se o utilizador já está autenticado
     this.authService.getCurrentUser().subscribe((user) => {
       if (user) {
         this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
       }
     });
   }
-
+  // getters para fazer login
   get email() {
     return this.credentials.controls.email;
   }
@@ -37,13 +38,16 @@ export class EntrarPage {
   get password() {
     return this.credentials.controls.password;
   }
-
+  // função para fazer login
   async login() {
+    // Mostrar um loading enquanto o login é feito
     const loading = await this.loadingController.create();
     await loading.present();
 
     this.authService
+      // Fazer login com as credenciais
       .signIn(this.credentials.getRawValue())
+      // Se o login for bem sucedido, redirecionar para a página home
       .then(async (data) => {
         await loading.dismiss();
 
@@ -52,7 +56,7 @@ export class EntrarPage {
         }
       });
   }
-
+  // função para mostrar um alerta
   async showAlert(title: string, msg: string) {
     const alert = await this.alertController.create({
       header: title,
@@ -61,7 +65,7 @@ export class EntrarPage {
     });
     await alert.present();
   }
-
+  // função para obter o link mágico
   async getMagicLink() {
     const alert = await this.alertController.create({
       header: 'Entrar com email',

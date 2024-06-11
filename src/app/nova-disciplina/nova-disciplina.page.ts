@@ -30,17 +30,17 @@ export class NovaDisciplinaPage implements OnInit {
   }
 
   ngOnInit() {}
-
+  // Função para mudar o idioma
   onchangeLanguage(e: any) {
     this.translateService.use(e.target.value ? e.target.value : 'en');
   }
-
+  // Função para criar disciplina
   async criarDisciplina() {
     if (this.formularioDisciplina.invalid) {
       this.formularioDisciplina.markAllAsTouched();
       return;
     }
-
+    // Cria um loading
     const loading = await this.loadingController.create({
       message: 'Criando Disciplina...',
       spinner: 'circles',
@@ -49,7 +49,7 @@ export class NovaDisciplinaPage implements OnInit {
 
     try {
       await loading.present();
-
+      // Obtém os dados do formulário
       const novaDisciplina = this.formularioDisciplina.value;
       const userId = this.authService.getCurrentUserId();
       novaDisciplina.user_id = userId;
@@ -63,7 +63,7 @@ export class NovaDisciplinaPage implements OnInit {
         const imageUrl = await this.dataService.uploadImagemDisciplina(file);
         novaDisciplina.imagem = imageUrl; // Define o URL da imagem no objeto da tarefa
       }
-
+      // Cria a disciplina
       await this.dataService.createDisciplina(novaDisciplina);
       console.log('Disciplina criada com sucesso!');
 

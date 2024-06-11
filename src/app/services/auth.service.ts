@@ -11,10 +11,13 @@ import { PostgrestError, PostgrestResponse } from '@supabase/supabase-js';
   providedIn: 'root',
 })
 export class AuthService {
+  // Supabase client
   private supabase: SupabaseClient;
+  // Current user
   private currentUser: BehaviorSubject<User | boolean | null> =
     new BehaviorSubject<User | boolean | null>(null);
 
+  // Construtor das dependências
   constructor(private router: Router) {
     this.supabase = createClient(
       environment.supabaseUrl,
@@ -34,10 +37,9 @@ export class AuthService {
     // Trigger inicial para carregamento de dados da sessão
     this.loadUser();
   }
-
+  // Função para carregar o utilizador
   async loadUser() {
     if (this.currentUser.value) {
-      // User is already set, no need to do anything else
       return;
     }
     const user = await this.supabase.auth.getUser();
@@ -49,10 +51,12 @@ export class AuthService {
     }
   }
 
+  // Função para registar
   signUp(credentials: { email: string; password: string }) {
     return this.supabase.auth.signUp(credentials);
   }
 
+  // Função para inserir dados do utilizador
   async insertUserData(userData: {
     id: string;
     email: string;
@@ -89,20 +93,22 @@ export class AuthService {
       return { error };
     }
   }
-
+  // Função para iniciar sessão
   signIn(credentials: { email: string; password: string }) {
     return this.supabase.auth.signInWithPassword(credentials);
   }
 
+  // Função para sair
   async signOut() {
     await this.supabase.auth.signOut();
     this.router.navigateByUrl('/entrar', { replaceUrl: true });
   }
-
+  // Função para obter o utilizador atual
   getCurrentUser(): Observable<User | boolean | null> {
     return this.currentUser.asObservable();
   }
 
+  // Função para obter o ID do utilizador atual
   getCurrentUserId(): string {
     if (this.currentUser.value) {
       return (this.currentUser.value as User).id;
@@ -110,7 +116,7 @@ export class AuthService {
       return '';
     }
   }
-
+  // Função para atualizar os dados do utilizador
   updateUserData(userData: {
     id: string;
     email?: string;
@@ -123,7 +129,7 @@ export class AuthService {
     const { id, ...updateData } = userData;
     return this.supabase.from('users').update(updateData).eq('id', id);
   }
-
+  // Função para enviar email de verificação
   signInWithEmail(email: string, redirectTo: string) {
     return this.supabase.auth.signInWithOtp({
       email,

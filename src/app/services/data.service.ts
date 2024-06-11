@@ -25,6 +25,7 @@ export interface Message {
   providedIn: 'root',
 })
 export class DataService {
+  // Função para obter os users
   getUser() {
     throw new Error('Method not implemented.');
   }
@@ -45,6 +46,7 @@ export class DataService {
       .then((result) => result.data || []);
   }
 
+  // Função para criar um grupo
   async createGroup(title: string) {
     const user = await this.supabase.auth.getUser();
     const newgroup = {
@@ -55,6 +57,7 @@ export class DataService {
     return this.supabase.from(GROUPS_DB).insert(newgroup).select().single();
   }
 
+  //Utilização do supabase storage para fazer upload de imagens
   async uploadImagem(file: File): Promise<string> {
     try {
       const { data, error } = await this.supabase.storage
@@ -68,7 +71,7 @@ export class DataService {
         throw error;
       }
 
-      /* Construir a URL pública manualmente*/
+      /* Construir a URL pública*/
 
       const publicURL = `${environment.supabaseUrl}/storage/v1/object/public/images/${data.path}`;
 
@@ -79,6 +82,7 @@ export class DataService {
     }
   }
 
+  // Função para fazer upload de uma imagem de perfil
   async uploadImagemPerfil(file: File): Promise<string> {
     try {
       const { data, error } = await this.supabase.storage
@@ -102,6 +106,7 @@ export class DataService {
     }
   }
 
+  // Função para fazer upload de uma imagem de disciplina
   async uploadImagemDisciplina(file: File): Promise<string> {
     try {
       const { data, error } = await this.supabase.storage
@@ -152,6 +157,12 @@ export class DataService {
     }
   }
 
+  // Função para deletar as tarefas
+  async deleteTarefa(id: number) {
+    return await this.supabase.from('tarefas').delete().eq('id_tarefa', id);
+  }
+
+  // Função para criar uma disciplina
   async createDisciplina(createDisciplina: {
     nome: string;
     area_estudo: boolean;
@@ -171,6 +182,8 @@ export class DataService {
       throw error;
     }
   }
+
+  //Função para obter o utilizador pelo id
   getUserById(id: any) {
     return this.supabase
       .from(USERS_DB)
@@ -180,6 +193,7 @@ export class DataService {
       .then((result) => result.data);
   }
 
+  // Função para obter todas as disciplinas
   getAllDisciplinas() {
     return this.supabase
       .from('disciplinas')
@@ -187,7 +201,8 @@ export class DataService {
       .then((result) => result.data || []);
   }
 
-  async getTarefasDoUsuario(userId: string) {
+  // Função para obter as tarefas do utilizador
+  async getTarefasDoUtilizador(userId: string) {
     try {
       const { data, error } = await this.supabase
         .from('tarefas')
@@ -200,10 +215,12 @@ export class DataService {
 
       return data || [];
     } catch (error) {
-      console.error('Erro ao obter as tarefas do usuário:', error);
+      console.error('Erro ao obter as tarefas do utilizador:', error);
       return [];
     }
   }
+
+  // Função para obter a disciplina pelo id
 
   async getDisciplinaById(id: string) {
     return await this.supabase
@@ -212,6 +229,8 @@ export class DataService {
       .eq('id_disciplina', id)
       .single();
   }
+
+  // Função para atualizar a tarefa
 
   async atualizarTarefa(idTarefa: number, concluida: boolean): Promise<any> {
     // Verifica se o ID da tarefa é válido
@@ -252,6 +271,7 @@ export class DataService {
     }
   }
 
+  // Função para obter a disciplina pelo id do utilizador
   async getDisciplinaIdForUser(userId: string): Promise<number | null> {
     try {
       const { data, error } = await this.supabase
@@ -261,22 +281,23 @@ export class DataService {
         .single();
 
       if (error) {
-        console.error('Erro ao obter a disciplina para o usuário:', error);
+        console.error('Erro ao obter a disciplina para o utilizador:', error);
         return null;
       }
 
       if (!data) {
-        console.error('Nenhuma disciplina encontrada para este usuário.');
+        console.error('Nenhuma disciplina encontrada para este utilizador.');
         return null;
       }
 
       return data.id_disciplina;
     } catch (error) {
-      console.error('Erro ao obter a disciplina do usuário:', error);
+      console.error('Erro ao obter a disciplina do utilizador:', error);
       throw error;
     }
   }
 
+  // Função para obter as tarefas por disciplina
   async getTarefasPorDisciplina(idDisciplina: number): Promise<any[]> {
     try {
       const { data, error } = await this.supabase
@@ -300,6 +321,8 @@ export class DataService {
       return [];
     }
   }
+
+  // Função para obter a disciplina por tarefa
 
   async getDisciplinaPorTarefa(idDisciplina: number): Promise<string | null> {
     try {
@@ -326,6 +349,7 @@ export class DataService {
     }
   }
 
+  //Tentativa das menssagens de grupo
   async addGroupMessage(groupId: string, message: string) {
     const newMessage = {
       text: message,
@@ -383,6 +407,7 @@ export class DataService {
     }
   }
 
+  // Função para obter as tarefas concluídas
   async getDisciplinasTarefasTrue(userId: string, id_disciplina: number) {
     const { data, error } = await this.supabase
       .from('tarefas')
@@ -399,6 +424,7 @@ export class DataService {
     return tarefasTrue;
   }
 
+  // Função para obter as tarefas não concluídas
   async getDisciplinasTarefasFalse(userId: string, id_disciplina: number) {
     const { data, error } = await this.supabase
       .from('tarefas')
@@ -414,7 +440,7 @@ export class DataService {
     return tarefasFalse;
   }
 
-  async getDisciplinasDoUsuario(userId: string) {
+  async getDisciplinasDoUtilizador(userId: string) {
     try {
       let percentagem: number = 0;
 
@@ -428,7 +454,7 @@ export class DataService {
       }
 
       if (!data || data.length === 0) {
-        console.log('Não há disciplinas associadas a este usuário.');
+        console.log('Não há disciplinas associadas a este utilizador.');
       }
 
       for (let disciplina of data) {
@@ -454,7 +480,7 @@ export class DataService {
       return data;
       //return data || [];
     } catch (error) {
-      console.error('Erro ao obter as disciplinas do usuário:', error);
+      console.error('Erro ao obter as disciplinas do utilizador:', error);
       return [];
     }
   }

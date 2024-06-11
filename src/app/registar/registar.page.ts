@@ -37,7 +37,7 @@ export class RegistarPage {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZieWd4ZmltdWRscWRieHprbXBvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTUzMzM1NjQsImV4cCI6MjAzMDkwOTU2NH0.mEZm_BbKRRV9QcrzOgKE1pheMtt8zzhGIyZMwzdmsek'
     );
   }
-
+  // Getters para os campos do formulário
   get email() {
     return this.credentials.controls.email;
   }
@@ -56,7 +56,7 @@ export class RegistarPage {
   get password() {
     return this.credentials.controls.password;
   }
-
+  // Função para criar conta
   async createAccount() {
     const loading = await this.loadingController.create();
     await loading.present();
@@ -95,7 +95,7 @@ export class RegistarPage {
           this.showAlert('Registo Falhou', error.message);
           return;
         }
-
+        // Registo feito com sucesso
         await loading.dismiss();
         this.showAlert(
           'Registo feito com sucesso',
@@ -104,10 +104,14 @@ export class RegistarPage {
         this.navCtrl.navigateBack('');
       } else {
         await loading.dismiss();
-        this.showAlert('Registo Falhou', 'O ID do usuário não foi retornado.');
+        this.showAlert(
+          'Registo Falhou',
+          'O ID do utilizador não foi retornado.'
+        );
       }
     } catch (err) {
       await loading.dismiss();
+      // Mostra um alerta com a mensagem de erro
       this.showAlert(
         'Registo Falhou',
         'Ocorreu um erro inesperado. Tente novamente.'
@@ -115,7 +119,7 @@ export class RegistarPage {
       console.error('Erro ao criar conta:', err);
     }
   }
-
+  // Função para mostrar um alerta
   async showAlert(title: string, msg: string) {
     const alert = await this.alertController.create({
       header: title,

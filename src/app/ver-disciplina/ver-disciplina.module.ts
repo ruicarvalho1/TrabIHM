@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 import { VerDisciplinaPageRoutingModule } from './ver-disciplina-routing.module';
 import { VerDisciplinaPage } from './ver-disciplina.page';
 
+// Módulos da página VerDisciplinaPage
+
 @NgModule({
   imports: [
     CommonModule,

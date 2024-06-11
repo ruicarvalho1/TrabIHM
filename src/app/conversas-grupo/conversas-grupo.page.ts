@@ -55,8 +55,8 @@ export class ConversasGrupoPage {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
       // Obter as tarefas do utilizador
-      this.tarefas = await this.data.getTarefasDoUsuario(userId);
-      this.disciplinas = await this.data.getDisciplinasDoUsuario(userId);
+      this.tarefas = await this.data.getTarefasDoUtilizador(userId);
+      this.disciplinas = await this.data.getDisciplinasDoUtilizador(userId);
 
       // Obter as informações do utilizador
       this.users = await this.data.getUserById(userId);

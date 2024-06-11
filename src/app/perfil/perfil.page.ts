@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { DataService } from './../services/data.service';
 import { Plugins } from '@capacitor/core';
+import { Router } from '@angular/router';
 
 const { PushNotifications } = Plugins;
 
@@ -31,15 +32,16 @@ export class PerfilPage {
     private toastController: ToastController,
     private authService: AuthService,
     private data: DataService,
-    private storage: Storage
+    private storage: Storage,
+    private router: Router
   ) {
     this.initStorage();
   }
-
+  // Função para iniciar o armazenamento
   async initStorage() {
     this.storage = await this.storage.create(); // Inicia o armazenamento
   }
-
+  // Função para apresentar um toast
   async presentToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -47,7 +49,7 @@ export class PerfilPage {
     });
     toast.present();
   }
-
+  // Função para mudar o idioma
   onchangeLanguage(e: any) {
     const selectedLanguage = e.detail.value ? e.detail.value : 'en';
     const selectedLanguageData = this.appLanguageList.find(
@@ -59,17 +61,22 @@ export class PerfilPage {
       });
     }
   }
-
+  // Função para mostrar o user atual
   async ionViewWillEnter() {
     const userId = this.authService.getCurrentUserId();
     if (userId) {
       this.users = await this.data.getUserById(userId);
-      console.log('group: ', this.users);
     } else {
-      console.log('Nenhum usuário autenticado encontrado.');
+      console.log('Nenhum utilizador autenticado encontrado.');
     }
   }
+  // Função de sair
   signOut() {
     this.authService.signOut();
+  }
+
+  //Função para ir para a página de ajuda
+  paginaAjuda() {
+    this.router.navigate(['/ajuda'], { queryParams: { from: 'perfil' } });
   }
 }
